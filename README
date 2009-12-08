@@ -1,0 +1,143 @@
+
+.. -*-restructuredtext-*-
+
+==========
+ Fabulous
+==========
+
+---------------------------------------------
+ Makes Your Terminal Output Totally Fabulous
+---------------------------------------------
+
+:Version: 0.1
+:Date: 2009-12-07
+:Copyright: Copyright (c) 2009 Lobstertech, Inc.
+:Manual section: 3
+:Manual group: Library Calls
+
+What Is It?
+===========
+
+Fabulous is a simple "pythonic" way to make your dull terminal output
+more colorful::
+
+  print bold(magenta('hello kitty'))
+
+How Do I Get It?
+================
+
+Download and extract the latest version::
+
+  sudo python setup.py install
+
+If you love PIP you can do this::
+
+  pip install hg+http://bitbucket.org/jart/fabulous/
+
+You might want to make sure it works::
+
+  python
+  >>> from fabulous.ansi import *
+  >>> print bold(blue('hello kitty'))
+  hello kitty
+  
+  # it works by inserting terminal codes in your data
+  >>> print repr(bold(blue('hello kitty')))
+  '\x1b[1;34mhello kitty\x1b[0m'
+
+Or you can run the unit test suite::
+
+  easy_install py
+  py.test -xl
+
+Why Would I Use It?
+===================
+
+* You want the output of your Python command line apps to be prettier.
+
+* You don't want to waste time learning a low-level curses library.
+
+* You want to make important data *stand out*.  One such example::
+
+    print re.sub(r'important-data', lambda s: bold(s), mystr)
+
+* You need a library that optimizes ANSI escape codes to make them as
+  short as possible (gnome-terminal can be quite slow if you have a
+  massive amount of escape codes!)
+
+* You want to be able to take advantage of the 256 color support
+  offered by most modern terminals.
+
+How Do I Use It?
+================
+
+Examples::
+
+  from fabulous.ansi import *
+
+  print bold(underline("hello kitty"))
+  print bold("hello ", underline("kitty"))
+
+  print "this is %s!" % bold("so easy")
+  print ", ".join([str(s) for s in (blue('hi'), red('there'), cyan('friend'))])
+
+  # use fg()/bg() for RGB 256-color support
+  print fg((255, 0, 0), underline("hello kitty")) # red
+  print fg('ff0000', underline("hello kitty"))    # also red
+  print fg('#ff0000', underline("hello kitty"))   # still red
+  print fg('f00', underline("hello kitty"))       # SURPRISE! red
+
+You can define a custom style for clearer code::
+
+  lol_text = style(bold, fg('#05b'), bg('#def'))
+  print lol_text("live long ", underline("in agony"))
+
+Be careful!  This is not a perfect substitute for str::
+
+  blue("hello %s").lower()         # BAD
+  str(blue("hello %s")).lower()    # good
+
+  blue("hello %s") % ("jart")      # BAD
+  str(blue("hello %s")) % ("jart") # good
+
+You get the following pre-defined 16-bit colors/styles.  Terminals
+sometimes change these colors around a bit to match the user's color
+scheme::
+
+  black, red, green, yellow, blue, magenta, cyan, white
+  black_bg, red_bg, green_bg, yellow_bg, blue_bg, magenta_bg, cyan_bg, white_bg
+
+If you want to use the pre-defined backgrounds, not clobber your
+user's color scheme, and have it *not look awful*...  Consider using
+the "bold ANSI flip" technique::
+
+  print bold(flip(blue("i am blueeee")))
+
+This is generally guaranteed to be legible and look good on any color
+scheme.
+
+When *Wouldn't* I Want To Use It?
+---------------------------------
+
+* If you use ``cmd`` in Windows you're out of luck and should consider
+  installing Cygwin or MinGW or perhaps consider Putty.
+
+* You don't need Fabulous to syntax highlight code.  Pygments does
+  this quite nicely::
+
+    # sudo easy_install pygments
+    from pygments import highlight
+    from pygments.lexers import SqlLexer
+    from pygments.formatters import Terminal256Formatter
+
+    sql = "SELECT COUNT(*) FROM fun_table"
+    print highlight(sql, SqlLexer(), Terminal256Formatter())
+
+ToDo
+====
+
+* Ability to print images to the terminal!!!
+* Support for Windows
+* Support for detecting terminal so it doesn't print garbage to wacky
+  terminal emulators like Emacs.
+* Maybe support different output modes like HTML
