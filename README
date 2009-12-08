@@ -100,7 +100,7 @@ Be careful!  This is not a perfect substitute for str::
   blue("hello %s") % ("jart")      # BAD
   str(blue("hello %s")) % ("jart") # good
 
-You get the following pre-defined 16-bit colors/styles.  Terminals
+You get the following pre-defined 16 color/styles.  Terminals
 sometimes change these colors around a bit to match the user's color
 scheme::
 
