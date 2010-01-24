@@ -23,8 +23,3 @@ def image(path, resize=None, resize_antialias=None):
             else:
                 sys.stdout.write(unicode(fg(color, u"\u2588")).encode('utf8'))
         sys.stdout.write("\n")
-
-
-
-if __name__ == '__main__':
-    print image('balls.png', resize=(100, 37))
