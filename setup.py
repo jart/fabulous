@@ -10,7 +10,7 @@ setup(
     version              = __import__('fabulous').__version__,
     description          = 'Makes your terminal output totally fabulous',
     long_description     = open('README').read(),
-    license              = 'WTFPL', # no licensing restrictions lol
+    license              = 'LGPL',
     install_requires     = [],
     packages             = find_packages(),
     setup_requires       = ["setuptools_hg"],
