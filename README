@@ -1,4 +1,3 @@
-
 .. -*-restructuredtext-*-
 
 ==========
@@ -15,6 +14,7 @@
 :Manual section: 3
 :Manual group: Library Calls
 
+
 What Is It?
 ===========
 
@@ -22,6 +22,7 @@ Fabulous is a simple "pythonic" way to make your dull terminal output
 more colorful::
 
   print bold(magenta('hello kitty'))
+
 
 How Do I Get It?
 ================
@@ -50,6 +51,7 @@ Or you can run the unit test suite::
   easy_install py
   py.test -xl
 
+
 Why Would I Use It?
 ===================
 
@@ -67,6 +69,7 @@ Why Would I Use It?
 
 * You want to be able to take advantage of the 256 color support
   offered by most modern terminals.
+
 
 How Do I Use It?
 ================
@@ -116,6 +119,7 @@ the "bold ANSI flip" technique::
 This is generally guaranteed to be legible and look good on any color
 scheme.
 
+
 When *Wouldn't* I Want To Use It?
 ---------------------------------
 
@@ -132,6 +136,7 @@ When *Wouldn't* I Want To Use It?
 
     sql = "SELECT COUNT(*) FROM fun_table"
     print highlight(sql, SqlLexer(), Terminal256Formatter())
+
 
 ToDo
 ====
