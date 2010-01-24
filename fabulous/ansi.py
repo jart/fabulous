@@ -1,11 +1,14 @@
 """ANSI Terminal Color Output Support
+
+See ``README`` or ``test_ansi.py`` to learn how to use me!
 """
 
 __all__ = ['bold', 'italic', 'underline', 'strike', 'flip', 'black', 'red',
            'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'black_bg',
            'red_bg', 'green_bg', 'yellow_bg', 'blue_bg', 'magenta_bg',
-           'cyan_bg', 'white_bg', 'fg', 'bg', 'style']
+           'cyan_bg', 'white_bg', 'fg', 'bg', 'style', 'Fabulous']
 
+import collections
 from itertools import groupby
 
 ANSI_RESET = 0
@@ -14,9 +17,6 @@ ANSI_RESET_BG = 49
 
 
 class Fabulous(object):
-    codes = set()
-    children = []
-
     def __init__(self, *args):
         self.children = args
 
@@ -30,36 +30,7 @@ class Fabulous(object):
         return repr(str(self))
 
     def __iter__(self):
-        return self.assemble()
-
-    def assemble(self, parent_codes=None):
-        r"""Create generator to return color code sets and strings
-
-        This gives you raw data that isn't compiled or optimized.
-        Chances are you want to call ``str(fab_obj)``.  Iterating over
-        this object will also give you generator behaviour on the
-        compiled optimized results.
-
-        Like for bold, blue text you might get get something like this
-        (both are correct)::
-
-          [set([1, 34]), "i am blue!!!", set([0])]
-          [set([1, 34]), "i am blue!!!", set([22, 39])]
-
-        Uses a lot of weird maths to avoid needless repetition of
-        color change operations escape codes.
-        """
-        if not self.children:
-            return
-
-        if parent_codes:
-            new_codes = self.codes - parent_codes
-        else:
-            new_codes = self.codes
-        if new_codes:
-            yield new_codes
-        full_codes = self.codes.union(parent_codes or set())
-
+        yield self.codes
         for child in self.children:
             if hasattr(child, 'assemble'):
                 for i in child.assemble(parent_codes=full_codes):
@@ -67,30 +38,17 @@ class Fabulous(object):
             else:
                 yield child
 
-        if new_codes:
-            if parent_codes is None:
-                # be extra sure we put things back at base-level
-                yield set([0])
-            else:
-                undo = _ansi_reverse(new_codes)
-                if parent_codes:
-                    # rather than reset colors, set them back to what parent had
-                    if ANSI_RESET_FG in undo:
-                        colorz = [c for c in parent_codes if isinstance(c, fgcolor)]
-                        if colorz:
-                            undo.discard(ANSI_RESET_FG)
-                            undo.update(colorz)
-                    if ANSI_RESET_BG in undo:
-                        colorz = [c for c in parent_codes if isinstance(c, bgcolor)]
-                        if colorz:
-                            undo.discard(ANSI_RESET_BG)
-                            undo.update(colorz)
-                if undo:
-                    yield undo
 
+class style(int):
+    def __init__(self, ansi_id):
+        self.group_ = 'style_%d' % (ansi_id)
+        int.__init__(self, ansi_id)
 
-class fgcolor(int): pass
-class bgcolor(int): pass
+class fgcolor(int):
+    group_ = 'fg'
+
+class bgcolor(int):
+    group_ = 'bg'
 
 class fgcolor256(fgcolor):
     def __str__(self):
@@ -100,40 +58,56 @@ class bgcolor256(bgcolor):
     def __str__(self):
         return "48;5;%d" % (self)
 
-class bold(Fabulous):       codes = set([1])
-class italic(Fabulous):     codes = set([3])
-class underline(Fabulous):  codes = set([4])
-class strike(Fabulous):     codes = set([9])
-class flip(Fabulous):       codes = set([7])
+class ANSIColorSet(collections.Set):
+     def __init__(self, iterable):
+         self.elements = {}
+         for id_ in iterable:
+             self.elements[v.group_] = id_
 
-class black(Fabulous):      codes = set([fgcolor(30)])
-class red(Fabulous):        codes = set([fgcolor(31)])
-class green(Fabulous):      codes = set([fgcolor(32)])
-class yellow(Fabulous):     codes = set([fgcolor(33)])
-class blue(Fabulous):       codes = set([fgcolor(34)])
-class magenta(Fabulous):    codes = set([fgcolor(35)])
-class cyan(Fabulous):       codes = set([fgcolor(36)])
-class white(Fabulous):      codes = set([fgcolor(37)])
+     def __iter__(self):
+         return iter(self.elements.values())
 
-class black_bg(Fabulous):   codes = set([bgcolor(40)])
-class red_bg(Fabulous):     codes = set([bgcolor(41)])
-class green_bg(Fabulous):   codes = set([bgcolor(42)])
-class yellow_bg(Fabulous):  codes = set([bgcolor(43)])
-class blue_bg(Fabulous):    codes = set([bgcolor(44)])
-class magenta_bg(Fabulous): codes = set([bgcolor(45)])
-class cyan_bg(Fabulous):    codes = set([bgcolor(46)])
-class white_bg(Fabulous):   codes = set([bgcolor(47)])
+     def __contains__(self, value):
+         return value in self.elements
+
+     def __len__(self):
+         return len(self.elements)
+
+
+class bold(Fabulous):       codes = ANSIColorSet([style(1)])
+class italic(Fabulous):     codes = ANSIColorSet([style(3)])
+class underline(Fabulous):  codes = ANSIColorSet([style(4)])
+class strike(Fabulous):     codes = ANSIColorSet([style(9)])
+class flip(Fabulous):       codes = ANSIColorSet([style(7)])
+
+class black(Fabulous):      codes = ANSIColorSet([fgcolor(30)])
+class red(Fabulous):        codes = ANSIColorSet([fgcolor(31)])
+class green(Fabulous):      codes = ANSIColorSet([fgcolor(32)])
+class yellow(Fabulous):     codes = ANSIColorSet([fgcolor(33)])
+class blue(Fabulous):       codes = ANSIColorSet([fgcolor(34)])
+class magenta(Fabulous):    codes = ANSIColorSet([fgcolor(35)])
+class cyan(Fabulous):       codes = ANSIColorSet([fgcolor(36)])
+class white(Fabulous):      codes = ANSIColorSet([fgcolor(37)])
+
+class black_bg(Fabulous):   codes = ANSIColorSet([bgcolor(40)])
+class red_bg(Fabulous):     codes = ANSIColorSet([bgcolor(41)])
+class green_bg(Fabulous):   codes = ANSIColorSet([bgcolor(42)])
+class yellow_bg(Fabulous):  codes = ANSIColorSet([bgcolor(43)])
+class blue_bg(Fabulous):    codes = ANSIColorSet([bgcolor(44)])
+class magenta_bg(Fabulous): codes = ANSIColorSet([bgcolor(45)])
+class cyan_bg(Fabulous):    codes = ANSIColorSet([bgcolor(46)])
+class white_bg(Fabulous):   codes = ANSIColorSet([bgcolor(47)])
 
 class fg(Fabulous):
     def __init__(self, color, *args, **kwargs):
         color = fgcolor256(rgb2xterm(color))
-        self.codes = self.codes.union(set([color]))
+        self.codes = self.codes.union(ANSIColorSet([color]))
         Fabulous.__init__(self, *args, **kwargs)
 
 class bg(Fabulous):
     def __init__(self, color, *args, **kwargs):
         color = bgcolor256(rgb2xterm(color))
-        self.codes = self.codes.union(set([color]))
+        self.codes = self.codes.union(ANSIColorSet([color]))
         Fabulous.__init__(self, *args, **kwargs)
 
 
@@ -148,29 +122,15 @@ def style(*args):
       print style(bold)("hello")
     """
     class custom_style(Fabulous):
-        codes = set([]).union(*[f.codes for f in args])
+        codes = ANSIColorSet([]).union(*[f.codes for f in args])
     return custom_style
 
 
 def _optimize(fab):
-    """Generator to merge adjacent sets and strings in iterable.
-
-    If the ultimate reset code '0' is found in a set, all other items
-    from the set are removed.
-
-    Please note that this will block generator output until the "type"
-    of objects passing through changes.
-
-    Example Optimization::
-
-      [set([1,2]), set([3]), set([9]), "hi ", "there"]
-      -> [('set', [set([1,2]), set([3])],
-          ('str', ["hi ", "there"]]
-      -> [set([1,2,3]), "hi there"]
-    """
+    state = ANSIColorSet()
     for gtype, group in groupby(iter(fab), lambda i: type(i)):
-        if issubclass(gtype, (set, frozenset)):
-            res = set()
+        if issubclass(gtype, ANSIColorSet):
+            res = ANSIColorSet()
             for s in group:
                 res.update(s)
             if 0 in res:
@@ -199,6 +159,8 @@ def _compile(fab):
             yield "\x1b[%sm" % (";".join([str(c) for c in item]))
         else:
             yield item
+
+
 
 
 def _ansi_reverse(c):
