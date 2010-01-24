@@ -1,19 +1,14 @@
 """ANSI Terminal Color Output Support
-
-See ``README`` or ``test_ansi.py`` to learn how to use me!
 """
+
+import collections
+from itertools import groupby
+
 
 __all__ = ['bold', 'italic', 'underline', 'strike', 'flip', 'black', 'red',
            'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'black_bg',
            'red_bg', 'green_bg', 'yellow_bg', 'blue_bg', 'magenta_bg',
            'cyan_bg', 'white_bg', 'fg', 'bg', 'style', 'Fabulous']
-
-import collections
-from itertools import groupby
-
-ANSI_RESET = 0
-ANSI_RESET_FG = 39
-ANSI_RESET_BG = 49
 
 
 class Fabulous(object):
@@ -39,24 +34,30 @@ class Fabulous(object):
                 yield child
 
 
+
 class style(int):
     def __init__(self, ansi_id):
         self.group_ = 'style_%d' % (ansi_id)
         int.__init__(self, ansi_id)
 
+
 class fgcolor(int):
     group_ = 'fg'
 
+
 class bgcolor(int):
     group_ = 'bg'
+
 
 class fgcolor256(fgcolor):
     def __str__(self):
         return "38;5;%d" % (self)
 
+
 class bgcolor256(bgcolor):
     def __str__(self):
         return "48;5;%d" % (self)
+
 
 class ANSIColorSet(collections.Set):
      def __init__(self, iterable):
@@ -98,11 +99,13 @@ class magenta_bg(Fabulous): codes = ANSIColorSet([bgcolor(45)])
 class cyan_bg(Fabulous):    codes = ANSIColorSet([bgcolor(46)])
 class white_bg(Fabulous):   codes = ANSIColorSet([bgcolor(47)])
 
+
 class fg(Fabulous):
     def __init__(self, color, *args, **kwargs):
         color = fgcolor256(rgb2xterm(color))
         self.codes = self.codes.union(ANSIColorSet([color]))
         Fabulous.__init__(self, *args, **kwargs)
+
 
 class bg(Fabulous):
     def __init__(self, color, *args, **kwargs):
@@ -161,16 +164,17 @@ def _compile(fab):
             yield item
 
 
-
-
 def _ansi_reverse(c):
     if hasattr(c, '__iter__'):
         return set([_ansi_reverse(i) for i in c])
     else:
-        if    isinstance(c, fgcolor): return ANSI_RESET_FG
-        elif  isinstance(c, bgcolor): return ANSI_RESET_BG
-        else: return {1:22, 3:23, 4:24, 9:29, 7:27,
-                      22:1, 23:3, 24:4, 29:9, 27:7}[c]
+        if isinstance(c, fgcolor):
+            return 39 # ansi reset fg
+        elif isinstance(c, bgcolor):
+            return 49 # ansi reset bg
+        else:
+            return {1:22, 3:23, 4:24, 9:29, 7:27,
+                    22:1, 23:3, 24:4, 29:9, 27:7}[c]
 
 
 def _to_rgb(color):
