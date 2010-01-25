@@ -2,15 +2,12 @@
 """
 
 import sys
-import fcntl
-import struct
-import termios
 import itertools
 
 from PIL import Image as Pills
 from grapefruit import Color
 
-from fabulous.xterm256 import rgb_to_xterm
+from fabulous import utils, xterm256
 
 
 class Image(object):
@@ -28,7 +25,7 @@ class Image(object):
     def resize(self, width=None):
         (iw, ih) = self.img.size
         if width is None:
-            width = _term_width()
+            width = utils.term_width()
             if iw * 2 <= width:
                 return
         width //= 2
@@ -66,14 +63,8 @@ class Image(object):
                 if len(rgba) == 4 and rgba[3] == 0:
                     yield None
                 elif len(rgba) == 3 or rgba[3] == 255:
-                    yield rgb_to_xterm(rgba[:3])
+                    yield xterm256.rgb_to_xterm(rgba[:3])
                 else:
                     color = Color.NewFromRgb(*[c / 255.0 for c in rgba])
-                    yield rgb_to_xterm(color.AlphaBlend(self.bgcolor))
+                    yield xterm256.rgb_to_xterm(color.AlphaBlend(self.bgcolor))
             yield "EOL"
-
-
-def _term_width():
-    call = fcntl.ioctl(0, termios.TIOCGWINSZ, "\000" * 8)
-    height, width = struct.unpack("hhhh", call)[:2]
-    return width
