@@ -10,7 +10,7 @@ setup(
     version              = __import__('fabulous').__version__,
     description          = 'Makes your terminal output totally fabulous',
     long_description     = open('README').read(),
-    license              = 'LGPL',
+    license              = 'BSD',
     install_requires     = ['grapefruit'],
     packages             = find_packages(),
     setup_requires       = ["setuptools_hg"],
