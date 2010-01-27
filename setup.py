@@ -5,14 +5,32 @@ use_setuptools(version='0.6c9')
 import os
 from setuptools import setup, find_packages
 
+def read(fname):
+    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+
 setup(
     name                 = 'fabulous',
     version              = __import__('fabulous').__version__,
     description          = 'Makes your terminal output totally fabulous',
-    long_description     = open('README').read(),
+    long_description     = read('README'),
     license              = 'BSD',
     install_requires     = ['grapefruit'],
     packages             = find_packages(),
     setup_requires       = ["setuptools_hg"],
-    zip_safe             = True,
+    zip_safe             = False,
+    # http://wiki.python.org/moin/CheeseShopTutorial
+    # http://pypi.python.org/pypi?:action=list_classifiers
+    classifiers=[
+        "Development Status :: 2 - Pre-Alpha",
+        "License :: OSI Approved :: BSD License",
+        "Environment :: Console",
+        "Intended Audience :: Developers",
+        "Programming Language :: C",
+        "Programming Language :: Python",
+        "Topic :: Utilities",
+        "Topic :: Artistic Software",
+        "Topic :: System :: Logging",
+        "Topic :: Multimedia :: Graphics"
+        "Topic :: Terminals :: Terminal Emulators/X Terminals",
+    ],
 )
