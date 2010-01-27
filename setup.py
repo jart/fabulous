@@ -11,7 +11,10 @@ def read(fname):
 setup(
     name                 = 'fabulous',
     version              = __import__('fabulous').__version__,
+    author               = 'J.A. Roberts Tunney',
+    author_email         = 'jtunney@lobstertech.com',
     description          = 'Makes your terminal output totally fabulous',
+    download_url         = 'https://bitbucket.org/jart/fabulous/get/tip.tar.gz',
     long_description     = read('README'),
     license              = 'BSD',
     install_requires     = ['grapefruit'],
