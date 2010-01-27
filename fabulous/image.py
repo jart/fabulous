@@ -14,7 +14,7 @@ class Image(object):
     pad = ' '
 
     def __init__(self, path, width=None):
-        pil_check()
+        utils.pil_check()
         from PIL import Image as Pills
         self.img = Pills.open(path)
         self.resize(width)

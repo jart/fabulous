@@ -17,7 +17,7 @@ class TerminalInfo(object):
     height = property(lambda self: self.dimensions[1])
 
     def _get_bgcolor(self):
-        return self.bgcolor
+        return self._bgcolor
     def _set_bgcolor(self, color):
         self._bgcolor = grapefruit.Color.NewFromHtml(color)
     bgcolor = property(_get_bgcolor, _set_bgcolor)
@@ -50,4 +50,4 @@ def pil_check():
               get your hands on a C compiler the development headers for
               ``python``, ``libz``, ``libjpeg``, ``libgif``, ``libpng``,
               ``libungif4``, ``libfreetype6``, and maybe more >_>
-            """]))
+            """))

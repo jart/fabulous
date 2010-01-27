@@ -3,7 +3,7 @@ import os
 
 import grapefruit
 
-from fabulous import image, color
+from fabulous import utils, image, color
 
 
 DEFAULT_FONT = os.path.join(os.path.dirname(__file__), 'fonts', 'IndUni-H-Bold.otf')
@@ -12,7 +12,7 @@ DEFAULT_FONT = os.path.join(os.path.dirname(__file__), 'fonts', 'IndUni-H-Bold.o
 class Text(image.Image):
     def __init__(self, text, fsize=20, color="#0099ff", font=DEFAULT_FONT,
                  shadow=False, scew=None):
-        pil_check()
+        utils.pil_check()
         from PIL import Image, ImageFont, ImageDraw
         self.text = text
         self.color = grapefruit.Color.NewFromHtml(color)
