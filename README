@@ -90,10 +90,10 @@ Here's how Fabulous compares to other similar libraries:
   name.)  Written in pure-python but will attempt to auto-magically
   compile/link a speedup library.  ~1,000 lines of code.
 
-- libcaca_: WTFPL.  This is the established and rightfully respected
-  standard for doing totally insane things with ascii art (ever wanted
-  to watch a movie on the command line?)  Weighing in at ~72k lines of
-  C, this project is a monster.  It uses an older, more complex
+- libcaca_: WTFPL.  This is the established and respected standard for
+  doing totally insane things with ascii art (ever wanted to watch a
+  movie on the command line?)  Weighing in at ~72k lines of C, this
+  project is a monster.  It uses an older, more complex
   text/dithering-based rendering method.  Compared to fabulous, some
   images look better, some worse.  I found the docs somewhat difficult
   to follow and couldn't find support for transparency or 256-colors.
