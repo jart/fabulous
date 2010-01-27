@@ -1,7 +1,7 @@
 
 import os
 
-from grapefruit import Color
+import grapefruit
 from PIL import Image, ImageFont, ImageDraw
 
 from fabulous import image, color
@@ -12,10 +12,9 @@ DEFAULT_FONT = os.path.join(os.path.dirname(__file__), 'fonts', 'IndUni-H-Bold.o
 
 class Text(image.Image):
     def __init__(self, text, fsize=20, color="#0099ff", font=DEFAULT_FONT,
-                 bgcolor='black', shadow=False, scew=None):
+                 shadow=False, scew=None):
         self.text = text
-        self.color = Color.NewFromHtml(color)
-        self.bgcolor = Color.NewFromHtml(bgcolor)
+        self.color = grapefruit.Color.NewFromHtml(color)
         self.font = ImageFont.truetype(font, fsize)
         size = tuple([n + 3 for n in self.font.getsize(self.text)])
         self.img = Image.new("RGBA", size, (0, 0, 0, 0))

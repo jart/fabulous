@@ -3,6 +3,8 @@ import fcntl
 import struct
 import termios
 
+import grapefruit
+
 
 class TerminalInfo(object):
     @property
@@ -13,6 +15,8 @@ class TerminalInfo(object):
 
     width = property(lambda self: self.dimensions[0])
     height = property(lambda self: self.dimensions[1])
+
+    bgcolor = grapefruit.Color.NewFromHtml('black')
 
 
 term = TerminalInfo()

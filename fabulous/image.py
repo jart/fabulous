@@ -13,9 +13,8 @@ from fabulous import utils, xterm256
 class Image(object):
     pad = ' '
 
-    def __init__(self, path, width=None, bgcolor='white'):
+    def __init__(self, path, width=None):
         self.img = Pills.open(path)
-        self.bgcolor = Color.NewFromHtml(bgcolor)
         self.resize(width)
 
     def __str__(self):
@@ -78,7 +77,7 @@ class Image(object):
                     yield xterm256.rgb_to_xterm(*rgba[:3])
                 else:
                     color = Color.NewFromRgb(*[c / 255.0 for c in rgba])
-                    rgba = color.AlphaBlend(self.bgcolor).rgb
+                    rgba = color.AlphaBlend(utils.term.bgcolor).rgb
                     yield xterm256.rgb_to_xterm(*[int(c * 255.0) for c in rgba])
             yield "EOL"
 
