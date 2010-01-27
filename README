@@ -31,7 +31,12 @@ Run the demo to see what's available::
 Basic Examples
 ==============
 
-4-bit color::
+Colors
+------
+
+4-bit color.  These colors and styles are standard and work almost
+everywhere.  They are useful in helping make your program output
+easier to read::
 
   from fabulous import bold, magenta, highlight_red
 
@@ -42,21 +47,39 @@ Basic Examples
 
   assert len(bold('test')) == 4
 
-8-bit color::
+8-bit color.  If you want to spice things up a bit, Fabulous supports
+xterm256 colors::
 
   from fabulous import fg256, bg256
   print fg256('#F0F', 'hello kitty')
   print fg256('magenta', 'hello kitty')
 
-Way cool text::
+
+Fancy Text
+----------
+
+Way cool text.  This is something neat you can use when you program
+starts up to display its name with style::
 
   from fabulous import text
   print text.Text("Fabulous", color='#0099ff', shadow=True, scew=5)
 
-Print images.  This works best with semi-transparent PNG files.
-Images are sized by default to fit your terminal::
 
-  from fabulous import image
+Images
+------
+
+Fabulous lets you print images, which is more fun than useful.
+Fabulous' unique method of printing images really shines when used
+with semi-transparent PNG files.  When blending backgrounds, Fabulous
+assumes by default that your terminal has a black background.  Don't
+worry if your image is huge, it'll be resized by default to fit your
+terminal::
+
+  from fabulous import utils, image
+  print image.Image("balls.png")
+
+  # adjust for a white background
+  utils.term.bgcolor = 'white'
   print image.Image("balls.png")
 
 It's scriptable too (like img2txt) ::
@@ -64,9 +87,13 @@ It's scriptable too (like img2txt) ::
   python -m fabulous.image balls.png >balls.txt
   cat balls.txt
 
-Transient logging.  This is very useful tool for monitoring your
-Python scripts because you can have full verbosity without drowning
-out important error messages::
+
+Transient Logging
+-----------------
+
+This is very useful tool for monitoring what your Python scripts are
+doing.  It allows you to have full verbosity without drowning out
+important error messages::
 
   import time, logging
   from fabulous import logs

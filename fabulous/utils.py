@@ -16,7 +16,12 @@ class TerminalInfo(object):
     width = property(lambda self: self.dimensions[0])
     height = property(lambda self: self.dimensions[1])
 
-    bgcolor = grapefruit.Color.NewFromHtml('black')
+    def _get_bgcolor(self):
+        return self.bgcolor
+    def _set_bgcolor(self, color):
+        self._bgcolor = grapefruit.Color.NewFromHtml(color)
+    bgcolor = property(_get_bgcolor, _set_bgcolor)
 
 
 term = TerminalInfo()
+term.bgcolor = 'black'
