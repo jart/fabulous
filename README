@@ -46,6 +46,7 @@ Basic Examples
 
   from fabulous import fg256, bg256
   print fg256('#F0F', 'hello kitty')
+  print fg256('magenta', 'hello kitty')
 
 Way cool text::
 
