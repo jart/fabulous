@@ -1,9 +1,9 @@
 
 import os
+
 import grapefruit
-# let image module do its pil check thing first
+
 from fabulous import image, color
-from PIL import Image, ImageFont, ImageDraw
 
 
 DEFAULT_FONT = os.path.join(os.path.dirname(__file__), 'fonts', 'IndUni-H-Bold.otf')
@@ -12,6 +12,8 @@ DEFAULT_FONT = os.path.join(os.path.dirname(__file__), 'fonts', 'IndUni-H-Bold.o
 class Text(image.Image):
     def __init__(self, text, fsize=20, color="#0099ff", font=DEFAULT_FONT,
                  shadow=False, scew=None):
+        pil_check()
+        from PIL import Image, ImageFont, ImageDraw
         self.text = text
         self.color = grapefruit.Color.NewFromHtml(color)
         self.font = ImageFont.truetype(font, fsize)
