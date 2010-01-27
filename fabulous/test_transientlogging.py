@@ -6,6 +6,9 @@ from fabulous.gotham import *
 from fabulous.color import *
 
 
+logger = logging.getLogger('fabulous')
+
+
 def luv():
     msg = "hello there how are you?  i love you!  sincerely compy <3 <3"
     while True:

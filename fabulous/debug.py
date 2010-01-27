@@ -1,4 +1,5 @@
 
+import sys
 import itertools
 
 from fabulous import image
@@ -25,3 +26,9 @@ class DebugImage(image.Image):
             else:
                 need_reset = True
                 line += '<' + (self.pad * len(list(items)))[1:]
+
+
+if __name__ == '__main__':
+    for imgpath in sys.argv[1:]:
+        for line in DebugImage(imgpath):
+            print line

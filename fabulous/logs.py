@@ -21,7 +21,7 @@ class TransientStreamHandler(logging.StreamHandler):
 
     def write(self, data):
         if self.need_cr:
-            width = max(min(utils.term_width(), len(self.last)), len(data))
+            width = max(min(utils.term.width, len(self.last)), len(data))
             fmt = "\r%-" + str(width) + "s\n" + self.last
         else:
             fmt = "%s\n"
@@ -35,7 +35,7 @@ class TransientStreamHandler(logging.StreamHandler):
             self.stream.write('\r')
         else:
             self.need_cr = True
-        width = utils.term_width()
+        width = utils.term.width
         for line in data.rstrip().split('\n'):
             if line:
                 if len(line) > width:
