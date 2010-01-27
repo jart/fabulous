@@ -230,9 +230,6 @@ def complement(color):
     >>> complement((0, 100, 175))
     (175, 101, 0)
     """
-    # return [c >>> 2 for c in parse_color(color)]
-    # return [(c + 128) % 256 for c in parse_color(color)]
-
     (r, g, b) = parse_color(color)
     gcolor = grapefruit.Color((r / 255.0, g / 255.0, b / 255.0))
     complement = gcolor.ComplementaryColor()
