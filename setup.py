@@ -11,7 +11,7 @@ setup(
     description          = 'Makes your terminal output totally fabulous',
     long_description     = open('README').read(),
     license              = 'LGPL',
-    install_requires     = [],
+    install_requires     = ['grapefruit'],
     packages             = find_packages(),
     setup_requires       = ["setuptools_hg"],
     zip_safe             = True,

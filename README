@@ -20,6 +20,7 @@ Getting Started
 
 Download and extract the latest version::
 
+  sudo apt-get install gcc python-imaging
   sudo python setup.py install
   python -m fabulous.demo
 
