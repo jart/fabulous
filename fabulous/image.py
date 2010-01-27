@@ -83,23 +83,6 @@ class Image(object):
             yield "EOL"
 
 
-class BlockyImage(Image):
-    pad = '  '
-
-    def resize(self, width=None):
-        (iw, ih) = self.size
-        if width is None:
-            width = utils.term.width
-            if iw * 2 <= width:
-                return
-        elif isinstance(width, basestring):
-            percents = dict([(pct, '%s%%' % (pct)) for pct in range(101)])
-            width = percents[width]
-        width //= 2
-        height = int(float(ih) * (float(width) / float(iw)))
-        self.img = self.img.resize((width, height))
-
-
 if __name__ == '__main__':
     for imgpath in sys.argv[1:]:
         for line in Image(imgpath):
