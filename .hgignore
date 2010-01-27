@@ -3,6 +3,7 @@ syntax: glob
 *.pyo
 *.pyc
 *.o
+*.so
 *~
 *.rej
 *.orig
