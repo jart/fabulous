@@ -13,7 +13,7 @@ from fabulous import utils, xterm256
 class Image(object):
     pad = ' '
 
-    def __init__(self, path, width=None, bgcolor='black'):
+    def __init__(self, path, width=None, bgcolor='white'):
         self.img = Pills.open(path)
         self.bgcolor = Color.NewFromHtml(bgcolor)
         self.resize(width)
