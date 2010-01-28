@@ -7,6 +7,9 @@ import grapefruit
 
 
 class TerminalInfo(object):
+    def __init__(self, bgcolor='black'):
+        self.bgcolor = bgcolor
+
     @property
     def dimensions(self):
         call = fcntl.ioctl(0, termios.TIOCGWINSZ, "\000" * 8)
@@ -24,7 +27,6 @@ class TerminalInfo(object):
 
 
 term = TerminalInfo()
-term.bgcolor = 'black'
 
 
 def pil_check():
