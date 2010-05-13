@@ -1,8 +1,25 @@
+"""
+    fabulous.gotham
+    ~~~~~~~~~~~~~~~
 
+    I implement functions to satisfy your darker side.
+
+"""
+
+import sys
 import random
 
 
 def lorem_gotham():
+    """Cheesy Gothic Poetry Generator
+
+    When you need to generate random verbiage to test your code or
+    design, let's face it... Lorem Ipsum and "the quick brown fox" are
+    old and boring!
+
+    What we need is something with flavor, the kind of thing a
+    depressed teenager with a lot of black makeup would write.
+    """
     them = ['angels', 'mourners', 'shadows', 'storm clouds', 'memories', 'condemned'
             'hand of Heaven', 'stroke of death', 'damned', 'witches', 'corpses']
     them_verb = ['follow', 'hover close', 'approach', 'loom', 'taunt',
@@ -34,3 +51,13 @@ def lorem_gotham():
             sentence(punc(',', er(w(adj)),'than the usual',w(feeling)), er(w(adj)),'than',w(them),'in',w(place)),
             sentence(punc('!','oh my',w(me_part)),punc('!','the',w(feeling))),
             sentence('no one',s(w(angst)),'why the',w(them),w(them_verb + me_verb)))
+
+
+def main(args):
+    """I provide a command-line interface for this module
+    """
+    print lorem_gotham()
+
+
+if __name__ == '__main__':
+    main(sys.argv)

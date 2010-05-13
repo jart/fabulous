@@ -1,3 +1,8 @@
+"""
+    fabulous.debug
+    ~~~~~~~~~~~~~~
+
+"""
 
 import sys
 import itertools
@@ -6,6 +11,9 @@ from fabulous import image
 
 
 class DebugImage(image.Image):
+    """Visualize Optimization Techniques Used By :class:`Image`
+    """
+
     def reduce(self, colors):
         need_reset = False
         line = ''
@@ -28,7 +36,13 @@ class DebugImage(image.Image):
                 line += '<' + (self.pad * len(list(items)))[1:]
 
 
-if __name__ == '__main__':
+def main(args):
+    """I provide a command-line interface for this module
+    """
     for imgpath in sys.argv[1:]:
         for line in DebugImage(imgpath):
             print line
+
+
+if __name__ == '__main__':
+    main(sys.argv)

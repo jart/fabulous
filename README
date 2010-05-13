@@ -113,7 +113,7 @@ Why Fabulous?
 
 Here's how Fabulous compares to other similar libraries:
 
-- fabulous_: Licensed BSD.  Focuses on delivering useful features in
+- fabulous_: Licensed MIT.  Focuses on delivering useful features in
   the simplest, most user-friendly way possible (without a repulsive
   name.)  Written in pure-python but will attempt to auto-magically
   compile/link a speedup library.  ~1,000 lines of code.

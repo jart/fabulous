@@ -1,3 +1,10 @@
+"""
+    fabulous.logs
+    ~~~~~~~~~~~~~
+
+    I provide utilities for making your logs look fabulous.
+
+"""
 
 import sys
 import logging
@@ -6,9 +13,25 @@ from fabulous import utils
 
 
 class TransientStreamHandler(logging.StreamHandler):
+    """Standard Python logging Handler for Transient Console Logging
+
+    Logging transiently means that verbose logging messages like DEBUG
+    will only appear on the last line of your terminal for a short
+    period of time and important messages like WARNING will scroll
+    like normal text.
+
+    This allows you to log lots of messages without the important
+    stuff getting drowned out.
+
+    This module integrates with the standard Python logging module.
+    """
+
     def __init__(self, strm=sys.stderr, level=logging.WARNING):
         logging.StreamHandler.__init__(self, strm)
-        self.levelno = level if isinstance(level, int) else logging._levelNames[level]
+        if isinstance(level, int):
+            self.levelno = level
+        else:
+            self.levelno = logging._levelNames[level]
         self.need_cr = False
         self.last = ""
         self.parent = logging.StreamHandler
@@ -65,8 +88,13 @@ class TransientStreamHandler(logging.StreamHandler):
 
 
 def basicConfig(level=logging.WARNING, transient_level=logging.NOTSET):
+    """Shortcut for setting up transient logging
+
+    I am a replica of ``logging.basicConfig`` which installs a
+    transient logging handler to stderr.
+    """
     fmt = "%(asctime)s [%(levelname)s] [%(name)s:%(lineno)d] %(message)s"
-    logging.root.setLevel(transient_level) # <--- IMPORTANT
+    logging.root.setLevel(transient_level)  # <--- IMPORTANT
     hand = TransientStreamHandler(level=level)
     hand.setFormatter(logging.Formatter(fmt))
     logging.root.addHandler(hand)

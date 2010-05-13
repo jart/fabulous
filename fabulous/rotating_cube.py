@@ -1,7 +1,15 @@
-"""Completely pointless non-curses rotating cube
+"""
+    fabulous.rotating_cube
+    ~~~~~~~~~~~~~~~~~~~~~~
 
-Uses a faux 2D rendering technique to create a wireframe 3d cube.
-This doesn't use curses, it just prints whole, entire frames.
+    Completely pointless terminal renderer of rotating cube
+
+    Uses a faux 2D rendering technique to create what appears to be a
+    wireframe 3d cube.
+
+    This doesn't use the curses library, but rather prints entire
+    frames sized to fill the entire terminal display.
+
 """
 
 from __future__ import with_statement
@@ -14,6 +22,9 @@ from fabulous import color, utils
 
 
 class Frame(object):
+    """Canvas object for drawing a frame to be printed
+    """
+
     def __enter__(self):
         self.width = utils.term.width
         self.height = utils.term.height * 2
@@ -67,13 +78,17 @@ class Frame(object):
 
 
 def rotating_cube(degree_change=3, frame_rate=10):
-    """
-    1. Create two imaginary ellipses
-    2. Sized to fit in the top third and bottom third of screen
-    3. Create four imaginary points on each ellipse
-    4. Make those points the top and bottom corners of your cube
-    5. Connect the lines and render
-    6. Rotate the points on the ellipses and repeat
+    """Rotating cube program
+
+    How it works:
+
+      1. Create two imaginary ellipses
+      2. Sized to fit in the top third and bottom third of screen
+      3. Create four imaginary points on each ellipse
+      4. Make those points the top and bottom corners of your cube
+      5. Connect the lines and render
+      6. Rotate the points on the ellipses and repeat
+
     """
     degrees = 0
     while True:

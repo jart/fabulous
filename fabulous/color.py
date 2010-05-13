@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+"""
+    fabulous.color
+    ~~~~~~~~~~~~~~
+
+    I implement support for standard 16-color color terminals.
+
+"""
 
 import sys
 import functools
@@ -19,20 +26,21 @@ class ColorString(object):
     r"""A colorized string-like object that gives correct length
 
     If anyone knows a way to be able to make this behave like a string
-    object without creating a bug minefield let me know.
+    object without creating a bug minefield let me know::
 
-    >>> str(red("hello"))
-    '\x1b[31mhello\x1b[39m'
-    >>> len(red("hello"))
-    5
-    >>> len(str(red("hello")))
-    15
-    >>> str(bold(red("hello")))
-    '\x1b[1m\x1b[31mhello\x1b[39m\x1b[22m'
-    >>> len(bold(red("hello")))
-    5
-    >>> len(bold("hello ", red("world")))
-    11
+        >>> str(red("hello"))
+        '\x1b[31mhello\x1b[39m'
+        >>> len(red("hello"))
+        5
+        >>> len(str(red("hello")))
+        15
+        >>> str(bold(red("hello")))
+        '\x1b[1m\x1b[31mhello\x1b[39m\x1b[22m'
+        >>> len(bold(red("hello")))
+        5
+        >>> len(bold("hello ", red("world")))
+        11
+
     """
     sep = ""
     fmt = "%s"
@@ -238,6 +246,8 @@ def complement(color):
 
 
 def section(title, bar=OVERLINE, strm=sys.stdout):
+    """Helper function for testing demo routines
+    """
     width = utils.term.width
     print >>strm, bold(title.center(width)).as_utf8
     print >>strm, bold((bar * width)[:width]).as_utf8

@@ -17,7 +17,7 @@ setup(
     description          = 'Makes your terminal output totally fabulous',
     download_url         = 'http://bitbucket.org/jart/fabulous/get/tip.tar.gz',
     long_description     = read('README'),
-    license              = 'BSD',
+    license              = 'MIT',
     install_requires     = ['grapefruit'],
     packages             = find_packages(),
     setup_requires       = ["setuptools_hg"],
@@ -27,7 +27,7 @@ setup(
     # http://pypi.python.org/pypi?:action=list_classifiers
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
-        "License :: OSI Approved :: BSD License",
+        "License :: OSI Approved :: MIT License",
         "Environment :: Console",
         "Intended Audience :: Developers",
         "Programming Language :: C",

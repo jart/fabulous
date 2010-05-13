@@ -1,22 +1,47 @@
-"""Print Images to a 256-Color Terminal
+"""
+    fabulous.image
+    ~~~~~~~~~~~~~~
+
 """
 
 import sys
 import itertools
-import textwrap
 
-from grapefruit import Color
+import grapefruit as gf
 
 from fabulous import utils, xterm256
 
 
 class Image(object):
+    """Printing image files to a terminal
+
+    I use :mod:`PIL` to turn your image file into a bitmap, resize it
+    so it'll fit inside your terminal, and implement methods so I can
+    behave like a string or iterable.
+
+    When resizing, I'll assume that a single character on the terminal
+    display is one pixel wide and two pixels tall.  For most fonts
+    this is the best way to preserve the aspect ratio of your image.
+
+    All colors are are quantized by :mod:`fabulous.xterm256` to the
+    256 colors supported by modern terminals.  When quantizing
+    semi-transparant pixels (common in text or PNG files) I'll ask
+    :class:`TerminalInfo` for the background color I should use to
+    solidify the color.  Fully transparent pixels will be rendered as
+    a blank space without color so we don't need to mix in a
+    background color.
+
+    I also put a lot of work into optimizing the output line-by-line
+    so it needs as few ANSI escape sequences as possible.  You can use
+    :class:`DebugImage` to visualize these optimizations.
+    """
+
     pad = ' '
 
     def __init__(self, path, width=None):
         utils.pil_check()
-        from PIL import Image as Pills
-        self.img = Pills.open(path)
+        from PIL import Image as PillsPillsPills
+        self.img = PillsPillsPills.open(path)
         self.resize(width)
 
     def __str__(self):
@@ -78,13 +103,20 @@ class Image(object):
                 elif len(rgba) == 3 or rgba[3] == 255:
                     yield xterm256.rgb_to_xterm(*rgba[:3])
                 else:
-                    color = Color.NewFromRgb(*[c / 255.0 for c in rgba])
-                    rgba = color.AlphaBlend(utils.term.bgcolor).rgb
-                    yield xterm256.rgb_to_xterm(*[int(c * 255.0) for c in rgba])
+                    color = gf.Color.NewFromRgb(*[c / 255.0 for c in rgba])
+                    rgba = gf.Color.AlphaBlend(color, utils.term.bgcolor).rgb
+                    yield xterm256.rgb_to_xterm(
+                        *[int(c * 255.0) for c in rgba])
             yield "EOL"
 
 
-if __name__ == '__main__':
-    for imgpath in sys.argv[1:]:
+def main(args):
+    """I provide a command-line interface for this module
+    """
+    for imgpath in args[1:]:
         for line in Image(imgpath):
             print line
+
+
+if __name__ == '__main__':
+    main(sys.argv)

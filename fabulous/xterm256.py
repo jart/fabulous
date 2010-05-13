@@ -1,4 +1,15 @@
-"""Implements Support for 256-color Terminals
+"""
+    fabulous.xterm256
+    ~~~~~~~~~~~~~~~~~
+
+    Implements Support for the 256 colors supported by xterm as well
+    as quantizing 24-bit RGB color to xterm color ids.
+
+    Color quantization is very very slow so when this module is
+    loaded, it'll attempt to automatically compile a speedup module
+    using gcc.  A :mod:`logging` message will be emitted if it fails
+    and we'll fallback on the Python code.
+
 """
 
 import logging
@@ -12,6 +23,10 @@ BASIC16 = ((0, 0, 0), (205, 0, 0), (0, 205, 0), (205, 205, 0),
 
 
 def xterm_to_rgb(xcolor):
+    """Convert xterm Color ID to an RGB value
+
+    All 256 values are precalculated and stored in :data:`COLOR_TABLE`
+    """
     assert 0 <= xcolor <= 255
     if xcolor < 16:
         # basic colors
@@ -29,12 +44,18 @@ def xterm_to_rgb(xcolor):
 
 
 COLOR_TABLE = [xterm_to_rgb(i) for i in xrange(256)]
-def rgb_to_xterm(r, g, b):
-    """
-    OMG there is like no easy way to optimize this!!!  Someone smarter
-    than me should read this:
 
-    http://algolist.manual.ru/graphics/quant/qoverview.php
+
+def rgb_to_xterm(r, g, b):
+    """Quantize RGB values to an xterm 256-color ID
+
+    This works by envisioning the RGB values for all 256 xterm colors
+    as 3D euclidean space and brute-force searching for the nearest
+    neighbor.
+
+    This is very slow.  If you're very lucky, :func:`compile_speedup`
+    will replace this function automatically with routines in
+    `_xterm256.c`.
     """
     if r < 5 and g < 5 and b < 5:
         return 16
@@ -59,10 +80,11 @@ def compile_speedup():
     You need:
 
     - Python >= 2.5 for ctypes library
-    - gcc (sudo apt-get install gcc)
+    - gcc (``sudo apt-get install gcc``)
 
     """
-    import os, ctypes
+    import os
+    import ctypes
     from os.path import join, dirname, getmtime, exists
     library = join(dirname(__file__), '_xterm256.so')
     sauce = join(dirname(__file__), '_xterm256.c')
@@ -72,7 +94,7 @@ def compile_speedup():
     xterm256_c = ctypes.cdll.LoadLibrary(library)
     xterm256_c.init()
     def xterm_to_rgb(xcolor):
-        res = xterm256_c.rgb_to_xterm_i(xcolor)
+        res = xterm256_c.xterm_to_rgb_i(xcolor)
         return ((res >> 16) & 0xFF, (res >> 8) & 0xFF, res & 0xFF)
     return (xterm256_c.rgb_to_xterm, xterm_to_rgb)
 
