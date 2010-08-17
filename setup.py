@@ -8,14 +8,17 @@ from setuptools import setup, find_packages
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
+version = __import__('fabulous').__version__
+
 setup(
     name                 = 'fabulous',
-    version              = __import__('fabulous').__version__,
-    url                  = 'http://bitbucket.org/jart/fabulous/',
+    version              = version,
+    url                  = 'http://lobstertech.com/fabulous.html',
     author               = 'J.A. Roberts Tunney',
     author_email         = 'jtunney@lobstertech.com',
     description          = 'Makes your terminal output totally fabulous',
-    download_url         = 'http://bitbucket.org/jart/fabulous/get/tip.tar.gz',
+    download_url         = ('http://lobstertech.com/media/file/fabulous/'
+                            'fabulous-' + version + '.tar.gz'),
     long_description     = read('README'),
     license              = 'MIT',
     install_requires     = ['grapefruit'],
