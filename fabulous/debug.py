@@ -11,7 +11,7 @@ from fabulous import image
 
 
 class DebugImage(image.Image):
-    """Visualize Optimization Techniques Used By :class:`Image`
+    """Visualize optimization techniques used by :class:`Image`
     """
 
     def reduce(self, colors):

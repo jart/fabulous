@@ -22,6 +22,8 @@ setup(
     packages             = find_packages(),
     setup_requires       = ["setuptools_hg"],
     zip_safe             = False,
+    include_package_data = True,
+    # include_data         = True,
     # http://diveintopython3.org/packaging.html
     # http://wiki.python.org/moin/CheeseShopTutorial
     # http://pypi.python.org/pypi?:action=list_classifiers

@@ -32,8 +32,14 @@ class Image(object):
     background color.
 
     I also put a lot of work into optimizing the output line-by-line
-    so it needs as few ANSI escape sequences as possible.  You can use
-    :class:`DebugImage` to visualize these optimizations.
+    so it needs as few ANSI escape sequences as possible.  If your
+    terminal is kinda slow, you're gonna want to buy me a drink ;) You
+    can use :class:`DebugImage` to visualize these optimizations.
+
+    The generated output will only include spaces with different
+    background colors.  In the future routines will be provided to
+    overlay text on top of these images.
+
     """
 
     pad = ' '
@@ -42,23 +48,47 @@ class Image(object):
         utils.pil_check()
         from PIL import Image as PillsPillsPills
         self.img = PillsPillsPills.open(path)
+        # when reading pixels, gifs will return colors corresponding
+        # to a palette if we don't do this :\
+        self.img = self.img.convert("RGBA")
         self.resize(width)
 
-    def __str__(self):
-        return "\n".join(self)
-
     def __iter__(self):
+        """I allow Image to behave as an iterable
+
+        By using me with a for loop, you can use each line as they're
+        created.  When printing a large image, this helps you not have
+        to wait for the whole thing to be converted.
+
+        :return: Yields lines of text (without line end character)
+        """
         # strip out blank lines
         for line in self.reduce(self.convert()):
             if line.strip():
                 yield line
         yield ""
 
+    def __str__(self):
+        """I return the entire image as one big string
+
+        Unlike the iteration approach, you have to wait for the entire
+        image to be converted.
+
+        :return: String containing all lines joined together.
+        """
+        return "\n".join(self)
+
     @property
     def size(self):
+        """Returns size of image
+        """
         return self.img.size
 
     def resize(self, width=None):
+        """Resizes image to fit inside terminal
+
+        Called by the constructor automatically.
+        """
         (iw, ih) = self.size
         if width is None:
             width = min(iw, utils.term.width)
@@ -70,6 +100,19 @@ class Image(object):
         self.img = self.img.resize((width, height))
 
     def reduce(self, colors):
+        """Converts color codes into optimized text
+
+        This optimizer works by merging adjacent colors so we don't
+        have to repeat the same escape codes for each pixel.  There is
+        no loss of information.
+
+        :param colors: Iterable yielding an xterm color code for each
+                       pixel, None to indicate a transparent pixel, or
+                       ``'EOL'`` to indicate th end of a line.
+
+        :return: Yields lines of optimized text.
+
+        """
         need_reset = False
         line = []
         for color, items in itertools.groupby(colors):
@@ -93,7 +136,10 @@ class Image(object):
                     color, self.pad * len(list(items))))
 
     def convert(self):
+        """Yields xterm color codes for each pixel in image
+        """
         (width, height) = self.img.size
+        bgcolor = utils.term.bgcolor
         pix = self.img.load()
         for y in xrange(height):
             for x in xrange(width):
@@ -104,7 +150,7 @@ class Image(object):
                     yield xterm256.rgb_to_xterm(*rgba[:3])
                 else:
                     color = gf.Color.NewFromRgb(*[c / 255.0 for c in rgba])
-                    rgba = gf.Color.AlphaBlend(color, utils.term.bgcolor).rgb
+                    rgba = gf.Color.AlphaBlend(color, bgcolor).rgb
                     yield xterm256.rgb_to_xterm(
                         *[int(c * 255.0) for c in rgba])
             yield "EOL"
@@ -113,10 +159,10 @@ class Image(object):
 def main(args):
     """I provide a command-line interface for this module
     """
-    for imgpath in args[1:]:
+    for imgpath in args:
         for line in Image(imgpath):
             print line
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main(sys.argv[1:])

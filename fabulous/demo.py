@@ -32,8 +32,8 @@ def demo_text():
     print text.Text("Fabulous")
     wait()
 
-    print bold(imp + 'print text.Text("Fabulous", shadow=True, scew=5)\n')
-    print text.Text("Fabulous", shadow=True, scew=5)
+    print bold(imp + 'print text.Text("Fabulous", shadow=True, skew=5)\n')
+    print text.Text("Fabulous", shadow=True, skew=5)
     wait()
 
 

@@ -202,7 +202,7 @@ def main(args):
     """I provide a command-line interface for this module
     """
     import optparse
-    parser = optparse.OptionParser(args)
+    parser = optparse.OptionParser()
     parser.add_option(
         "-S", "--skew", dest="skew", type="int", default=None,
         help=("Apply skew effect (measured in pixels) to make it look "
@@ -228,17 +228,18 @@ def main(args):
     parser.add_option(
         "-s", "--shadow", dest="shadow", action="store_true", default=False,
         help=("Size of font in points.  Default: %default"))
-    (options, args) = parser.parse_args()
+    (options, args) = parser.parse_args(args=args)
 
     if options.term_color:
         utils.term.bgcolor = options.term_color
 
-    text = " ".join(args)
-    fab_text = Text(text, skew=options.skew, color=options.color,
-                    font=options.font, fsize=options.fsize,
-                    shadow=options.shadow)
-    for line in fab_text:
-        print line
+    for line in " ".join(args).split("\n"):
+        fab_text = Text(line, skew=options.skew, color=options.color,
+                        font=options.font, fsize=options.fsize,
+                        shadow=options.shadow)
+        for chunk in fab_text:
+            print chunk
+
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main(sys.argv[1:])

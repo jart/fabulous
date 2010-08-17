@@ -33,11 +33,13 @@ place = ['the witching hour', 'the gates of hell', 'the door', 'the path', 'deat
 def lorem_gotham():
     """Cheesy Gothic Poetry Generator
 
-    When you need to generate random verbiage to test your code or
-    design, let's face it... Lorem Ipsum and "the quick brown fox" are
-    old and boring!
+    Uses Python generators to yield eternal angst.
 
-    What we need is something with flavor, the kind of thing a
+    When you need to generate random verbiage to test your code or
+    typographic design, let's face it... Lorem Ipsum and "the quick
+    brown fox" are old and boring!
+
+    What you need is something with *flavor*, the kind of thing a
     depressed teenager with a lot of black makeup would write.
     """
     w = lambda l: l[random.randrange(len(l))]
