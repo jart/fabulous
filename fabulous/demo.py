@@ -28,9 +28,9 @@ def demo_text():
     section('Fabulous Text Rendering')
 
     imp = "  from fabulous import text\n  "
-    print bold(imp + 'print text.Text("Fabulous")\n')
-    print text.Text("Fabulous")
-    wait()
+    # print bold(imp + 'print text.Text("Fabulous")\n')
+    # print text.Text("Fabulous")
+    # wait()
 
     print bold(imp + 'print text.Text("Fabulous", shadow=True, skew=5)\n')
     print text.Text("Fabulous", shadow=True, skew=5)

@@ -73,27 +73,27 @@ class Text(image.Image):
         >>> len(str(txt)) > 0
         True
 
-    :param text: The text you want to display as a string.
+    :param text:   The text you want to display as a string.
 
-    :param fsize: The font size in points.  This obviously end up
-                  looking much larger because in fabulous a single
-                  character is treated as one horizontal pixel and two
-                  vertical pixels.
+    :param fsize:  The font size in points.  This obviously end up
+                   looking much larger because in fabulous a single
+                   character is treated as one horizontal pixel and two
+                   vertical pixels.
 
-    :param color: The color (specified as you would in HTML/CSS) of
-                  your text.  For example Red could be specified as:
-                   ``red``, ``#00F`` or ``#0000FF``.
+    :param color:  The color (specified as you would in HTML/CSS) of
+                   your text.  For example Red could be specified as
+                   follows: ``red``, ``#00F`` or ``#0000FF``.
 
     :param shadow: If true, render a simple drop-shadow beneath text.
                    The Fabulous logo uses this feature.
 
-    :param skew: Skew size in pixels.  This applies an affine
-                 transform to shift the top-most pixels to the right.
-                 The Fabulous logo uses a five pixel skew.
+    :param skew:   Skew size in pixels.  This applies an affine
+                   transform to shift the top-most pixels to the right.
+                   The Fabulous logo uses a five pixel skew.
 
-    :param font: The TrueType font you want.  If this is not an
-                 absolute path, Fabulous will search for your font by
-                 globbing the specified name in various directories.
+    :param font:   The TrueType font you want.  If this is not an
+                   absolute path, Fabulous will search for your font by
+                   globbing the specified name in various directories.
     """
 
     def __init__(self, text, fsize=20, color="#0099ff", shadow=False,
