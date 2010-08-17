@@ -85,8 +85,9 @@ def compile_speedup():
     """
     import os
     import ctypes
-    from os.path import join, dirname, getmtime, exists
-    library = join(dirname(__file__), '_xterm256.so')
+    from os.path import join, dirname, getmtime, exists, expanduser
+    # library = join(dirname(__file__), '_xterm256.so')
+    library = expanduser('~/.xterm256.so')
     sauce = join(dirname(__file__), '_xterm256.c')
     if not exists(library) or getmtime(sauce) > getmtime(library):
         build = "gcc -fPIC -shared -o %s %s" % (library, sauce)
