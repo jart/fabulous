@@ -38,6 +38,5 @@ setup(
         "Topic :: Artistic Software",
         "Topic :: System :: Logging",
         "Topic :: Multimedia :: Graphics"
-        "Topic :: Terminals :: Terminal Emulators/X Terminals",
     ],
 )
