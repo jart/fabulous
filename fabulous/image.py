@@ -140,10 +140,10 @@ class Image(object):
         """
         (width, height) = self.img.size
         bgcolor = utils.term.bgcolor
-        pix = self.img.load()
+        self.img.load()
         for y in xrange(height):
             for x in xrange(width):
-                rgba = pix[x, y]
+                rgba = self.img.getpixel((x, y))
                 if len(rgba) == 4 and rgba[3] == 0:
                     yield None
                 elif len(rgba) == 3 or rgba[3] == 255:
