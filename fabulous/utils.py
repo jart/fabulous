@@ -108,7 +108,7 @@ class TerminalInfo(object):
     def height(self):
         """Returns height of terminal in lines
         """
-        return self.dimensions[0]
+        return self.dimensions[1]
 
     def _get_bgcolor(self):
         return self._bgcolor
