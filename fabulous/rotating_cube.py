@@ -141,4 +141,7 @@ def ellipse_point(degrees, width, height):
 
 
 if __name__ == '__main__':
-    rotating_cube()
+    try:
+        rotating_cube()
+    except KeyboardInterrupt:
+        pass
