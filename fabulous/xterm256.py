@@ -103,4 +103,4 @@ def compile_speedup():
 try:
     (rgb_to_xterm, xterm_to_rgb) = compile_speedup()
 except:
-    logging.exception("Failed to compile xterm256 speedup code")
+    logging.debug("fabulous failed to compile xterm256 speedup code")
