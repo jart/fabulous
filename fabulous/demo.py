@@ -1,4 +1,6 @@
 
+import os
+import fabulous
 from fabulous.color import *
 from fabulous import text, utils, image, debug, xterm256
 
@@ -12,14 +14,26 @@ def demo_image():
     section("Semi-Transparent PNG")
     imp = "  from fabulous import image\n  "
     print bold(imp + 'print image.Image("balls.png")\n')
-    for line in image.Image('balls.png'):
+
+    balls = 'balls.png'
+    fabdir = os.path.dirname(fabulous.__file__)
+
+    print os.path.join(fabdir, 'balls.png')
+    for fn in ['balls.png',
+               'fabulous/balls.png',
+               os.path.join(fabdir, 'balls.png')]:
+        if os.path.exists(fn):
+            balls = fn
+            break
+
+    for line in image.Image(balls):
         print line
     wait()
 
     section("Yes the output is optimized (JELLY-FISH)")
     imp = "  from fabulous import debug\n  "
     print bold(imp + 'print debug.DebugImage("balls.png")\n')
-    for line in debug.DebugImage('balls.png'):
+    for line in debug.DebugImage(balls):
         print line
     wait()
 

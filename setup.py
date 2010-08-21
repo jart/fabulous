@@ -1,4 +1,9 @@
 
+# http://packages.python.org/distribute/setuptools.html
+# http://diveintopython3.org/packaging.html
+# http://wiki.python.org/moin/CheeseShopTutorial
+# http://pypi.python.org/pypi?:action=list_classifiers
+
 from ez_setup import use_setuptools
 use_setuptools(version='0.6c9')
 
@@ -23,14 +28,12 @@ setup(
     license              = 'MIT',
     install_requires     = ['grapefruit'],
     packages             = find_packages(),
-    setup_requires       = ["setuptools_hg"],
     zip_safe             = False,
     include_package_data = True,
-    # include_data         = True,
-    # http://diveintopython3.org/packaging.html
-    # http://wiki.python.org/moin/CheeseShopTutorial
-    # http://pypi.python.org/pypi?:action=list_classifiers
-    classifiers=[
+    package_data         = {
+        'fabulous': ['*.png', '*.otf', '*.ttf'],
+    },
+    classifiers = [
         "Development Status :: 2 - Pre-Alpha",
         "License :: OSI Approved :: MIT License",
         "Environment :: Console",
