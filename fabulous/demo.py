@@ -18,13 +18,18 @@ def demo_image():
     balls = 'balls.png'
     fabdir = os.path.dirname(fabulous.__file__)
 
-    print os.path.join(fabdir, 'balls.png')
     for fn in ['balls.png',
                'fabulous/balls.png',
                os.path.join(fabdir, 'balls.png')]:
         if os.path.exists(fn):
             balls = fn
             break
+
+    if not os.path.exists(balls):
+        import urllib
+        ugh = urllib.urlopen('http://lobstertech.com/media/img/balls.png')
+        open('balls.png', 'w').write(ugh.read())
+        balls = 'balls.png'
 
     for line in image.Image(balls):
         print line

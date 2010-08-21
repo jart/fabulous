@@ -5,7 +5,7 @@
 # http://pypi.python.org/pypi?:action=list_classifiers
 
 from ez_setup import use_setuptools
-use_setuptools(version='0.6c9')
+use_setuptools(version='0.6c11')
 
 import os
 from setuptools import setup, find_packages
@@ -30,9 +30,6 @@ setup(
     packages             = find_packages(),
     zip_safe             = False,
     include_package_data = True,
-    package_data         = {
-        'fabulous': ['*.png', '*.otf', '*.ttf'],
-    },
     classifiers = [
         "Development Status :: 2 - Pre-Alpha",
         "License :: OSI Approved :: MIT License",
