@@ -20,7 +20,8 @@ Getting Started
 
 Download and extract the latest version::
 
-  sudo apt-get install gcc python-imaging
+  sudo apt-get install gcc python-imaging python-setuptools \
+      mercurial-buildpackage
   sudo python setup.py install
 
 Run the demo to see what's available::
