@@ -76,6 +76,23 @@ int rgb_to_xterm(int r, int g, int b)
         return best_match;
 }
 
+/* int rgb_to_xterm(int r, int g, int b) */
+/* { */
+/*         int best_match = 0; */
+/*         int smallest_distance = 1000000000; */
+/*         int c, d; */
+/*         for (c = 0; c < 16; c++) { */
+/*                 d = sqr(BASIC16[c].r - r) + */
+/* 			sqr(BASIC16[c].g - g) + */
+/* 			sqr(BASIC16[c].b - b); */
+/*                 if (d < smallest_distance) { */
+/*                         smallest_distance = d; */
+/*                         best_match = c; */
+/*                 } */
+/*         } */
+/*         return best_match; */
+/* } */
+
 int init()
 {
         int c;
