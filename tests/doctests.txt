@@ -1,0 +1,10 @@
+
+# note: this requires minimock <http://svn.colorstudy.com/home/ianb/recipes/minimock.py>
+>>> from minimock import Mock
+>>> terminal.raw_input = Mock('terminal.raw_input')
+>>> terminal.raw_input.mock_returns = 123
+>>> stdout.write = Mock('stdout.write')
+>>> input_object('Hello World', int)
+Called stdout.write('Hello World')
+Called terminal.raw_input(': ')
+123
