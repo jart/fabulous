@@ -188,13 +188,21 @@ def get_font_files():
     """
     dirs = [os.path.join(os.path.dirname(__file__), 'fonts'),
             os.path.expanduser('~/.fonts')]
-    try:
+
+    sys_dirs = [
         # this is where ubuntu puts fonts
-        dirname = '/usr/share/fonts/truetype'
-        dirs += [os.path.join(dirname, subdir)
-                 for subdir in os.listdir(dirname)]
-    except OSError:
-        pass
+        '/usr/share/fonts/truetype',
+        # this is where fedora puts fonts
+        '/usr/share/fonts',
+    ]
+
+    for dirname in sys_dirs:
+        try:
+            dirs += [os.path.join(dirname, subdir)
+                     for subdir in os.listdir(dirname)]
+        except OSError:
+            pass
+
     return [(p, os.listdir(p)) for p in dirs if os.path.isdir(p)]
 
 
