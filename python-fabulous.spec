@@ -2,7 +2,7 @@
 
 Name:             python-fabulous
 Version:          0.1.5
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Makes your terminal output totally fabulous
 
 Group:            Development/Languages
@@ -38,10 +38,13 @@ Run the demo to see what's available::
 
 %files
 %defattr(-,root,root,-)
-%doc
+%doc README COPYING
 
 %{python_sitelib}/* 
 
 %changelog
-* Thu Apr 05 2012 Ralph Bean <rbean@redhat.com> 0.1.5-1
+* Fri Apr 20 2012 Ralph Bean <rbean@redhat.com> - 0.1.5-2
+- Included README and COPYING in the doc macro
+
+* Thu Apr 05 2012 Ralph Bean <rbean@redhat.com> - 0.1.5-1
 - initial package for Fedora
