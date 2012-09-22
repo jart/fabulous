@@ -9,8 +9,7 @@
 ---------------------------------------------
 
 :Version: 0.1
-:Date: 2009-12-07
-:Copyright: Copyright (c) 2009 Lobstertech, Inc.
+:Copyright: Copyright (c) 2009-2012 Justine Tunney
 :Manual section: 3
 :Manual group: Library Calls
 

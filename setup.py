@@ -1,4 +1,3 @@
-
 # http://packages.python.org/distribute/setuptools.html
 # http://diveintopython3.org/packaging.html
 # http://wiki.python.org/moin/CheeseShopTutorial
@@ -19,7 +18,7 @@ setup(
     name                 = 'fabulous',
     version              = version,
     url                  = 'http://lobstertech.com/fabulous.html',
-    author               = 'J.A. Roberts Tunney',
+    author               = 'Justine Tunney',
     author_email         = 'jtunney@lobstertech.com',
     description          = 'Makes your terminal output totally fabulous',
     download_url         = ('http://lobstertech.com/media/file/fabulous/'

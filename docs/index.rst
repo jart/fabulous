@@ -11,7 +11,7 @@
    :maxdepth: 1
 
 :Version: 0.1
-:Copyright: Copyright (c) 2010 J.A. Roberts Tunney
+:Copyright: Copyright (c) 2009-2012 Justine Tunney
 
 
 Installation
