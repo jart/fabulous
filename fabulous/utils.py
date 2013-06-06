@@ -92,7 +92,7 @@ class TerminalInfo(object):
         """
         try:
             call = fcntl.ioctl(self.termfd, termios.TIOCGWINSZ, "\000" * 8)
-        except:
+        except IOError:
             return (79, 40)
         else:
             height, width = struct.unpack("hhhh", call)[:2]
