@@ -23,7 +23,7 @@ setup(
     description          = 'Makes your terminal output totally fabulous',
     download_url         = ('http://lobstertech.com/media/file/fabulous/'
                             'fabulous-' + version + '.tar.gz'),
-    long_description     = read('README'),
+    long_description     = read('README.rst'),
     license              = 'MIT',
     install_requires     = ['grapefruit'],
     packages             = find_packages(),
