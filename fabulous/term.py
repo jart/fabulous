@@ -1,26 +1,26 @@
-"""Terminal abstraction layer
+"""
+    fabulous.term
+    ~~~~~~~~~~~~~
 
-Provides standard capabilites to a variety of terminals. Support information
-is being worked on.
+    Terminal abstraction layer.
 
-.. code-block:: Python
+    Provides standard capabilites to a variety of terminals. Support information
+    is being worked on.
 
-    import os
-    stdout.write('spam' + 
-        display('bright','yellow','white') + 
-        'eggs' + 
-        display('default') + os.linesep
-    )
+    .. code-block:: python
 
-Warning: on IPython setting sys.stdout to stdout will break readline
+        import os
+        os.stdout.write('spam' +
+                        display('bright','yellow','white') +
+                        'eggs' +
+                        display('default') + os.linesep)
 
-Caveats
--------
+    **Warning:** on IPython setting sys.stdout to stdout will break readline
 
-0. failure to flush after ouput can cause weird ordering behaviour when
-writting to stdout and stderr simutaniously. This should fix the worst of 
-it, but application developers should be warned not to rely on the state 
-of things between call between one method call and another
+    **Caveat:** Failure to flush after ouput can cause weird ordering behaviour
+    when writing to stdout and stderr simutaniously. This should fix the worst
+    of it, but application developers should be warned not to rely on the state
+    of things between call between one method call and another
 
 """
 
@@ -864,7 +864,7 @@ def display(codes=[], fg=None, bg=None):
         A string. Explicitly for setting the foreground or background. Use
         one of the keys in ``Magic.COLORS``.
         
-    .. code-block:: Python
+    .. code-block:: python
     
         # give bright blue foreground and white background with underline
         display(('bright','underline'),'blue','white')

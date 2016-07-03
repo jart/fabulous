@@ -1,4 +1,8 @@
-"""Readline related stuff
+"""
+    fabulous.rlcomplete
+    ~~~~~~~~~~~~~~~~~~~
+
+    Readline related stuff.
 """
 
 import os

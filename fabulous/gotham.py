@@ -2,7 +2,18 @@
     fabulous.gotham
     ~~~~~~~~~~~~~~~
 
-    I implement functions to satisfy your darker side.
+    This is a gimmick feature that generates silly gothic poetry.
+
+    This uses a simple mad lib algorithm. It has no concept of meter or rhyme.
+    If you want a *proper* poetry generator, check out poemy2_ which uses markov
+    chains and isledict. It's written by the same author as Fabulous.
+
+    This module can be run as a command line tool::
+
+        jart@compy:~$ fabulous-gotham
+        jart@compy:~$ python -m fabulous.gotham
+
+    .. _poemy2: https://github.com/jart/poemy2
 
 """
 

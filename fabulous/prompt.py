@@ -74,7 +74,7 @@ def query(question, values, default=None, list_values = False, ignorecase = True
     The values argument accepts input in two different forms. The simpler form
     (a tuple with strings) looks like:
     
-        .. code-block:: Python
+        .. code-block:: python
         
             ('Male','Female')
     
@@ -83,7 +83,7 @@ def query(question, values, default=None, list_values = False, ignorecase = True
     you set the third arguement to false).
     The other form is something like:
     
-        .. code-block:: Python
+        .. code-block:: python
         
             ({'values':('Male','M'),'fg':'cyan'},
             {'values':('Female','F'),'fg':'magenta'})
@@ -97,7 +97,7 @@ def query(question, values, default=None, list_values = False, ignorecase = True
     simple displays the output object.__str__() and compares the user's input
     against that. So the the code
     
-        .. code-block:: Python
+        .. code-block:: python
         
             query("Python rocks? ",(True, False))
     

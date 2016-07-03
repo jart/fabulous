@@ -2,13 +2,7 @@
     fabulous.rotating_cube
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    Completely pointless terminal renderer of rotating cube
-
-    Uses a faux 2D rendering technique to create what appears to be a
-    wireframe 3d cube.
-
-    This doesn't use the curses library, but rather prints entire
-    frames sized to fill the entire terminal display.
+    Command for animating a wireframe rotating cube in the terminal.
 
 """
 

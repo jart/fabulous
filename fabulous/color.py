@@ -3,7 +3,7 @@
     fabulous.color
     ~~~~~~~~~~~~~~
 
-    I implement support for standard 16-color color terminals.
+    The color module provides support for 16-color color terminals.
 
 """
 

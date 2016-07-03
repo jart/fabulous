@@ -2,13 +2,22 @@
     fabulous.text
     ~~~~~~~~~~~~~
 
-    I let you print TrueType text to your terminal.  The easiest way
-    to get started with me is by running::
+    The text module makes it possible to print TrueType text to the terminal.
+    This functionality is available on the command line::
 
+        jart@compy:~$ fabulous-text --help
+        jart@compy:~$ fabulous-text --skew=5 --shadow 'Fabulous!'
         jart@compy:~$ python -m fabulous.text --help
 
-    To make things simple, Fabulous comes with my favorite serif,
-    non-serif, and monospace fonts:
+    Or as a Python library:
+
+    .. code-block:: python
+
+        from fabulous import text
+        print text.Text("Fabulous!", color='#0099ff', shadow=True, scew=5)
+
+    To make things simple, Fabulous bundles three decent serif, sans-serif, and
+    monospace fonts:
 
     - IndUni-H-Bold: Open Source Helvetica Bold clone (sans-serif)
 
@@ -32,11 +41,10 @@
 
       At point size 8, this is my favorite programming/terminal font.
 
-    For other fonts, I'll try my best to figure out where your font
-    files are stored.  If I have trouble finding your font, try using
-    an absolute path *with* the extension.  You could also try putting
-    the font in your ``~/.fonts`` folder and running ``fc-cache -fv
-    ~/.fonts``.
+    For other fonts, Fabulous will do its best to figure out where they are
+    stored. If Fabulous has trouble finding your font, try using an absolute
+    path *with* the extension. It's also possible to put the font in the
+    ``~/.fonts`` directory and then running ``fc-cache -fv ~/.fonts``.
 
 """
 
@@ -201,8 +209,7 @@ def get_font_files():
 
 
 def main():
-    """I provide a command-line interface for this module
-    """
+    """Main function for :command:`fabulous-text`."""
     import optparse
     parser = optparse.OptionParser()
     parser.add_option(
@@ -223,7 +230,8 @@ def main():
         "-F", "--font", dest="font", default='IndUni-H-Bold',
         help=("Path to font file you wish to use.  This defaults to a "
               "free Helvetica-Bold clone which is included with Fabulous.  "
-              "Default value: %default"))
+              "Included fonts: IndUni-H-Bold, cmr10, DejaVuSansMono. "
+              "Default: %default"))
     parser.add_option(
         "-Z", "--size", dest="fsize", type="int", default=20,
         help=("Size of font in points.  Default: %default"))

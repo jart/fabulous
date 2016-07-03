@@ -2,13 +2,16 @@
     fabulous.xterm256
     ~~~~~~~~~~~~~~~~~
 
-    Implements Support for the 256 colors supported by xterm as well
-    as quantizing 24-bit RGB color to xterm color ids.
+    The xterm256 module provides support for the 256 colors supported by xterm
+    as well as quantizing 24-bit RGB color to xterm color ids.
 
-    Color quantization is very very slow so when this module is
-    loaded, it'll attempt to automatically compile a speedup module
-    using gcc.  A :mod:`logging` message will be emitted if it fails
-    and we'll fallback on the Python code.
+    Color quantization may perform slowly depending on whether or not Fabulous
+    is able to compile ``~/.xterm256.so`` on the fly. This is a tiny library
+    that makes color quantization go much faster. The pure Python version of the
+    algorithm is really slow because it's implemented as a brute force nearest
+    neighbor over Euclidean distance search. Although an O(1) version of this
+    algorithm exists with slightly less correctness. Your humble author simply
+    hasn't had the time to implement it in this library.
 
 """
 

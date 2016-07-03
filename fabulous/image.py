@@ -2,6 +2,13 @@
     fabulous.image
     ~~~~~~~~~~~~~~
 
+    The image module makes it possible to print images to the terminal.
+
+    This module is available as a command line tool::
+
+        jart@compy:~$ fabulous-image foo.png
+        jart@compy:~$ python -m fabulous.image foo.png
+
 """
 
 import sys
@@ -156,10 +163,15 @@ class Image(object):
 
 
 def main():
-    """I provide a command-line interface for this module
-    """
-    for imgpath in sys.argv[1:]:
-        for line in Image(imgpath):
+    """Main function for :command:`fabulous-image`."""
+    import optparse
+    parser = optparse.OptionParser()
+    parser.add_option(
+        "-w", "--width", dest="width", type="int", default=None,
+        help=("Width of printed image in characters.  Default: %default"))
+    (options, args) = parser.parse_args(args=sys.argv[1:])
+    for imgpath in args:
+        for line in Image(imgpath, options.width):
             print line
 
 

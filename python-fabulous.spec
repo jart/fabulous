@@ -7,7 +7,7 @@ Summary:          Makes your terminal output totally fabulous
 
 Group:            Development/Languages
 License:          MIT
-URL:              http://pypi.python.org/pypi/fabulous
+URL:              https://jart.github.io/fabulous
 Source0:          https://github.com/jart/fabulous/archive/0.1.7.tar.gz
 
 BuildArch:        noarch

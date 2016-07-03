@@ -20,7 +20,7 @@ version = __import__('fabulous').__version__
 setuptools.setup(
     name                 = 'fabulous',
     version              = version,
-    url                  = 'https://github.com/jart/fabulous',
+    url                  = 'https://jart.github.io/fabulous',
     author               = 'Justine Tunney',
     author_email         = 'jtunney@gmail.com',
     description          = 'Makes your terminal output totally fabulous',

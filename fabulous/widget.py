@@ -1,4 +1,8 @@
-"""Widget library using terminate
+"""
+    fabulous.widget
+    ~~~~~~~~~~~~~~~
+
+    Widget library using terminate.
 
 """
 

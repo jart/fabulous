@@ -2,6 +2,10 @@
     fabulous.debug
     ~~~~~~~~~~~~~~
 
+    The debug module provides the ability to print images as ASCII. It isn't a
+    good ASCII representation like cacalib. This module is mostly intended for
+    debugging purposes (hence the name.)
+
 """
 
 import sys

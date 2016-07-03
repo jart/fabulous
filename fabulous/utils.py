@@ -2,6 +2,8 @@
     fabulous.utils
     ~~~~~~~~~~~~~~
 
+    Miscellaneous utilities for Fabulous.
+
 """
 
 import os
