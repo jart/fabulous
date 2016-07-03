@@ -1,17 +1,11 @@
 .. -*-restructuredtext-*-
 
-==========
- Fabulous
-==========
+===================
+ Fabulous |travis|
+===================
 
----------------------------------------------
- Makes Your Terminal Output Totally Fabulous
----------------------------------------------
-
-:Version: 0.1.6
-:Copyright: Copyright (c) 2009-2016 Justine Tunney
-:Manual section: 3
-:Manual group: Library Calls
+.. |TRAVIS| image:: https://travis-ci.org/jart/fabulous.png?branch=master
+           :target: https://travis-ci.org/jart/fabulous
 
 Fabulous is a Python library (and command line tools) designed to make the
 output of terminal applications look *fabulous*. Fabulous allows you to print
