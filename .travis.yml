@@ -22,6 +22,10 @@ addons:
 script:
   - pip install Pillow
   - python -m doctest -v fabulous/*.py
+  - python setup.py install
+  - pip install sphinx
+  - pip install sphinxcontrib-programoutput
+  - sphinx-build docs gh-pages
 
 notifications:
   email: false
