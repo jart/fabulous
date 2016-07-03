@@ -6,9 +6,6 @@ python:
   - 2.7
   - pypy
 
-install:
-  - pip install grapefruit==0.1a3
-
 script:
   - python -m doctest -v fabulous/*.py
 

@@ -28,7 +28,6 @@ setuptools.setup(
                             version + '.tar.gz'),
     long_description     = read('README.rst'),
     license              = 'MIT',
-    install_requires     = ['grapefruit'],
     packages             = ['fabulous', 'fabulous.experimental'],
     zip_safe             = False,
     include_package_data = True,

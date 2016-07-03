@@ -7,9 +7,7 @@
 import sys
 import itertools
 
-import grapefruit as gf
-
-from fabulous import utils, xterm256
+from fabulous import utils, xterm256, grapefruit
 
 
 class Image(object):
@@ -149,8 +147,9 @@ class Image(object):
                 elif len(rgba) == 3 or rgba[3] == 255:
                     yield xterm256.rgb_to_xterm(*rgba[:3])
                 else:
-                    color = gf.Color.NewFromRgb(*[c / 255.0 for c in rgba])
-                    rgba = gf.Color.AlphaBlend(color, bgcolor).rgb
+                    color = grapefruit.Color.NewFromRgb(
+                        *[c / 255.0 for c in rgba])
+                    rgba = grapefruit.Color.AlphaBlend(color, bgcolor).rgb
                     yield xterm256.rgb_to_xterm(
                         *[int(c * 255.0) for c in rgba])
             yield "EOL"

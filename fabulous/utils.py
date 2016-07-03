@@ -12,7 +12,7 @@ import termios
 import textwrap
 import functools
 
-import grapefruit
+from fabulous import grapefruit
 
 
 def memoize(function):
@@ -49,7 +49,7 @@ class TerminalInfo(object):
 
         >>> term.bgcolor
         (0.0, 0.0, 0.0, 1.0)
-        >>> import grapefruit
+        >>> from fabulous import grapefruit
         >>> isinstance(term.bgcolor, grapefruit.Color)
         True
 

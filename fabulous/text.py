@@ -43,9 +43,7 @@
 import os
 import sys
 
-import grapefruit
-
-from fabulous import utils, image
+from fabulous import utils, image, grapefruit
 
 
 class Text(image.Image):

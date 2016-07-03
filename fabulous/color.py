@@ -10,9 +10,7 @@
 import sys
 import functools
 
-from fabulous import utils, xterm256
-
-import grapefruit
+from fabulous import utils, xterm256, grapefruit
 
 
 OVERLINE = u'\u203e'
@@ -209,7 +207,7 @@ def parse_color(color):
     (255, 0, 0)
     >>> parse_color((255, 0, 0))
     (255, 0, 0)
-    >>> import grapefruit
+    >>> from fabulous import grapefruit
     >>> parse_color(grapefruit.Color((0.0, 1.0, 0.0)))
     (0, 255, 0)
     """
