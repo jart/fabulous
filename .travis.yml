@@ -20,10 +20,10 @@ addons:
       - zlib1g-dev
 
 script:
-  - pip install Pillow
+  - pip install Pillow==2.3.0
   - python -m doctest -v fabulous/*.py
   - python setup.py install
-  - pip install sphinx
+  - pip install sphinx==1.2.2
   - pip install sphinxcontrib-programoutput
   - sphinx-build docs gh-pages
 
