@@ -23,6 +23,7 @@ script:
   - pip install Pillow==2.3.0
   - python -m doctest -v fabulous/*.py
   - python setup.py install
+  - yes | fabulous-demo
   - pip install sphinx==1.2.2
   - pip install sphinxcontrib-programoutput
   - sphinx-build docs gh-pages
