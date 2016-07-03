@@ -8,8 +8,8 @@
  Makes Your Terminal Output Totally Fabulous
 ---------------------------------------------
 
-:Version: 0.1
-:Copyright: Copyright (c) 2009-2012 Justine Tunney
+:Version: 0.1.6
+:Copyright: Copyright (c) 2009-2016 Justine Tunney
 :Manual section: 3
 :Manual group: Library Calls
 

@@ -17,12 +17,13 @@ version = __import__('fabulous').__version__
 setup(
     name                 = 'fabulous',
     version              = version,
-    url                  = 'http://lobstertech.com/fabulous.html',
+    url                  = 'https://github.com/jart/fabulous',
     author               = 'Justine Tunney',
-    author_email         = 'jtunney@lobstertech.com',
+    author_email         = 'jtunney@gmail.com',
     description          = 'Makes your terminal output totally fabulous',
-    download_url         = ('http://lobstertech.com/media/file/fabulous/'
-                            'fabulous-' + version + '.tar.gz'),
+    download_url         = ('https://github.com/jart/fabulous'
+                            '/releases/download/' + version +
+                            '/fabulous-' + version + '.tar.gz'),
     long_description     = read('README.rst'),
     license              = 'MIT',
     install_requires     = ['grapefruit'],
@@ -30,7 +31,7 @@ setup(
     zip_safe             = False,
     include_package_data = True,
     classifiers = [
-        "Development Status :: 2 - Pre-Alpha",
+        "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: MIT License",
         "Environment :: Console",
         "Intended Audience :: Developers",

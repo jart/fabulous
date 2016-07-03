@@ -1,14 +1,14 @@
 %global modname fabulous
 
 Name:             python-fabulous
-Version:          0.1.5
+Version:          0.1.6
 Release:          2%{?dist}
 Summary:          Makes your terminal output totally fabulous
 
 Group:            Development/Languages
 License:          MIT
 URL:              http://pypi.python.org/pypi/fabulous
-Source0:          http://lobstertech.com/media/file/fabulous/fabulous-0.1.5.tar.gz
+Source0:          https://github.com/jart/fabulous/releases/download/0.1.6/fabulous-0.1.6.tar.gz
 
 BuildArch:        noarch
 
