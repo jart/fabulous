@@ -91,7 +91,8 @@ def compile_speedup():
     sauce = join(dirname(__file__), '_xterm256.c')
     if not exists(library) or getmtime(sauce) > getmtime(library):
         build = "gcc -fPIC -shared -o %s %s" % (library, sauce)
-        assert os.system(build + " >/dev/null 2>&1") == 0
+        if (os.system(build + " >/dev/null 2>&1") != 0):
+            raise OSError("GCC error")
     xterm256_c = ctypes.cdll.LoadLibrary(library)
     xterm256_c.init()
     def xterm_to_rgb(xcolor):
@@ -102,5 +103,5 @@ def compile_speedup():
 
 try:
     (rgb_to_xterm, xterm_to_rgb) = compile_speedup()
-except:
+except OSError:
     logging.debug("fabulous failed to compile xterm256 speedup code")
