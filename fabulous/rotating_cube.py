@@ -97,7 +97,7 @@ def rotating_cube(degree_change=3, frame_rate=3):
         with Frame() as frame:
             oval_width = frame.width
             oval_height = frame.height / 3.0
-            cube_height = oval_height * 2
+            cube_height = int(oval_height * 2)
 
             (p1_x, p1_y) = ellipse_point(degrees, oval_width, oval_height)
             (p2_x, p2_y) = ellipse_point(degrees + 90, oval_width, oval_height)
@@ -128,8 +128,6 @@ def rotating_cube(degree_change=3, frame_rate=3):
 
 
 def ellipse_point(degrees, width, height):
-    """I hate math so much :'(
-    """
     width -= 1
     height -= 1
     radians = degrees * (pi / 180.0)
