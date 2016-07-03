@@ -10,7 +10,7 @@
 .. toctree::
    :maxdepth: 2
 
-:Version: 0.1.7
+:Version: 0.1.8
 :Copyright: Copyright (c) 2009-2016 Justine Tunney
 :License: MIT
 
