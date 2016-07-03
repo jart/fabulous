@@ -31,6 +31,15 @@ setuptools.setup(
     packages             = ['fabulous', 'fabulous.experimental'],
     zip_safe             = False,
     include_package_data = True,
+    entry_points = {
+        'console_scripts': [
+            'fabulous-demo = fabulous.demo:main',
+            'fabulous-gotham = fabulous.gotham:main',
+            'fabulous-image = fabulous.image:main',
+            'fabulous-rotatingcube = fabulous.rotating_cube:main',
+            'fabulous-text = fabulous.text:main',
+        ],
+    },
     classifiers = [
         "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: MIT License",

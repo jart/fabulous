@@ -36,7 +36,7 @@ class DebugImage(image.Image):
                 line += '<' + (self.pad * len(list(items)))[1:]
 
 
-def main(args):
+def main():
     """I provide a command-line interface for this module
     """
     for imgpath in sys.argv[1:]:
@@ -45,4 +45,4 @@ def main(args):
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main()

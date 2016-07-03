@@ -155,13 +155,13 @@ class Image(object):
             yield "EOL"
 
 
-def main(args):
+def main():
     """I provide a command-line interface for this module
     """
-    for imgpath in args:
+    for imgpath in sys.argv[1:]:
         for line in Image(imgpath):
             print line
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    main()

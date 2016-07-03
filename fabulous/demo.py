@@ -197,7 +197,7 @@ def full_chart():
         print ""
 
 
-if __name__ == '__main__':
+def main():
     # full_chart()
     demo_color_4bit()
     demo_color_8bit()
@@ -205,39 +205,5 @@ if __name__ == '__main__':
     demo_image()
 
 
-# if __name__ == '__main__':
-#     def sect(s):
-#         print "\n" * term_height()
-#         print bold("=" * term_width())
-#         pad = " " * (term_width() // 2 - len(s) // 2)
-#         print bold(pad + s)
-#         print bold("=" * term_width())
-#         print ""
-
-#     sect("Agent Orange")
-#     for line in Image('orange.png'):
-#         print line
-#     wait()
-
-#     sect("LOL Cat (JPEGs are not its forte)")
-#     for line in Image('lolcat.jpg'):
-#         print line
-#     wait()
-
-#     sect("Semi-Transparent PNG")
-#     for line in Image('balls.png'):
-#         print line
-#     wait()
-
-#     sect("Yes the output is optimized (JELLY-FISH)")
-#     for line in DebugImage('balls.png'):
-#         print line
-#     wait()
-
-#     basicConfig(level=logging.WARNING)
-
-#     sect("Transient Style Logging (Uses standard python logger)")
-#     test_transientlogger()
-
-#     sect("More Transient Logging (Teen Goth Poetry Engine Included)")
-#     test_transientlogger2()
+if __name__ == '__main__':
+    main()

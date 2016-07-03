@@ -200,7 +200,7 @@ def get_font_files():
     return [(p, os.listdir(p)) for p in dirs if os.path.isdir(p)]
 
 
-def main(args):
+def main():
     """I provide a command-line interface for this module
     """
     import optparse
@@ -230,7 +230,7 @@ def main(args):
     parser.add_option(
         "-s", "--shadow", dest="shadow", action="store_true", default=False,
         help=("Size of font in points.  Default: %default"))
-    (options, args) = parser.parse_args(args=args)
+    (options, args) = parser.parse_args(args=sys.argv[1:])
 
     if options.term_color:
         utils.term.bgcolor = options.term_color
@@ -244,4 +244,4 @@ def main(args):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    main()

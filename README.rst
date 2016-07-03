@@ -13,20 +13,34 @@
 :Manual section: 3
 :Manual group: Library Calls
 
-.. image:: https://raw.githubusercontent.com/jart/fabulous/master/docs/fabulous-demo.png
+Fabulous is a Python library (and command line tools) designed to make the
+output of terminal applications look *fabulous*. Fabulous allows you to print
+colors, images, and stylized text to the console (without curses.)  Fabulous
+also offers features to improve the usability of Python's standard logging
+system.
 
 
-Getting Started
-===============
+Installation
+============
 
-Download and extract the latest version::
+The following prerequisites are optional. But they help Fabulous run faster and
+make the full feature set is available::
 
-  sudo apt-get install gcc python-imaging python-setuptools
+  sudo apt-get install gcc python-imaging
+
+You can install Fabulous from PyPi::
+
+  sudo pip install fabulous
+
+Or you could download and extract the latest version::
+
   sudo python setup.py install
 
 Run the demo to see what's available::
 
-  python -m fabulous.demo
+  fabulous-demo
+
+.. image:: https://raw.githubusercontent.com/jart/fabulous/master/docs/fabulous-demo.png
 
 
 Basic Examples
@@ -63,7 +77,12 @@ Way cool text.  This is something neat you can use when you program
 starts up to display its name with style::
 
   from fabulous import text
-  print text.Text("Fabulous", color='#0099ff', shadow=True, scew=5)
+  print text.Text("Fabulous!", color='#0099ff', shadow=True, scew=5)
+
+It's scriptable too::
+
+  fabulous-text --help
+  fabulous-text --skew=5 --shadow 'Fabulous!'
 
 
 Images
@@ -85,8 +104,23 @@ terminal::
 
 It's scriptable too (like img2txt) ::
 
-  python -m fabulous.image balls.png >balls.txt
-  cat balls.txt
+  fabulous-image balls.png
+
+Image printing may perform slowly depending on whether or not Fabulous is able
+to compile `~/.xterm256.so` on the fly. This is a tiny library that makes color
+quantization go much faster. The pure Python version of the algorithm is really
+slow because it's implemented as a brute force nearest neighbor over Euclidean
+distance search. Although an O(1) version of this algorithm exists with
+slightly less correctness. Your humble author simply hasn't had the time to
+implement it in this library.
+
+If you like this image printing feature, then please check out hiptext_ which
+is a C++ program written by the same author as Fabulous. It offers a much
+richer version of this same functionality. It can even play videos in the
+terminal. Also be sure to check out rickrollrc_.
+
+.. _hiptext: https://github.com/jart/hiptext
+.. _rickrollrc: https://github.com/keroserene/rickrollrc
 
 
 Transient Logging
@@ -107,6 +141,27 @@ important error messages::
   for n in range(20):
       logging.debug("verbose stuff you don't care about")
       time.sleep(0.1)
+
+
+Gothic Poetry Generator
+-----------------------
+
+This is a gimmick feature that probably shouldn't have been included, but it's
+possible to generate silly gothic poetry by running ``fabulous-gotham``.
+
+This uses a simple mad lib algorithm. It has no concept of meter or rhyme. If
+you want a *proper* poetry generator, check out poemy2_ which uses markov
+chains and isledict. It's written by the same author as Fabulous.
+
+.. _poemy2: https://github.com/jart/poemy2
+
+
+Rotating Cube
+-------------
+
+This is another gimmick feature that probably shouldn't have been included.
+You can display an animated rotating cube in your terminal by running
+``fabulous-rotatingcube``.
 
 
 Why Fabulous?

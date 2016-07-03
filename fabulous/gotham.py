@@ -73,7 +73,7 @@ def lorem_gotham_title():
         sentence('the',w(them)))
 
 
-def main(args):
+def main():
     """I provide a command-line interface for this module
     """
     print
@@ -90,4 +90,4 @@ def main(args):
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main()
