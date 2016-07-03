@@ -820,8 +820,15 @@ class Magic(object):
         
         >>> Magic.rdisplay([])
         {}
-        >>> Magic.rdisplay([1,2,34,46])
-        {'codes': ['bright', 'dim'], 'bg': 'cyan', 'fg': 'blue'}
+        >>> result = Magic.rdisplay([1,2,34,46])
+        >>> sorted(result.keys())
+        ['bg', 'codes', 'fg']
+        >>> sorted(result['codes'])
+        ['bright', 'dim']
+        >>> result['bg']
+        'cyan'
+        >>> result['fg']
+        'blue'
         """
         dcodes = []
         fg = bg = None

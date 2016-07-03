@@ -171,8 +171,8 @@ def get_font_files():
     For example::
 
         >>> fabfonts = os.path.join(os.path.dirname(__file__), 'fonts')
-        >>> dict(get_font_files())[fabfonts]
-        ['cmr10.ttf', 'IndUni-H-Bold.otf', 'DejaVuSansMono.ttf']
+        >>> sorted(dict(get_font_files())[fabfonts])
+        ['DejaVuSansMono.ttf', 'IndUni-H-Bold.otf', 'cmr10.ttf']
 
         >>> for dirname, filenames in get_font_files():
         ...     for filename in filenames:
