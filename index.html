@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Fabulous &mdash; fabulous 0.1.6 documentation</title>
+    <title>Fabulous &mdash; fabulous 0.1.7 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.6',
+        VERSION:     '0.1.7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="fabulous 0.1.6 documentation" href="#" /> 
+    <link rel="top" title="fabulous 0.1.7 documentation" href="#" /> 
   </head>
   <body>
     <div class="related">
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="#">fabulous 0.1.6 documentation</a> &raquo;</li> 
+        <li><a href="#">fabulous 0.1.7 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -58,6 +58,8 @@
 </tr>
 <tr class="field-even field"><th class="field-name">Copyright:</th><td class="field-body">Copyright (c) 2009-2016 Justine Tunney</td>
 </tr>
+<tr class="field-odd field"><th class="field-name">License:</th><td class="field-body">MIT</td>
+</tr>
 </tbody>
 </table>
 <p>Fabulous is a Python library (and command line tools) designed to make the
@@ -65,11 +67,151 @@ output of terminal applications look <em>fabulous</em>. Fabulous allows you to p
 colors, images, and stylized text to the console (without curses.)  Fabulous
 also offers features to improve the usability of Python&#8217;s standard logging
 system.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>The following prerequisites should be installed, but they are not mandatory.
+They help Fabulous run faster and make the full feature set is available:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install gcc python-imaging
+</pre></div>
+</div>
+<p>Fabulous can be installed from CheeseShop:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo pip install fabulous
+</pre></div>
+</div>
+<p>Fabulous can also be installed manually from the source archive:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo python setup.py install
+</pre></div>
+</div>
+<p>Once installed, run the demo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">fabulous</span><span class="o">-</span><span class="n">demo</span>
+</pre></div>
+</div>
+<img alt="_images/fabulous-demo.png" src="_images/fabulous-demo.png" />
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="colors">
+<h3>Colors<a class="headerlink" href="#colors" title="Permalink to this headline">¶</a></h3>
+<p>4-bit colors and styles are standard and work almost everywhere. They are
+useful in helping make your program output easier to read:</p>
+<div class="highlight-python"><div class="highlight"><pre>from fabulous import bold, magenta, highlight_red
+
+print bold(magenta(&#39;hello kitty&#39;))
+print highlight_red(&#39;DANGER DANGER!&#39;)
+
+print bold(&#39;hello&#39;) + &#39; &#39; + magenta( kitty&#39;)
+
+assert len(bold(&#39;test&#39;)) == 4
+</pre></div>
+</div>
+<p>8-bit color works in most modern terminals, such as gnome-terminal and
+Terminal.app:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">fg256</span><span class="p">,</span> <span class="n">bg256</span>
+<span class="k">print</span> <span class="n">fg256</span><span class="p">(</span><span class="s">&#39;#F0F&#39;</span><span class="p">,</span> <span class="s">&#39;hello kitty&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">fg256</span><span class="p">(</span><span class="s">&#39;magenta&#39;</span><span class="p">,</span> <span class="s">&#39;hello kitty&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fancy-text">
+<h3>Fancy Text<a class="headerlink" href="#fancy-text" title="Permalink to this headline">¶</a></h3>
+<p>This is something neat you can use when you program starts up to display its
+name with style:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">text</span>
+<span class="k">print</span> <span class="n">text</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Fabulous!&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;#0099ff&#39;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">scew</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="images">
+<h3>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h3>
+<p>Fabulous lets you print images, which is more fun than useful.
+Fabulous&#8217; unique method of printing images really shines when used
+with semi-transparent PNG files.  When blending backgrounds, Fabulous
+assumes by default that your terminal has a black background.  Don&#8217;t
+worry if your image is huge, it&#8217;ll be resized by default to fit your
+terminal:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">utils</span><span class="p">,</span> <span class="n">image</span>
+<span class="k">print</span> <span class="n">image</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s">&quot;balls.png&quot;</span><span class="p">)</span>
+
+<span class="c"># adjust for a white background</span>
+<span class="n">utils</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">bgcolor</span> <span class="o">=</span> <span class="s">&#39;white&#39;</span>
+<span class="k">print</span> <span class="n">image</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s">&quot;balls.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Image printing may perform slowly depending on whether or not Fabulous is able
+to compile <tt class="docutils literal"><span class="pre">~/.xterm256.so</span></tt> on the fly. This is a tiny library that makes
+color quantization go much faster. The pure Python version of the algorithm is
+really slow because it&#8217;s implemented as a brute force nearest neighbor over
+Euclidean distance search. Although an O(1) version of this algorithm exists
+with slightly less correctness. Your humble author simply hasn&#8217;t had the time
+to implement it in this library.</p>
+<p>If you like this image printing feature, then please check out <a class="reference external" href="https://github.com/jart/hiptext">hiptext</a> which
+is a C++ program written by the same author as Fabulous. It offers a much
+richer version of this same functionality. It can even play videos in the
+terminal. Also be sure to check out <a class="reference external" href="https://github.com/keroserene/rickrollrc">rickrollrc</a>.</p>
+</div>
+</div>
+<div class="section" id="commands">
+<h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fabulous-text">
+<h3><strong class="command">fabulous-text</strong><a class="headerlink" href="#fabulous-text" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-text"><div class="highlight"><pre>Usage: fabulous-text [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -S SKEW, --skew=SKEW  Apply skew effect (measured in pixels) to make it look
+                        extra cool.  For example, Fabulous&#39; logo logo is
+                        skewed by 5 pixels.  Default: none
+  -C COLOR, --color=COLOR
+                        Color of your text.  This can be specified as you
+                        would using HTML/CSS.  Default: #0099ff
+  -B TERM_COLOR, --term-color=TERM_COLOR
+                        If you terminal background isn&#39;t black, please change
+                        this value to the proper background so semi-
+                        transparent pixels will blend properly.
+  -F FONT, --font=FONT  Path to font file you wish to use.  This defaults to a
+                        free Helvetica-Bold clone which is included with
+                        Fabulous.  Included fonts: IndUni-H-Bold, cmr10,
+                        DejaVuSansMono. Default: IndUni-H-Bold
+  -Z FSIZE, --size=FSIZE
+                        Size of font in points.  Default: 20
+  -s, --shadow          Size of font in points.  Default: False
+</pre></div>
+</div>
+</div>
+<div class="section" id="fabulous-image">
+<h3><strong class="command">fabulous-image</strong><a class="headerlink" href="#fabulous-image" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-text"><div class="highlight"><pre>Usage: fabulous-image [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -w WIDTH, --width=WIDTH
+                        Width of printed image in characters.  Default: none
+</pre></div>
+</div>
+</div>
+<div class="section" id="fabulous-demo">
+<h3><strong class="command">fabulous-demo</strong><a class="headerlink" href="#fabulous-demo" title="Permalink to this headline">¶</a></h3>
+<p>Displays a demo showing what Fabulous can do.</p>
+</div>
+<div class="section" id="fabulous-gotham">
+<h3><strong class="command">fabulous-gotham</strong><a class="headerlink" href="#fabulous-gotham" title="Permalink to this headline">¶</a></h3>
+<p>The <strong class="command">fabulous-gotham</strong> command is a gothic poetry generator. It is a
+gimmick feature that uses a simple mad lib algorithm. It has no concept of
+meter or rhyme. Users wanting a <em>proper</em> poetry generator should consider
+<a class="reference external" href="https://github.com/jart/poemy2">poemy2</a> which uses markov chains and isledict. It&#8217;s also written by the same
+author as Fabulous.</p>
+</div>
+<div class="section" id="fabulous-rotatingcube">
+<h3><strong class="command">fabulous-rotatingcube</strong><a class="headerlink" href="#fabulous-rotatingcube" title="Permalink to this headline">¶</a></h3>
+<p>The <strong class="command">fabulous-rotatingcube</strong> command is another gimmick feature that
+animates a wireframe rotating cube in the terminal.</p>
+</div>
+</div>
 <div class="section" id="module-fabulous.color">
 <span id="modules"></span><h2>Modules<a class="headerlink" href="#module-fabulous.color" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="fabulous-color">
 <h3>fabulous.color<a class="headerlink" href="#fabulous-color" title="Permalink to this headline">¶</a></h3>
-<p>I implement support for standard 16-color color terminals.</p>
+<p>The color module provides support for 16-color color terminals.</p>
 <dl class="class">
 <dt id="fabulous.color.ColorString">
 <em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">ColorString</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.ColorString" title="Permalink to this definition">¶</a></dt>
@@ -143,19 +285,22 @@ brighter, higher intensity colors.)</p>
 
 <dl class="function">
 <dt id="fabulous.color.section">
-<tt class="descclassname">fabulous.color.</tt><tt class="descname">section</tt><big>(</big><em>title</em>, <em>bar=u'\u203e'</em>, <em>strm=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f02245a5150&gt;</em><big>)</big><a class="headerlink" href="#fabulous.color.section" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">fabulous.color.</tt><tt class="descname">section</tt><big>(</big><em>title</em>, <em>bar=u'\u203e'</em>, <em>strm=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f2e4c7e2150&gt;</em><big>)</big><a class="headerlink" href="#fabulous.color.section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper function for testing demo routines</p>
 </dd></dl>
 
 </div>
 <span class="target" id="module-fabulous.xterm256"></span><div class="section" id="fabulous-xterm256">
 <h3>fabulous.xterm256<a class="headerlink" href="#fabulous-xterm256" title="Permalink to this headline">¶</a></h3>
-<p>Implements Support for the 256 colors supported by xterm as well
-as quantizing 24-bit RGB color to xterm color ids.</p>
-<p>Color quantization is very very slow so when this module is
-loaded, it&#8217;ll attempt to automatically compile a speedup module
-using gcc.  A <a class="reference external" href="http://docs.python.org/library/logging.html#module-logging" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">logging</span></tt></a> message will be emitted if it fails
-and we&#8217;ll fallback on the Python code.</p>
+<p>The xterm256 module provides support for the 256 colors supported by xterm
+as well as quantizing 24-bit RGB color to xterm color ids.</p>
+<p>Color quantization may perform slowly depending on whether or not Fabulous
+is able to compile <tt class="docutils literal"><span class="pre">~/.xterm256.so</span></tt> on the fly. This is a tiny library
+that makes color quantization go much faster. The pure Python version of the
+algorithm is really slow because it&#8217;s implemented as a brute force nearest
+neighbor over Euclidean distance search. Although an O(1) version of this
+algorithm exists with slightly less correctness. Your humble author simply
+hasn&#8217;t had the time to implement it in this library.</p>
 <dl class="function">
 <dt id="fabulous.xterm256.compile_speedup">
 <tt class="descclassname">fabulous.xterm256.</tt><tt class="descname">compile_speedup</tt><big>(</big><big>)</big><a class="headerlink" href="#fabulous.xterm256.compile_speedup" title="Permalink to this definition">¶</a></dt>
@@ -169,16 +314,42 @@ this should <em>just work</em> for you.</p>
 </ul>
 </dd></dl>
 
+<dl class="function">
+<dt id="fabulous.xterm256.rgb_to_xterm">
+<tt class="descclassname">fabulous.xterm256.</tt><tt class="descname">rgb_to_xterm</tt><big>(</big><em>r</em>, <em>g</em>, <em>b</em><big>)</big><a class="headerlink" href="#fabulous.xterm256.rgb_to_xterm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quantize RGB values to an xterm 256-color ID</p>
+<p>This works by envisioning the RGB values for all 256 xterm colors
+as 3D euclidean space and brute-force searching for the nearest
+neighbor.</p>
+<p>This is very slow.  If you&#8217;re very lucky, <a class="reference internal" href="#fabulous.xterm256.compile_speedup" title="fabulous.xterm256.compile_speedup"><tt class="xref py py-func docutils literal"><span class="pre">compile_speedup()</span></tt></a>
+will replace this function automatically with routines in
+<cite>_xterm256.c</cite>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="fabulous.xterm256.xterm_to_rgb">
+<tt class="descclassname">fabulous.xterm256.</tt><tt class="descname">xterm_to_rgb</tt><big>(</big><em>xcolor</em><big>)</big><a class="headerlink" href="#fabulous.xterm256.xterm_to_rgb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert xterm Color ID to an RGB value</p>
+<p>All 256 values are precalculated and stored in <tt class="xref py py-data docutils literal"><span class="pre">COLOR_TABLE</span></tt></p>
+</dd></dl>
+
 </div>
-<span class="target" id="module-fabulous.text"></span><div class="section" id="fabulous-text">
-<h3>fabulous.text<a class="headerlink" href="#fabulous-text" title="Permalink to this headline">¶</a></h3>
-<p>I let you print TrueType text to your terminal.  The easiest way
-to get started with me is by running:</p>
-<div class="highlight-python"><div class="highlight"><pre>jart@compy:~$ python -m fabulous.text --help
+<span class="target" id="module-fabulous.text"></span><div class="section" id="id1">
+<h3>fabulous.text<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The text module makes it possible to print TrueType text to the terminal.
+This functionality is available on the command line:</p>
+<div class="highlight-python"><div class="highlight"><pre>jart@compy:~$ fabulous-text --help
+jart@compy:~$ fabulous-text --skew=5 --shadow &#39;Fabulous!&#39;
+jart@compy:~$ python -m fabulous.text --help
 </pre></div>
 </div>
-<p>To make things simple, Fabulous comes with my favorite serif,
-non-serif, and monospace fonts:</p>
+<p>Or as a Python library:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">text</span>
+<span class="k">print</span> <span class="n">text</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Fabulous!&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;#0099ff&#39;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">scew</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To make things simple, Fabulous bundles three decent serif, sans-serif, and
+monospace fonts:</p>
 <ul>
 <li><p class="first">IndUni-H-Bold: Open Source Helvetica Bold clone (sans-serif)</p>
 <p>This is the real deal and not some cheap ripoff like Verdana.
@@ -199,11 +370,10 @@ in scholarly papers.</p>
 <p>At point size 8, this is my favorite programming/terminal font.</p>
 </li>
 </ul>
-<p>For other fonts, I&#8217;ll try my best to figure out where your font
-files are stored.  If I have trouble finding your font, try using
-an absolute path <em>with</em> the extension.  You could also try putting
-the font in your <tt class="docutils literal"><span class="pre">~/.fonts</span></tt> folder and running <tt class="docutils literal"><span class="pre">fc-cache</span> <span class="pre">-fv</span>
-<span class="pre">~/.fonts</span></tt>.</p>
+<p>For other fonts, Fabulous will do its best to figure out where they are
+stored. If Fabulous has trouble finding your font, try using an absolute
+path <em>with</em> the extension. It&#8217;s also possible to put the font in the
+<tt class="docutils literal"><span class="pre">~/.fonts</span></tt> directory and then running <tt class="docutils literal"><span class="pre">fc-cache</span> <span class="pre">-fv</span> <span class="pre">~/.fonts</span></tt>.</p>
 <dl class="exception">
 <dt id="fabulous.text.FontNotFound">
 <em class="property">exception </em><tt class="descclassname">fabulous.text.</tt><tt class="descname">FontNotFound</tt><a class="headerlink" href="#fabulous.text.FontNotFound" title="Permalink to this definition">¶</a></dt>
@@ -289,7 +459,7 @@ globbing the specified name in various directories.</li>
 <dl class="function">
 <dt id="fabulous.text.main">
 <tt class="descclassname">fabulous.text.</tt><tt class="descname">main</tt><big>(</big><big>)</big><a class="headerlink" href="#fabulous.text.main" title="Permalink to this definition">¶</a></dt>
-<dd><p>I provide a command-line interface for this module</p>
+<dd><p>Main function for <strong class="command">fabulous-text</strong>.</p>
 </dd></dl>
 
 <dl class="function">
@@ -321,8 +491,14 @@ time.</p>
 </dd></dl>
 
 </div>
-<span class="target" id="module-fabulous.image"></span><div class="section" id="fabulous-image">
-<h3>fabulous.image<a class="headerlink" href="#fabulous-image" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-fabulous.image"></span><div class="section" id="id2">
+<h3>fabulous.image<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>The image module makes it possible to print images to the terminal.</p>
+<p>This module is available as a command line tool:</p>
+<div class="highlight-python"><div class="highlight"><pre>jart@compy:~$ fabulous-image foo.png
+jart@compy:~$ python -m fabulous.image foo.png
+</pre></div>
+</div>
 <dl class="class">
 <dt id="fabulous.image.Image">
 <em class="property">class </em><tt class="descclassname">fabulous.image.</tt><tt class="descname">Image</tt><big>(</big><em>path</em>, <em>width=None</em><big>)</big><a class="headerlink" href="#fabulous.image.Image" title="Permalink to this definition">¶</a></dt>
@@ -392,16 +568,32 @@ pixel, None to indicate a transparent pixel, or
 <dl class="function">
 <dt id="fabulous.image.main">
 <tt class="descclassname">fabulous.image.</tt><tt class="descname">main</tt><big>(</big><big>)</big><a class="headerlink" href="#fabulous.image.main" title="Permalink to this definition">¶</a></dt>
-<dd><p>I provide a command-line interface for this module</p>
+<dd><p>Main function for <strong class="command">fabulous-image</strong>.</p>
 </dd></dl>
 
 </div>
 <span class="target" id="module-fabulous.logs"></span><div class="section" id="fabulous-logs">
 <h3>fabulous.logs<a class="headerlink" href="#fabulous-logs" title="Permalink to this headline">¶</a></h3>
-<p>I provide utilities for making your logs look fabulous.</p>
+<p>Utilities for transient logging.</p>
+<p>This is very useful tool for monitoring what your Python scripts are doing.
+It allows you to have full verbosity without drowning out important error
+messages:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">logs</span>
+<span class="n">logs</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s">&#39;WARNING&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;verbose stuff you don&#39;t care about&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;something bad happened!&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;verbose stuff you don&#39;t care about&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="class">
 <dt id="fabulous.logs.TransientStreamHandler">
-<em class="property">class </em><tt class="descclassname">fabulous.logs.</tt><tt class="descname">TransientStreamHandler</tt><big>(</big><em>strm=&lt;open file '&lt;stderr&gt;'</em>, <em>mode 'w' at 0x7f02245a51e0&gt;</em>, <em>level=30</em><big>)</big><a class="headerlink" href="#fabulous.logs.TransientStreamHandler" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">fabulous.logs.</tt><tt class="descname">TransientStreamHandler</tt><big>(</big><em>strm=&lt;open file '&lt;stderr&gt;'</em>, <em>mode 'w' at 0x7f2e4c7e21e0&gt;</em>, <em>level=30</em><big>)</big><a class="headerlink" href="#fabulous.logs.TransientStreamHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standard Python logging Handler for Transient Console Logging</p>
 <p>Logging transiently means that verbose logging messages like DEBUG
 will only appear on the last line of your terminal for a short
@@ -421,7 +613,9 @@ transient logging handler to stderr.</p>
 </dd></dl>
 
 </div>
-<span class="target" id="module-fabulous.widget"></span><p>Widget library using terminate</p>
+<span class="target" id="module-fabulous.widget"></span><div class="section" id="fabulous-widget">
+<h3>fabulous.widget<a class="headerlink" href="#fabulous-widget" title="Permalink to this headline">¶</a></h3>
+<p>Widget library using terminate.</p>
 <dl class="class">
 <dt id="fabulous.widget.ProgressBar">
 <em class="property">class </em><tt class="descclassname">fabulous.widget.</tt><tt class="descname">ProgressBar</tt><big>(</big><em>title=None</em><big>)</big><a class="headerlink" href="#fabulous.widget.ProgressBar" title="Permalink to this definition">¶</a></dt>
@@ -494,23 +688,23 @@ p.update(100, &#8216;spam complete&#8217;)</p>
 
 </dd></dl>
 
-<span class="target" id="module-fabulous.term"></span><p>Terminal abstraction layer</p>
+</div>
+<span class="target" id="module-fabulous.term"></span><div class="section" id="fabulous-term">
+<h3>fabulous.term<a class="headerlink" href="#fabulous-term" title="Permalink to this headline">¶</a></h3>
+<p>Terminal abstraction layer.</p>
 <p>Provides standard capabilites to a variety of terminals. Support information
 is being worked on.</p>
-<div class="highlight-Python"><div class="highlight"><pre>import os
-stdout.write(&#39;spam&#39; + 
-    display(&#39;bright&#39;,&#39;yellow&#39;,&#39;white&#39;) + 
-    &#39;eggs&#39; + 
-    display(&#39;default&#39;) + os.linesep
-)
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;spam&#39;</span> <span class="o">+</span>
+                <span class="n">display</span><span class="p">(</span><span class="s">&#39;bright&#39;</span><span class="p">,</span><span class="s">&#39;yellow&#39;</span><span class="p">,</span><span class="s">&#39;white&#39;</span><span class="p">)</span> <span class="o">+</span>
+                <span class="s">&#39;eggs&#39;</span> <span class="o">+</span>
+                <span class="n">display</span><span class="p">(</span><span class="s">&#39;default&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Warning: on IPython setting sys.stdout to stdout will break readline</p>
-<div class="section" id="caveats">
-<h3>Caveats<a class="headerlink" href="#caveats" title="Permalink to this headline">¶</a></h3>
-<p>0. failure to flush after ouput can cause weird ordering behaviour when
-writting to stdout and stderr simutaniously. This should fix the worst of 
-it, but application developers should be warned not to rely on the state 
+<p><strong>Warning:</strong> on IPython setting sys.stdout to stdout will break readline</p>
+<p><strong>Caveat:</strong> Failure to flush after ouput can cause weird ordering behaviour
+when writing to stdout and stderr simutaniously. This should fix the worst
+of it, but application developers should be warned not to rely on the state
 of things between call between one method call and another</p>
 <dl class="function">
 <dt id="fabulous.term.display">
@@ -524,12 +718,12 @@ of things between call between one method call and another</p>
 <dd>A string. Explicitly for setting the foreground or background. Use
 one of the keys in <tt class="docutils literal"><span class="pre">Magic.COLORS</span></tt>.</dd>
 </dl>
-<div class="highlight-Python"><div class="highlight"><pre># give bright blue foreground and white background with underline
-display((&#39;bright&#39;,&#39;underline&#39;),&#39;blue&#39;,&#39;white&#39;)
-# gives a blue foreground
-display(fg=&#39;blue&#39;)
-# resets the color to the default.
-display(&#39;default&#39;)
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># give bright blue foreground and white background with underline</span>
+<span class="n">display</span><span class="p">((</span><span class="s">&#39;bright&#39;</span><span class="p">,</span><span class="s">&#39;underline&#39;</span><span class="p">),</span><span class="s">&#39;blue&#39;</span><span class="p">,</span><span class="s">&#39;white&#39;</span><span class="p">)</span>
+<span class="c"># gives a blue foreground</span>
+<span class="n">display</span><span class="p">(</span><span class="n">fg</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
+<span class="c"># resets the color to the default.</span>
+<span class="n">display</span><span class="p">(</span><span class="s">&#39;default&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Avoid using black or white. Depending on the situation the default
@@ -762,7 +956,9 @@ this.</p>
 </dd></dl>
 
 </div>
-<span class="target" id="module-fabulous.rlcomplete"></span><p>Readline related stuff</p>
+<span class="target" id="module-fabulous.rlcomplete"></span><div class="section" id="fabulous-rlcomplete">
+<h3>fabulous.rlcomplete<a class="headerlink" href="#fabulous-rlcomplete" title="Permalink to this headline">¶</a></h3>
+<p>Readline related stuff.</p>
 <dl class="class">
 <dt id="fabulous.rlcomplete.Completer">
 <em class="property">class </em><tt class="descclassname">fabulous.rlcomplete.</tt><tt class="descname">Completer</tt><a class="headerlink" href="#fabulous.rlcomplete.Completer" title="Permalink to this definition">¶</a></dt>
@@ -818,9 +1014,18 @@ returns list of possible matches in form of [&#8216;~userspam&#8217;,&#8217;~use
 
 </dd></dl>
 
-<span class="target" id="module-fabulous.gotham"></span><div class="section" id="fabulous-gotham">
-<h3>fabulous.gotham<a class="headerlink" href="#fabulous-gotham" title="Permalink to this headline">¶</a></h3>
-<p>I implement functions to satisfy your darker side.</p>
+</div>
+<span class="target" id="module-fabulous.gotham"></span><div class="section" id="id3">
+<h3>fabulous.gotham<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>This is a gimmick feature that generates silly gothic poetry.</p>
+<p>This uses a simple mad lib algorithm. It has no concept of meter or rhyme.
+If you want a <em>proper</em> poetry generator, check out <a class="reference external" href="https://github.com/jart/poemy2">poemy2</a> which uses markov
+chains and isledict. It&#8217;s written by the same author as Fabulous.</p>
+<p>This module can be run as a command line tool:</p>
+<div class="highlight-python"><div class="highlight"><pre>jart@compy:~$ fabulous-gotham
+jart@compy:~$ python -m fabulous.gotham
+</pre></div>
+</div>
 <dl class="function">
 <dt id="fabulous.gotham.lorem_gotham">
 <tt class="descclassname">fabulous.gotham.</tt><tt class="descname">lorem_gotham</tt><big>(</big><big>)</big><a class="headerlink" href="#fabulous.gotham.lorem_gotham" title="Permalink to this definition">¶</a></dt>
@@ -848,11 +1053,7 @@ depressed teenager with a lot of black makeup would write.</p>
 </div>
 <span class="target" id="module-fabulous.rotating_cube"></span><div class="section" id="fabulous-rotating-cube">
 <h3>fabulous.rotating_cube<a class="headerlink" href="#fabulous-rotating-cube" title="Permalink to this headline">¶</a></h3>
-<p>Completely pointless terminal renderer of rotating cube</p>
-<p>Uses a faux 2D rendering technique to create what appears to be a
-wireframe 3d cube.</p>
-<p>This doesn&#8217;t use the curses library, but rather prints entire
-frames sized to fill the entire terminal display.</p>
+<p>Command for animating a wireframe rotating cube in the terminal.</p>
 <dl class="class">
 <dt id="fabulous.rotating_cube.Frame">
 <em class="property">class </em><tt class="descclassname">fabulous.rotating_cube.</tt><tt class="descname">Frame</tt><a class="headerlink" href="#fabulous.rotating_cube.Frame" title="Permalink to this definition">¶</a></dt>
@@ -887,6 +1088,9 @@ again <a class="reference external" href="http://en.wikipedia.org/wiki/Bresenham
 </div>
 <span class="target" id="module-fabulous.debug"></span><div class="section" id="fabulous-debug">
 <h3>fabulous.debug<a class="headerlink" href="#fabulous-debug" title="Permalink to this headline">¶</a></h3>
+<p>The debug module provides the ability to print images as ASCII. It isn&#8217;t a
+good ASCII representation like cacalib. This module is mostly intended for
+debugging purposes (hence the name.)</p>
 <dl class="class">
 <dt id="fabulous.debug.DebugImage">
 <em class="property">class </em><tt class="descclassname">fabulous.debug.</tt><tt class="descname">DebugImage</tt><big>(</big><em>path</em>, <em>width=None</em><big>)</big><a class="headerlink" href="#fabulous.debug.DebugImage" title="Permalink to this definition">¶</a></dt>
@@ -902,6 +1106,7 @@ again <a class="reference external" href="http://en.wikipedia.org/wiki/Bresenham
 </div>
 <span class="target" id="module-fabulous.utils"></span><div class="section" id="fabulous-utils">
 <h3>fabulous.utils<a class="headerlink" href="#fabulous-utils" title="Permalink to this headline">¶</a></h3>
+<p>Miscellaneous utilities for Fabulous.</p>
 <dl class="class">
 <dt id="fabulous.utils.TerminalInfo">
 <em class="property">class </em><tt class="descclassname">fabulous.utils.</tt><tt class="descname">TerminalInfo</tt><big>(</big><em>bgcolor='black'</em><big>)</big><a class="headerlink" href="#fabulous.utils.TerminalInfo" title="Permalink to this definition">¶</a></dt>
@@ -991,140 +1196,206 @@ not listed in the <tt class="docutils literal"><span class="pre">setup.py</span>
 
 </div>
 </div>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>The following prerequisites are optional. But they help Fabulous run faster and
-make the full feature set is available:</p>
-<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install gcc python-imaging
-</pre></div>
+<div class="section" id="terminal-support">
+<h2>Terminal Support<a class="headerlink" href="#terminal-support" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="supported-terminals">
+<h3>Supported Terminals<a class="headerlink" href="#supported-terminals" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="11%" />
+<col width="11%" />
+<col width="5%" />
+<col width="15%" />
+<col width="11%" />
+<col width="11%" />
+<col width="10%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Terminal</th>
+<th class="head">default</th>
+<th class="head">bright</th>
+<th class="head">dim</th>
+<th class="head">underline</th>
+<th class="head">blink</th>
+<th class="head">reverse</th>
+<th class="head">hidden</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>xterm</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr class="row-odd"><td>linux</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>bright</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr class="row-even"><td>rxvt</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>bright</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr class="row-odd"><td>Windows <a class="footnote-reference" href="#id12" id="id5">[0]</a></td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr class="row-even"><td>PuTTY <a class="footnote-reference" href="#id13" id="id6">[1]</a></td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td><a class="footnote-reference" href="#id14" id="id7">[2]</a></td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr class="row-odd"><td>Cygwin SSH <a class="footnote-reference" href="#id15" id="id8">[3]</a></td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td><a class="footnote-reference" href="#id16" id="id9">[4]</a></td>
+<td><a class="footnote-reference" href="#id16" id="id10">[4]</a></td>
+<td><a class="footnote-reference" href="#id14" id="id11">[2]</a></td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>You can install Fabulous from PyPi:</p>
-<div class="highlight-python"><div class="highlight"><pre>sudo pip install fabulous
-</pre></div>
+<div class="section" id="currently-unsupported-but-should-support">
+<h3>Currently unsupported, but should support<a class="headerlink" href="#currently-unsupported-but-should-support" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="11%" />
+<col width="11%" />
+<col width="5%" />
+<col width="15%" />
+<col width="11%" />
+<col width="11%" />
+<col width="10%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Terminal</th>
+<th class="head">default</th>
+<th class="head">bright</th>
+<th class="head">dim</th>
+<th class="head">underline</th>
+<th class="head">blink</th>
+<th class="head">reverse</th>
+<th class="head">hidden</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>dtterm</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>reverse</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr class="row-odd"><td>teraterm</td>
+<td>yes</td>
+<td>reverse</td>
+<td>no</td>
+<td>yes</td>
+<td>rev/red</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr class="row-even"><td>aixterm</td>
+<td>kinda</td>
+<td>normal</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr class="row-odd"><td>Mac Terminal</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>Or you could download and extract the latest version:</p>
-<div class="highlight-python"><div class="highlight"><pre>sudo python setup.py install
-</pre></div>
-</div>
-<p>Run the demo to see what&#8217;s available:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">fabulous</span><span class="o">-</span><span class="n">demo</span>
-</pre></div>
-</div>
-<img alt="_images/fabulous-demo.png" src="_images/fabulous-demo.png" />
-</div>
-<div class="section" id="basic-examples">
-<h2>Basic Examples<a class="headerlink" href="#basic-examples" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="colors">
-<h3>Colors<a class="headerlink" href="#colors" title="Permalink to this headline">¶</a></h3>
-<p>4-bit color.  These colors and styles are standard and work almost
-everywhere.  They are useful in helping make your program output
-easier to read:</p>
-<div class="highlight-python"><div class="highlight"><pre>from fabulous import bold, magenta, highlight_red
-
-print bold(magenta(&#39;hello kitty&#39;))
-print highlight_red(&#39;DANGER DANGER!&#39;)
-
-print bold(&#39;hello&#39;) + &#39; &#39; + magenta( kitty&#39;)
-
-assert len(bold(&#39;test&#39;)) == 4
-</pre></div>
-</div>
-<p>8-bit color.  If you want to spice things up a bit, Fabulous supports
-xterm256 colors:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">fg256</span><span class="p">,</span> <span class="n">bg256</span>
-<span class="k">print</span> <span class="n">fg256</span><span class="p">(</span><span class="s">&#39;#F0F&#39;</span><span class="p">,</span> <span class="s">&#39;hello kitty&#39;</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">fg256</span><span class="p">(</span><span class="s">&#39;magenta&#39;</span><span class="p">,</span> <span class="s">&#39;hello kitty&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="fancy-text">
-<h3>Fancy Text<a class="headerlink" href="#fancy-text" title="Permalink to this headline">¶</a></h3>
-<p>Way cool text.  This is something neat you can use when you program
-starts up to display its name with style:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">text</span>
-<span class="k">print</span> <span class="n">text</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Fabulous!&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;#0099ff&#39;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">scew</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>It&#8217;s scriptable too:</p>
-<div class="highlight-python"><div class="highlight"><pre>fabulous-text --help
-fabulous-text --skew=5 --shadow &#39;Fabulous!&#39;
-</pre></div>
-</div>
-</div>
-<div class="section" id="images">
-<h3>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h3>
-<p>Fabulous lets you print images, which is more fun than useful.
-Fabulous&#8217; unique method of printing images really shines when used
-with semi-transparent PNG files.  When blending backgrounds, Fabulous
-assumes by default that your terminal has a black background.  Don&#8217;t
-worry if your image is huge, it&#8217;ll be resized by default to fit your
-terminal:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">utils</span><span class="p">,</span> <span class="n">image</span>
-<span class="k">print</span> <span class="n">image</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s">&quot;balls.png&quot;</span><span class="p">)</span>
-
-<span class="c"># adjust for a white background</span>
-<span class="n">utils</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">bgcolor</span> <span class="o">=</span> <span class="s">&#39;white&#39;</span>
-<span class="k">print</span> <span class="n">image</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s">&quot;balls.png&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>It&#8217;s scriptable too (like img2txt)</p>
-<div class="highlight-python"><div class="highlight"><pre>fabulous-image balls.png
-</pre></div>
-</div>
-<p>Image printing may perform slowly depending on whether or not Fabulous is able
-to compile <tt class="docutils literal"><span class="pre">~/.xterm256.so</span></tt> on the fly. This is a tiny library that makes
-color quantization go much faster. The pure Python version of the algorithm is
-really slow because it&#8217;s implemented as a brute force nearest neighbor over
-Euclidean distance search. Although an O(1) version of this algorithm exists
-with slightly less correctness. Your humble author simply hasn&#8217;t had the time
-to implement it in this library.</p>
-<p>If you like this image printing feature, then please check out <a class="reference external" href="https://github.com/jart/hiptext">hiptext</a> which
-is a C++ program written by the same author as Fabulous. It offers a much
-richer version of this same functionality. It can even play videos in the
-terminal. Also be sure to check out <a class="reference external" href="https://github.com/keroserene/rickrollrc">rickrollrc</a>.</p>
-</div>
-<div class="section" id="transient-logging">
-<h3>Transient Logging<a class="headerlink" href="#transient-logging" title="Permalink to this headline">¶</a></h3>
-<p>This is very useful tool for monitoring what your Python scripts are
-doing.  It allows you to have full verbosity without drowning out
-important error messages:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">logs</span>
-<span class="n">logs</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s">&#39;WARNING&#39;</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;verbose stuff you don&#39;t care about&quot;</span><span class="p">)</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;something bad happened!&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;verbose stuff you don&#39;t care about&quot;</span><span class="p">)</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="gothic-poetry-generator">
-<h3>Gothic Poetry Generator<a class="headerlink" href="#gothic-poetry-generator" title="Permalink to this headline">¶</a></h3>
-<p>This is a gimmick feature that probably shouldn&#8217;t have been included, but it&#8217;s
-possible to generate silly gothic poetry by running <tt class="docutils literal"><span class="pre">fabulous-gotham</span></tt>.</p>
-<p>This uses a simple mad lib algorithm. It has no concept of meter or rhyme. If
-you want a <em>proper</em> poetry generator, check out <a class="reference external" href="https://github.com/jart/poemy2">poemy2</a> which uses markov
-chains and isledict. It&#8217;s written by the same author as Fabulous.</p>
-</div>
-<div class="section" id="rotating-cube">
-<h3>Rotating Cube<a class="headerlink" href="#rotating-cube" title="Permalink to this headline">¶</a></h3>
-<p>This is another gimmick feature that probably shouldn&#8217;t have been included.
-You can display an animated rotating cube in your terminal by running
-<tt class="docutils literal"><span class="pre">fabulous-rotatingcube</span></tt>.</p>
+<div class="section" id="unsupported-and-will-not-support">
+<h3>Unsupported and will not support<a class="headerlink" href="#unsupported-and-will-not-support" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Windows Telnet</dt>
+<dd>It thinks it supports ANSI control, but it&#8217;s so horribly
+buggy its best to ignore it all together. (<tt class="docutils literal"><span class="pre">TERM</span> <span class="pre">=</span> <span class="pre">ansi</span></tt>)</dd>
+</dl>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[0]</a></td><td>The default windows terminal, <tt class="docutils literal"><span class="pre">cmd.exe</span></tt> does not set the <tt class="docutils literal"><span class="pre">TERM</span></tt> variable, so
+detection is done by checking if the string <tt class="docutils literal"><span class="pre">'win32'</span></tt> is in <tt class="docutils literal"><span class="pre">sys.platform</span></tt>. This
+This method has some limitations, particularly with remote terminal. But if you&#8217;re
+allowing remote access to a Windows computer you probably have bigger problems.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[1]</a></td><td>Putty has the <tt class="docutils literal"><span class="pre">TERM</span></tt> variable set to <tt class="docutils literal"><span class="pre">xterm</span></tt> by default</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td><em>(<a class="fn-backref" href="#id7">1</a>, <a class="fn-backref" href="#id11">2</a>)</em> Makes background bright</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[3]</a></td><td>Cygwin&#8217;s SSH support&#8217;s ANSI, but the regular terminal does not, check for
+win32 first, then check for cygwin. That should give us the cases when
+cygwin is used through SSH or telnet or something. (<tt class="docutils literal"><span class="pre">TERM</span> <span class="pre">=</span> <span class="pre">cygwin</span></tt>)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id16" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[4]</td><td><em>(<a class="fn-backref" href="#id9">1</a>, <a class="fn-backref" href="#id10">2</a>)</em> Sets foreground color to cyan</td></tr>
+</tbody>
+</table>
 </div>
 </div>
-<div class="section" id="why-fabulous">
-<h2>Why Fabulous?<a class="headerlink" href="#why-fabulous" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="alternatives">
+<h2>Alternatives<a class="headerlink" href="#alternatives" title="Permalink to this headline">¶</a></h2>
 <p>Here&#8217;s how Fabulous compares to other similar libraries:</p>
 <ul class="simple">
 <li><a class="reference external" href="http://pypi.python.org/pypi/fabulous">fabulous</a>: Licensed MIT.  Focuses on delivering useful features in
 the simplest, most user-friendly way possible (without a repulsive
 name.)  Written in pure-python but will attempt to auto-magically
-compile/link a speedup library.  ~1,000 lines of code.</li>
+compile/link a speedup library.  ~5,000 lines of code.</li>
 <li><a class="reference external" href="http://caca.zoy.org/">libcaca</a>: WTFPL.  This is the established and respected standard for
 doing totally insane things with ascii art (ever wanted to watch a
 movie on the command line?)  Weighing in at ~72k lines of C, this
@@ -1140,6 +1411,32 @@ Aprox 17k lines of code.</li>
 <li><a class="reference external" href="http://pypi.python.org/pypi/termcolor">termcolor</a>: GPL.  Only supports 4-bit ANSI colors.</li>
 </ul>
 </div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>Code and documentation are available according to the MIT License:</p>
+<div class="highlight-python"><div class="highlight"><pre>Copyright (c) 2016 Justine Alexandra Roberts Tunney
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+&quot;Software&quot;), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -1151,30 +1448,44 @@ Aprox 17k lines of code.</li>
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Fabulous</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#examples">Examples</a><ul>
+<li><a class="reference internal" href="#colors">Colors</a></li>
+<li><a class="reference internal" href="#fancy-text">Fancy Text</a></li>
+<li><a class="reference internal" href="#images">Images</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#commands">Commands</a><ul>
+<li><a class="reference internal" href="#fabulous-text"><strong class="command">fabulous-text</strong></a></li>
+<li><a class="reference internal" href="#fabulous-image"><strong class="command">fabulous-image</strong></a></li>
+<li><a class="reference internal" href="#fabulous-demo"><strong class="command">fabulous-demo</strong></a></li>
+<li><a class="reference internal" href="#fabulous-gotham"><strong class="command">fabulous-gotham</strong></a></li>
+<li><a class="reference internal" href="#fabulous-rotatingcube"><strong class="command">fabulous-rotatingcube</strong></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-fabulous.color">Modules</a><ul>
 <li><a class="reference internal" href="#fabulous-color">fabulous.color</a></li>
 <li><a class="reference internal" href="#fabulous-xterm256">fabulous.xterm256</a></li>
-<li><a class="reference internal" href="#fabulous-text">fabulous.text</a></li>
-<li><a class="reference internal" href="#fabulous-image">fabulous.image</a></li>
+<li><a class="reference internal" href="#id1">fabulous.text</a></li>
+<li><a class="reference internal" href="#id2">fabulous.image</a></li>
 <li><a class="reference internal" href="#fabulous-logs">fabulous.logs</a></li>
-<li><a class="reference internal" href="#caveats">Caveats</a></li>
-<li><a class="reference internal" href="#fabulous-gotham">fabulous.gotham</a></li>
+<li><a class="reference internal" href="#fabulous-widget">fabulous.widget</a></li>
+<li><a class="reference internal" href="#fabulous-term">fabulous.term</a></li>
+<li><a class="reference internal" href="#fabulous-rlcomplete">fabulous.rlcomplete</a></li>
+<li><a class="reference internal" href="#id3">fabulous.gotham</a></li>
 <li><a class="reference internal" href="#fabulous-rotating-cube">fabulous.rotating_cube</a></li>
 <li><a class="reference internal" href="#fabulous-debug">fabulous.debug</a></li>
 <li><a class="reference internal" href="#fabulous-utils">fabulous.utils</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#installation">Installation</a></li>
-<li><a class="reference internal" href="#basic-examples">Basic Examples</a><ul>
-<li><a class="reference internal" href="#colors">Colors</a></li>
-<li><a class="reference internal" href="#fancy-text">Fancy Text</a></li>
-<li><a class="reference internal" href="#images">Images</a></li>
-<li><a class="reference internal" href="#transient-logging">Transient Logging</a></li>
-<li><a class="reference internal" href="#gothic-poetry-generator">Gothic Poetry Generator</a></li>
-<li><a class="reference internal" href="#rotating-cube">Rotating Cube</a></li>
+<li><a class="reference internal" href="#terminal-support">Terminal Support</a><ul>
+<li><a class="reference internal" href="#supported-terminals">Supported Terminals</a></li>
+<li><a class="reference internal" href="#currently-unsupported-but-should-support">Currently unsupported, but should support</a></li>
+<li><a class="reference internal" href="#unsupported-and-will-not-support">Unsupported and will not support</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#why-fabulous">Why Fabulous?</a></li>
+<li><a class="reference internal" href="#alternatives">Alternatives</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
 </ul>
@@ -1210,7 +1521,7 @@ Aprox 17k lines of code.</li>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="#">fabulous 0.1.6 documentation</a> &raquo;</li> 
+        <li><a href="#">fabulous 0.1.7 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
