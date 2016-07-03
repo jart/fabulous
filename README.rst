@@ -13,6 +13,8 @@
 :Manual section: 3
 :Manual group: Library Calls
 
+.. image:: https://raw.githubusercontent.com/jart/fabulous/master/docs/fabulous-demo.png
+
 
 Getting Started
 ===============
