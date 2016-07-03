@@ -77,7 +77,7 @@ class Frame(object):
         return "\n".join(["".join(line) for line in self.canvas])
 
 
-def rotating_cube(degree_change=3, frame_rate=10):
+def rotating_cube(degree_change=3, frame_rate=3):
     """Rotating cube program
 
     How it works:
