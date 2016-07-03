@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Terminal Support &mdash; fabulous 0.1.6 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="fabulous 0.1.6 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">fabulous 0.1.6 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="terminal-support">
+<h1>Terminal Support<a class="headerlink" href="#terminal-support" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="supported-terminals">
+<h2>Supported Terminals<a class="headerlink" href="#supported-terminals" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="11%" />
+<col width="11%" />
+<col width="5%" />
+<col width="15%" />
+<col width="11%" />
+<col width="11%" />
+<col width="10%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Terminal</th>
+<th class="head">default</th>
+<th class="head">bright</th>
+<th class="head">dim</th>
+<th class="head">underline</th>
+<th class="head">blink</th>
+<th class="head">reverse</th>
+<th class="head">hidden</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>xterm</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr class="row-odd"><td>linux</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>bright</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr class="row-even"><td>rxvt</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>bright</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr class="row-odd"><td>Windows <a class="footnote-reference" href="#id8" id="id1">[0]</a></td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr class="row-even"><td>PuTTY <a class="footnote-reference" href="#id9" id="id2">[1]</a></td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td><a class="footnote-reference" href="#id10" id="id3">[2]</a></td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr class="row-odd"><td>Cygwin SSH <a class="footnote-reference" href="#id11" id="id4">[3]</a></td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td><a class="footnote-reference" href="#id12" id="id5">[4]</a></td>
+<td><a class="footnote-reference" href="#id12" id="id6">[4]</a></td>
+<td><a class="footnote-reference" href="#id10" id="id7">[2]</a></td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="currently-unsupported-but-should-support">
+<h2>Currently unsupported, but should support<a class="headerlink" href="#currently-unsupported-but-should-support" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="11%" />
+<col width="11%" />
+<col width="5%" />
+<col width="15%" />
+<col width="11%" />
+<col width="11%" />
+<col width="10%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Terminal</th>
+<th class="head">default</th>
+<th class="head">bright</th>
+<th class="head">dim</th>
+<th class="head">underline</th>
+<th class="head">blink</th>
+<th class="head">reverse</th>
+<th class="head">hidden</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>dtterm</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>reverse</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr class="row-odd"><td>teraterm</td>
+<td>yes</td>
+<td>reverse</td>
+<td>no</td>
+<td>yes</td>
+<td>rev/red</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr class="row-even"><td>aixterm</td>
+<td>kinda</td>
+<td>normal</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr class="row-odd"><td>Mac Terminal</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="unsupported-and-will-not-support">
+<h2>Unsupported and will not support<a class="headerlink" href="#unsupported-and-will-not-support" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Windows Telnet</dt>
+<dd>It thinks it supports ANSI control, but it&#8217;s so horribly
+buggy its best to ignore it all together. (<tt class="docutils literal"><span class="pre">TERM</span> <span class="pre">=</span> <span class="pre">ansi</span></tt>)</dd>
+</dl>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[0]</a></td><td>The default windows terminal, <tt class="docutils literal"><span class="pre">cmd.exe</span></tt> does not set the <tt class="docutils literal"><span class="pre">TERM</span></tt> variable, so
+detection is done by checking if the string <tt class="docutils literal"><span class="pre">'win32'</span></tt> is in <tt class="docutils literal"><span class="pre">sys.platform</span></tt>. This
+This method has some limitations, particularly with remote terminal. But if you&#8217;re
+allowing remote access to a Windows computer you probably have bigger problems.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>Putty has the <tt class="docutils literal"><span class="pre">TERM</span></tt> variable set to <tt class="docutils literal"><span class="pre">xterm</span></tt> by default</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td><em>(<a class="fn-backref" href="#id3">1</a>, <a class="fn-backref" href="#id7">2</a>)</em> Makes background bright</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>Cygwin&#8217;s SSH support&#8217;s ANSI, but the regular terminal does not, check for
+win32 first, then check for cygwin. That should give us the cases when
+cygwin is used through SSH or telnet or something. (<tt class="docutils literal"><span class="pre">TERM</span> <span class="pre">=</span> <span class="pre">cygwin</span></tt>)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[4]</td><td><em>(<a class="fn-backref" href="#id5">1</a>, <a class="fn-backref" href="#id6">2</a>)</em> Sets foreground color to cyan</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Terminal Support</a><ul>
+<li><a class="reference internal" href="#supported-terminals">Supported Terminals</a></li>
+<li><a class="reference internal" href="#currently-unsupported-but-should-support">Currently unsupported, but should support</a></li>
+<li><a class="reference internal" href="#unsupported-and-will-not-support">Unsupported and will not support</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/support.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">fabulous 0.1.6 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016, Justine Tunney.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
