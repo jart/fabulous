@@ -131,40 +131,10 @@ def pil_check():
     We need PIL for the :mod:`fabulous.text` and :mod:`fabulous.image`
     modules to work.  Because PIL can be very tricky to install, it's
     not listed in the ``setup.py`` requirements list.
-
-    Not everyone is going to have PIL installed so it's best that we
-    offer as much help as possible so they don't have to suffer like I
-    have in the past :'(
     """
     try:
         import PIL
     except ImportError:
-        raise ImportError(textwrap.dedent("""
-            Oh no!  You don't have the evil PIL library!
-
-            Here's how you get it:
-
-            Ubuntu/Debian:
-
-                sudo apt-get install python-imaging
-
-            Mac OS X:
-
-                http://pythonmac.org/packages/py24-fat/index.html
-                http://pythonmac.org/packages/py25-fat/index.html
-
-            Windows:
-
-                http://effbot.org/downloads/PIL-1.1.7.win32-py%(pyversion)s.exe
-
-            Everyone Else:
-
-              This is like the hardest library in the world to
-              manually install.  If your package manager doesn't have
-              it, you can try running ``sudo easy_install pil`` once
-              you get your hands on a C compiler as well as the
-              following libraries (including the development headers)
-              for Python, libz, libjpeg, libgif, libpng, libungif4,
-              libfreetype6, and maybe more >_>
-
-            """ % {'pyversion': "%s.%s" % sys.version_info[:2]}))
+        raise ImportError("Please install PIL to use this feature: "
+                          "https://pillow.readthedocs.io/en/latest"
+                          "/installation.html")
