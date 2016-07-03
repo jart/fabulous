@@ -337,4 +337,3 @@ def main(args):
                 line += bg256(cube_color(x, y, z), '  ')
             line += " "
         print line.as_utf8
-

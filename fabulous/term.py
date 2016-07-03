@@ -818,11 +818,10 @@ class Magic(object):
     def rdisplay(codes):
         """Reads a list of codes and generates dict
         
-        >>> Magic.rdisplay([]) == {}
-        True
-        >>> format = {'codes': ['bold','dim'], 'bg':'blue', 'fg':'cyan'}
-        >>> Magic.rdisplay([1,2,34,46]) == format
-        True
+        >>> Magic.rdisplay([])
+        {}
+        >>> Magic.rdisplay([1,2,34,46])
+        {'codes': ['bright', 'dim'], 'bg': 'cyan', 'fg': 'blue'}
         """
         dcodes = []
         fg = bg = None

@@ -140,7 +140,7 @@ def resolve_font(name):
         >>> path = resolve_font('IndUni-H-Bold')
 
         >>> fontdir = os.path.join(os.path.dirname(__file__), 'fonts')
-        >>> indunih_path = os.path.join(fontdir, 'IndUni-H-Bold.ttf')
+        >>> indunih_path = os.path.join(fontdir, 'IndUni-H-Bold.otf')
         >>> assert path == indunih_path
 
     This isn't case-sensitive::
@@ -159,7 +159,7 @@ def resolve_font(name):
         for fontfile in fontfiles:
             if name.lower() in fontfile.lower():
                 return os.path.join(fontdir, fontfile)
-    raise FontNotFound("Can't find %r :'(  Try adding it to ~/.fonts")
+    raise FontNotFound("Can't find %r :'(  Try adding it to ~/.fonts" % name)
 
 
 @utils.memoize
@@ -173,16 +173,12 @@ def get_font_files():
     For example::
 
         >>> fabfonts = os.path.join(os.path.dirname(__file__), 'fonts')
-        >>> 'IndUni-H-Bold.ttf' in get_font_files()[fabfontdir]
-        True
-        >>> 'DejaVuSansMono.ttf' in get_font_files()[fabfontdir]
-        True
-        >>> 'cmr10.ttf' in get_font_files()[fabfontdir]
-        True
+        >>> dict(get_font_files())[fabfonts]
+        ['cmr10.ttf', 'IndUni-H-Bold.otf', 'DejaVuSansMono.ttf']
 
-        >>> assert len(get_font_files()) > 0
-        >>> for dirname, filename in get_font_files():
-        ...     assert os.path.exists(os.path.join(dirname, filename))
+        >>> for dirname, filenames in get_font_files():
+        ...     for filename in filenames:
+        ...         assert os.path.exists(os.path.join(dirname, filename))
         ...
 
     """
