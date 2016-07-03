@@ -1,0 +1,8 @@
+include COPYING
+include MANIFEST.in
+include ez_setup.py
+include fabulous/_xterm256.c
+include fabulous/balls.png
+include fabulous/fonts/DejaVuSansMono.ttf
+include fabulous/fonts/IndUni-H-Bold.otf
+include fabulous/fonts/cmr10.ttf
