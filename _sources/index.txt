@@ -20,6 +20,10 @@ colors, images, and stylized text to the console (without curses.)  Fabulous
 also offers features to improve the usability of Python's standard logging
 system.
 
+The source code is available at `github.com/jart/fabulous`_.
+
+.. _github.com/jart/fabulous: https://github.com/jart/fabulous
+
 
 Installation
 ============
