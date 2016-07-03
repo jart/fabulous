@@ -6,7 +6,21 @@ python:
   - 2.7
   - pypy
 
+addons:
+  apt:
+    packages:
+      - libfreetype6-dev
+      - libjpeg8-dev
+      - liblcms2-dev
+      - libtiff5-dev
+      - libwebp-dev
+      - python-tk
+      - tcl8.6-dev
+      - tk8.6-dev
+      - zlib1g-dev
+
 script:
+  - pip install Pillow
   - python -m doctest -v fabulous/*.py
 
 notifications:
