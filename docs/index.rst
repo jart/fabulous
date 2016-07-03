@@ -29,7 +29,7 @@ Installation
 ============
 
 The following prerequisites should be installed, but they are not mandatory.
-They help Fabulous run faster and make the full feature set is available::
+They help Fabulous run faster and make the full feature set available::
 
     sudo apt-get install gcc python-imaging
 
