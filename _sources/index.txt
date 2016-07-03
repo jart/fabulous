@@ -119,26 +119,26 @@ Commands
 ========
 
 
-:command:`fabulous-text`
-------------------------
+fabulous-text
+-------------
 
 .. program-output:: fabulous-text --help
 
 
-:command:`fabulous-image`
--------------------------
+fabulous-image
+--------------
 
 .. program-output:: fabulous-image --help
 
 
-:command:`fabulous-demo`
-------------------------
+fabulous-demo
+-------------
 
 Displays a demo showing what Fabulous can do.
 
 
-:command:`fabulous-gotham`
---------------------------
+fabulous-gotham
+---------------
 
 The :command:`fabulous-gotham` command is a gothic poetry generator. It is a
 gimmick feature that uses a simple mad lib algorithm. It has no concept of
@@ -149,11 +149,12 @@ author as Fabulous.
 .. _poemy2: https://github.com/jart/poemy2
 
 
-:command:`fabulous-rotatingcube`
---------------------------------
+fabulous-rotatingcube
+---------------------
 
 The :command:`fabulous-rotatingcube` command is another gimmick feature that
-animates a wireframe rotating cube in the terminal.
+animates a wireframe rotating cube in the terminal. It runs until you hit
+Ctrl+C.
 
 
 Modules
