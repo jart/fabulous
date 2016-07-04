@@ -8,7 +8,7 @@ Summary:          Makes your terminal output totally fabulous
 Group:            Development/Languages
 License:          MIT
 URL:              https://jart.github.io/fabulous
-Source0:          https://github.com/jart/fabulous/archive/0.1.8.tar.gz
+Source0:          https://github.com/jart/fabulous/releases/download/0.1.8/fabulous-0.1.8.tar.gz
 
 BuildArch:        noarch
 

@@ -24,8 +24,9 @@ setuptools.setup(
     author               = 'Justine Tunney',
     author_email         = 'jtunney@gmail.com',
     description          = 'Makes your terminal output totally fabulous',
-    download_url         = ('https://github.com/jart/fabulous/archive/' +
-                            version + '.tar.gz'),
+    download_url         = ('https://github.com/jart/fabulous/releases'
+                            '/download/' + version +
+                            '/fabulous-' + version + '.tar.gz'),
     long_description     = read('README.rst'),
     license              = 'MIT',
     packages             = ['fabulous', 'fabulous.experimental'],
