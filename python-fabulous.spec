@@ -17,7 +17,6 @@ BuildRequires:    python-devel
 BuildRequires:    python-setuptools
 
 Requires:         python-imaging
-Requires:         python-grapefruit
 
 %description
 fabulous is a python module for producing fabulously colored terminal output.
@@ -43,6 +42,10 @@ Run the demo to see what's available::
 %{python_sitelib}/* 
 
 %changelog
+* Fri Apr 20 2012 Justine Tunney <jtunney@gmail.com> - 0.1.8-1
+- Update for version 0.1.8
+- Remove grapefruit dependency
+
 * Fri Apr 20 2012 Ralph Bean <rbean@redhat.com> - 0.1.5-2
 - Included README and COPYING in the doc macro
 
