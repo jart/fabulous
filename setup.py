@@ -28,7 +28,7 @@ setuptools.setup(
                             '/download/' + version +
                             '/fabulous-' + version + '.tar.gz'),
     long_description     = read('README.rst'),
-    license              = 'MIT',
+    license              = 'MIT / OFL / Apache 2.0',
     packages             = ['fabulous', 'fabulous.experimental'],
     zip_safe             = False,
     include_package_data = True,
@@ -44,6 +44,7 @@ setuptools.setup(
     classifiers = [
         "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: Apache Software License",
         "Environment :: Console",
         "Intended Audience :: Developers",
         "Programming Language :: C",

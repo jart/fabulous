@@ -12,7 +12,7 @@
 
 :Version: 0.1.8
 :Copyright: Copyright (c) 2009-2016 Justine Tunney
-:License: MIT
+:License: MIT / OFL / Apache 2.0
 
 Fabulous is a Python library (and command line tools) designed to make the
 output of terminal applications look *fabulous*. Fabulous allows you to print
@@ -251,10 +251,10 @@ Alternatives
 
 Here's how Fabulous compares to other similar libraries:
 
-- fabulous_: Licensed MIT.  Focuses on delivering useful features in
-  the simplest, most user-friendly way possible (without a repulsive
-  name.)  Written in pure-python but will attempt to auto-magically
-  compile/link a speedup library.  ~5,000 lines of code.
+- fabulous_: Licensed mostly MIT. Focuses on delivering useful features in the
+  simplest, most user-friendly way possible (without a repulsive name.)
+  Written in pure-python but will attempt to auto-magically compile/link a
+  speedup library.  ~5,000 lines of code.
 
 - libcaca_: WTFPL.  This is the established and respected standard for
   doing totally insane things with ascii art (ever wanted to watch a
@@ -283,7 +283,30 @@ Here's how Fabulous compares to other similar libraries:
 License
 =======
 
-Code and documentation are available according to the MIT License:
+Fabulous code and documentation are available according to the MIT License:
 
 .. include:: ../COPYING
+   :literal:
+
+The bundled grapefruit library is licensed Apache 2.0::
+
+    Copyright (c) 2016, Justine Tunney
+    Copyright (c) 2008, Xavier Basty
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+The bundled Google Noto Fonts are licensed under the SIL Open Font License,
+Version 1.1:
+
+.. include:: ../fabulous/fonts/LICENSE
    :literal:

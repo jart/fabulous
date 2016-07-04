@@ -6,7 +6,7 @@ Release:          2%{?dist}
 Summary:          Makes your terminal output totally fabulous
 
 Group:            Development/Languages
-License:          MIT
+License:          MIT / OFL / Apache 2.0
 URL:              https://jart.github.io/fabulous
 Source0:          https://github.com/jart/fabulous/releases/download/0.1.8/fabulous-0.1.8.tar.gz
 

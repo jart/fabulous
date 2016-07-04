@@ -16,35 +16,16 @@
         from fabulous import text
         print text.Text("Fabulous!", color='#0099ff', shadow=True, scew=5)
 
-    To make things simple, Fabulous bundles three decent serif, sans-serif, and
-    monospace fonts:
-
-    - IndUni-H-Bold: Open Source Helvetica Bold clone (sans-serif)
-
-      This is the real deal and not some cheap ripoff like Verdana.
-      IndUni-H-Bold is the default because not only does it look
-      great, but also renders *perfectly*.  and is also used for the
-      Fabulous logo.  Commonly found on stret signs.
-
-      This font is licensed under the GPL.  If you're developing
-      proprietary software you might want to ask its author or a
-      lawyer if Fabulous' use of IndUni-H would be considered a "GPL
-      Barrier."
-
-    - cmr10: Computer Modern (serif)
-
-      Donald Knuth wrote 23,000 lines for the sole purpose of
-      bestowing this jewel upon the world.  This font is commonly seen
-      in scholarly papers.
-
-    - DejaVuSansMono: DejaVu Sans Mono (formerly Bitstream Vera Sans Mono)
-
-      At point size 8, this is my favorite programming/terminal font.
+    To make things simple, Fabulous bundles the ``NotoSans-Bold`` bold font
+    which was created by Google. This font looks good and is guaranteed to
+    work no matter what.
 
     For other fonts, Fabulous will do its best to figure out where they are
     stored. If Fabulous has trouble finding your font, try using an absolute
     path *with* the extension. It's also possible to put the font in the
     ``~/.fonts`` directory and then running ``fc-cache -fv ~/.fonts``.
+
+    You can run ``fabulous-text --list`` to see what fonts are available.
 
 """
 
@@ -69,13 +50,7 @@ class Text(image.Image):
 
         >>> assert Text("Fabulous", shadow=True, skew=5)
 
-        >>> txt = Text("lorem ipsum", font="IndUni-H-Bold")
-        >>> len(str(txt)) > 0
-        True
-        >>> txt = Text("lorem ipsum", font="cmr10")
-        >>> len(str(txt)) > 0
-        True
-        >>> txt = Text("lorem ipsum", font="DejaVuSansMono")
+        >>> txt = Text("lorem ipsum", font="NotoSans-Bold")
         >>> len(str(txt)) > 0
         True
 
@@ -102,21 +77,22 @@ class Text(image.Image):
                    globbing the specified name in various directories.
     """
 
-    def __init__(self, text, fsize=20, color="#0099ff", shadow=False,
-                 skew=None, font='IndUni-H-Bold'):
+    def __init__(self, text, fsize=23, color="#0099ff", shadow=False,
+                 skew=None, font='NotoSans-Bold'):
         utils.pil_check()
         from PIL import Image, ImageFont, ImageDraw
         self.text = text
         self.color = grapefruit.Color.NewFromHtml(color)
         self.font = ImageFont.truetype(resolve_font(font), fsize)
-        size = tuple([n + 3 for n in self.font.getsize(self.text)])
+        skew = skew or 0
+        size = tuple([n + 3 + skew for n in self.font.getsize(self.text)])
         self.img = Image.new("RGBA", size, (0, 0, 0, 0))
         cvs = ImageDraw.Draw(self.img)
         if shadow:
-            cvs.text((2, 2), self.text,
+            cvs.text((2 + skew, 2), self.text,
                      font=self.font,
                      fill=(150, 150, 150, 150))
-        cvs.text((1, 1), self.text,
+        cvs.text((1 + skew, 1), self.text,
                  font=self.font,
                  fill=self.color.html)
         if skew:
@@ -141,16 +117,16 @@ def resolve_font(name):
 
     For example::
 
-        >>> path = resolve_font('IndUni-H-Bold')
+        >>> path = resolve_font('NotoSans-Bold')
 
         >>> fontdir = os.path.join(os.path.dirname(__file__), 'fonts')
-        >>> indunih_path = os.path.join(fontdir, 'IndUni-H-Bold.otf')
-        >>> indunih_path = os.path.abspath(indunih_path)
-        >>> assert path == indunih_path
+        >>> noto_path = os.path.join(fontdir, 'NotoSans-Bold.ttf')
+        >>> noto_path = os.path.abspath(noto_path)
+        >>> assert path == noto_path
 
     Absolute paths are allowed::
 
-        >>> resolve_font(indunih_path) == indunih_path
+        >>> resolve_font(noto_path) == noto_path
         True
 
     Raises :exc:`FontNotFound` on failure::
@@ -223,13 +199,13 @@ def main():
               "this value to the proper background so semi-transparent "
               "pixels will blend properly."))
     parser.add_option(
-        "-F", "--font", dest="font", default='IndUni-H-Bold',
-        help=("Path to font file you wish to use.  This defaults to a "
-              "free Helvetica-Bold clone which is included with Fabulous.  "
-              "Included fonts: IndUni-H-Bold, cmr10, DejaVuSansMono. "
+        "-F", "--font", dest="font", default='NotoSans-Bold',
+        help=("Name of font file, or absolute path to one. Use the --list "
+              "flag to see what fonts are available. The default font is "
+              "bundled with Fabulous and guaranteed to work. "
               "Default: %default"))
     parser.add_option(
-        "-Z", "--size", dest="fsize", type="int", default=20,
+        "-Z", "--size", dest="fsize", type="int", default=23,
         help=("Size of font in points.  Default: %default"))
     parser.add_option(
         "-s", "--shadow", dest="shadow", action="store_true", default=False,
