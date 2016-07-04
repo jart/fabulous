@@ -135,11 +135,9 @@ class FontNotFound(ValueError):
 
 
 def resolve_font(name):
-    """Sloppy way to turn font names into absolute filenames
+    """Turns font names into absolute filenames
 
-    This isn't intended to be a proper font lookup tool but rather a
-    dirty tool to not have to specify the absolute filename every
-    time.
+    This is case sensitive. The extension should be omitted.
 
     For example::
 
@@ -147,11 +145,13 @@ def resolve_font(name):
 
         >>> fontdir = os.path.join(os.path.dirname(__file__), 'fonts')
         >>> indunih_path = os.path.join(fontdir, 'IndUni-H-Bold.otf')
+        >>> indunih_path = os.path.abspath(indunih_path)
         >>> assert path == indunih_path
 
-    This isn't case-sensitive::
+    Absolute paths are allowed::
 
-        >>> assert resolve_font('induni-h') == indunih_path
+        >>> resolve_font(indunih_path) == indunih_path
+        True
 
     Raises :exc:`FontNotFound` on failure::
 
@@ -161,10 +161,11 @@ def resolve_font(name):
         FontNotFound: Can't find 'blahahaha' :'(  Try adding it to ~/.fonts
 
     """
-    for fontdir, fontfiles in get_font_files():
-        for fontfile in fontfiles:
-            if name.lower() in fontfile.lower():
-                return os.path.join(fontdir, fontfile)
+    if os.path.exists(name):
+        return os.path.abspath(name)
+    fonts = get_font_files()
+    if name in fonts:
+        return fonts[name]
     raise FontNotFound("Can't find %r :'(  Try adding it to ~/.fonts" % name)
 
 
@@ -174,38 +175,30 @@ def get_font_files():
 
     Returned as a list of dir/files tuples::
 
-        get_font_files() -> [('/some/dir', ['font1.ttf', ...]), ...]
+        get_font_files() -> {'FontName': '/abs/FontName.ttf', ...]
 
     For example::
 
-        >>> fabfonts = os.path.join(os.path.dirname(__file__), 'fonts')
-        >>> sorted(dict(get_font_files())[fabfonts])
-        ['DejaVuSansMono.ttf', 'IndUni-H-Bold.otf', 'cmr10.ttf']
-
-        >>> for dirname, filenames in get_font_files():
-        ...     for filename in filenames:
-        ...         assert os.path.exists(os.path.join(dirname, filename))
-        ...
+        >>> fonts = get_font_files()
+        >>> 'DejaVuSansMono' in fonts
+        True
+        >>> fonts['DejaVuSansMono'].endswith('/DejaVuSansMono.ttf')
+        True
 
     """
-    dirs = [os.path.join(os.path.dirname(__file__), 'fonts'),
-            os.path.expanduser('~/.fonts')]
-
-    sys_dirs = [
-        # this is where ubuntu puts fonts
-        '/usr/share/fonts/truetype',
-        # this is where fedora puts fonts
-        '/usr/share/fonts',
+    roots = [
+        '/usr/share/fonts/truetype',     # where ubuntu puts fonts
+        '/usr/share/fonts',              # where fedora puts fonts
+        os.path.expanduser('~/.fonts'),  # custom user fonts
+        os.path.abspath(os.path.join(os.path.dirname(__file__), 'fonts')),
     ]
-
-    for dirname in sys_dirs:
-        try:
-            dirs += [os.path.join(dirname, subdir)
-                     for subdir in os.listdir(dirname)]
-        except OSError:
-            pass
-
-    return [(p, os.listdir(p)) for p in dirs if os.path.isdir(p)]
+    result = {}
+    for root in roots:
+        for path, dirs, names in os.walk(root):
+            for name in names:
+                if name.endswith(('.ttf', '.otf')):
+                    result[name[:-4]] = os.path.join(path, name)
+    return result
 
 
 def main():
@@ -243,9 +236,7 @@ def main():
         help=("Size of font in points.  Default: %default"))
     (options, args) = parser.parse_args(args=sys.argv[1:])
     if options.list:
-        print "\n".join(sorted(set(os.path.splitext(f)[0]
-                                   for _, fs in get_font_files()
-                                   for f in fs)))
+        print "\n".join(sorted(get_font_files()))
         return
     if options.term_color:
         utils.term.bgcolor = options.term_color
