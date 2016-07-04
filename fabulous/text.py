@@ -213,6 +213,9 @@ def main():
     import optparse
     parser = optparse.OptionParser()
     parser.add_option(
+        "-l", "--list", dest="list", action="store_true", default=False,
+        help=("List available fonts"))
+    parser.add_option(
         "-S", "--skew", dest="skew", type="int", default=None,
         help=("Apply skew effect (measured in pixels) to make it look "
               "extra cool.  For example, Fabulous' logo logo is skewed "
@@ -239,10 +242,13 @@ def main():
         "-s", "--shadow", dest="shadow", action="store_true", default=False,
         help=("Size of font in points.  Default: %default"))
     (options, args) = parser.parse_args(args=sys.argv[1:])
-
+    if options.list:
+        print "\n".join(sorted(set(os.path.splitext(f)[0]
+                                   for _, fs in get_font_files()
+                                   for f in fs)))
+        return
     if options.term_color:
         utils.term.bgcolor = options.term_color
-
     for line in " ".join(args).split("\n"):
         fab_text = Text(line, skew=options.skew, color=options.color,
                         font=options.font, fsize=options.fsize,
