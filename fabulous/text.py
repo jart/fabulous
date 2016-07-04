@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+#
 # Copyright 2016 The Fabulous Authors. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,9 +32,11 @@
         from fabulous import text
         print text.Text("Fabulous!", color='#0099ff', shadow=True, scew=5)
 
-    To make things simple, Fabulous bundles the ``NotoSans-Bold`` bold font
-    which was created by Google. This font looks good and is guaranteed to
-    work no matter what.
+    To make things simple, Fabulous bundles the following Google Noto Fonts
+    which look good and are guaranteed to work no matter what:
+
+    - NotoSans-Bold
+    - NotoEmoji-Regular
 
     For other fonts, Fabulous will do its best to figure out where they are
     stored. If Fabulous has trouble finding your font, try using an absolute
@@ -50,7 +54,7 @@ from fabulous import utils, image, grapefruit
 
 
 class Text(image.Image):
-    """Renders TrueType Text to Terminal
+    u"""Renders TrueType Text to Terminal
 
     I'm a sub-class of :class:`fabulous.image.Image`.  My job is
     limited to simply getting things ready.  I do this by:
@@ -65,6 +69,9 @@ class Text(image.Image):
         >>> assert Text("Fabulous", shadow=True, skew=5)
 
         >>> txt = Text("lorem ipsum", font="NotoSans-Bold")
+        >>> len(str(txt)) > 0
+        True
+        >>> txt = Text(u"😃", font="NotoSans-Bold")
         >>> len(str(txt)) > 0
         True
 
@@ -170,9 +177,9 @@ def get_font_files():
     For example::
 
         >>> fonts = get_font_files()
-        >>> 'DejaVuSansMono' in fonts
+        >>> 'NotoSans-Bold' in fonts
         True
-        >>> fonts['DejaVuSansMono'].endswith('/DejaVuSansMono.ttf')
+        >>> fonts['NotoSans-Bold'].endswith('/NotoSans-Bold.ttf')
         True
 
     """
@@ -215,9 +222,9 @@ def main():
     parser.add_option(
         "-F", "--font", dest="font", default='NotoSans-Bold',
         help=("Name of font file, or absolute path to one. Use the --list "
-              "flag to see what fonts are available. The default font is "
-              "bundled with Fabulous and guaranteed to work. "
-              "Default: %default"))
+              "flag to see what fonts are available. Fabulous bundles the "
+              "NotoSans-Bold and NotoEmoji-Regular fonts, which are guaranteed "
+              "to work. Default: %default"))
     parser.add_option(
         "-Z", "--size", dest="fsize", type="int", default=23,
         help=("Size of font in points.  Default: %default"))
@@ -230,7 +237,7 @@ def main():
         return
     if options.term_color:
         utils.term.bgcolor = options.term_color
-    for line in " ".join(args).split("\n"):
+    for line in " ".join(args).decode('utf-8').split("\n"):
         fab_text = Text(line, skew=options.skew, color=options.color,
                         font=options.font, fsize=options.fsize,
                         shadow=options.shadow)
