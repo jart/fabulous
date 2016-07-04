@@ -11,8 +11,9 @@
    :maxdepth: 2
 
 :Version: 0.1.8
-:Copyright: Copyright (c) 2009-2016 Justine Tunney
-:License: MIT / OFL / Apache 2.0
+:Author: Justine Alexandra Roberts Tunney
+:Copyright: Copyright 2009-2016 The Fabulous Authors. All rights reserved.
+:License: Apache 2.0 / OFL
 
 Fabulous is a Python library (and command line tools) designed to make the
 output of terminal applications look *fabulous*. Fabulous allows you to print
@@ -283,30 +284,13 @@ Here's how Fabulous compares to other similar libraries:
 License
 =======
 
-Fabulous code and documentation are available according to the MIT License:
+Fabulous code and documentation are licensed Apache 2.0:
 
-.. include:: ../COPYING
+.. include:: ../LICENSE.txt
    :literal:
-
-The bundled grapefruit library is licensed Apache 2.0::
-
-    Copyright (c) 2016, Justine Tunney
-    Copyright (c) 2008, Xavier Basty
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
 
 The bundled Google Noto Fonts are licensed under the SIL Open Font License,
 Version 1.1:
 
-.. include:: ../fabulous/fonts/LICENSE
+.. include:: ../fabulous/fonts/LICENSE.txt
    :literal:

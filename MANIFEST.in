@@ -1,4 +1,6 @@
-include COPYING
+include AUTHORS
+include CONTRIBUTORS
+include LICENSE.txt
 include MANIFEST.in
 include ez_setup.py
 include fabulous/_xterm256.c
