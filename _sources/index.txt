@@ -39,6 +39,9 @@ Fabulous can be installed from CheeseShop::
 
 Fabulous can also be installed manually from the source archive::
 
+    wget https://github.com/jart/fabulous/releases/download/0.1.8/fabulous-0.1.8.tar.gz
+    tar -xvzf fabulous-0.1.8.tar.gz
+    cd fabulous-0.1.8
     sudo python setup.py install
 
 Once installed, run the demo::
