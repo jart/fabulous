@@ -11,7 +11,7 @@
    :maxdepth: 2
 
 :Version: 0.2.0
-:Author: Justine Alexandra Roberts Tunney
+:Founder: Justine Alexandra Roberts Tunney
 :Copyright: Copyright 2009-2016 The Fabulous Authors. All rights reserved.
 :License: Apache 2.0 / OFL
 
