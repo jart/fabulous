@@ -12,5 +12,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-VERSION = (0, 1, 8, 'final', 0)
-__version__ = '0.1.8'
+VERSION = (0, 2, 0, 'final', 0)
+__version__ = '0.2.0'

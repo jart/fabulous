@@ -10,7 +10,7 @@
 .. toctree::
    :maxdepth: 2
 
-:Version: 0.1.8
+:Version: 0.2.0
 :Author: Justine Alexandra Roberts Tunney
 :Copyright: Copyright 2009-2016 The Fabulous Authors. All rights reserved.
 :License: Apache 2.0 / OFL
@@ -40,9 +40,9 @@ Fabulous can be installed from CheeseShop::
 
 Fabulous can also be installed manually from the source archive::
 
-    wget https://github.com/jart/fabulous/releases/download/0.1.8/fabulous-0.1.8.tar.gz
-    tar -xvzf fabulous-0.1.8.tar.gz
-    cd fabulous-0.1.8
+    wget https://github.com/jart/fabulous/releases/download/0.2.0/fabulous-0.2.0.tar.gz
+    tar -xvzf fabulous-0.2.0.tar.gz
+    cd fabulous-0.2.0
     sudo python setup.py install
 
 Once installed, run the demo::
@@ -252,7 +252,7 @@ Alternatives
 
 Here's how Fabulous compares to other similar libraries:
 
-- fabulous_: Licensed mostly MIT. Focuses on delivering useful features in the
+- fabulous_: Licensed Apache 2.0. Focuses on delivering useful features in the
   simplest, most user-friendly way possible (without a repulsive name.)
   Written in pure-python but will attempt to auto-magically compile/link a
   speedup library.  ~5,000 lines of code.
