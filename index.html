@@ -100,21 +100,22 @@ sudo python setup.py install
 <h3>Colors<a class="headerlink" href="#colors" title="Permalink to this headline">¶</a></h3>
 <p>4-bit colors and styles are standard and work almost everywhere. They are
 useful in helping make your program output easier to read:</p>
-<div class="highlight-python"><div class="highlight"><pre>from fabulous import bold, magenta, highlight_red
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">bold</span><span class="p">,</span> <span class="n">magenta</span><span class="p">,</span> <span class="n">highlight_red</span>
 
-print bold(magenta(&#39;hello kitty&#39;))
-print highlight_red(&#39;DANGER DANGER!&#39;)
+<span class="k">print</span> <span class="n">bold</span><span class="p">(</span><span class="n">magenta</span><span class="p">(</span><span class="s">&#39;hello world&#39;</span><span class="p">))</span>
 
-print bold(&#39;hello&#39;) + &#39; &#39; + magenta( kitty&#39;)
+<span class="k">print</span> <span class="n">highlight_red</span><span class="p">(</span><span class="s">&#39;DANGER WILL ROBINSON!&#39;</span><span class="p">)</span>
 
-assert len(bold(&#39;test&#39;)) == 4
+<span class="k">print</span> <span class="n">bold</span><span class="p">(</span><span class="s">&#39;hello&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; &#39;</span> <span class="o">+</span> <span class="n">magenta</span><span class="p">(</span><span class="s">&#39; world&#39;</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">bold</span><span class="p">(</span><span class="s">&#39;test&#39;</span><span class="p">))</span> <span class="o">==</span> <span class="mi">4</span>
 </pre></div>
 </div>
 <p>8-bit color works in most modern terminals, such as gnome-terminal and
 Terminal.app:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">fg256</span><span class="p">,</span> <span class="n">bg256</span>
-<span class="k">print</span> <span class="n">fg256</span><span class="p">(</span><span class="s">&#39;#F0F&#39;</span><span class="p">,</span> <span class="s">&#39;hello kitty&#39;</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">fg256</span><span class="p">(</span><span class="s">&#39;magenta&#39;</span><span class="p">,</span> <span class="s">&#39;hello kitty&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">fg256</span><span class="p">(</span><span class="s">&#39;#F0F&#39;</span><span class="p">,</span> <span class="s">&#39;hello world&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">fg256</span><span class="p">(</span><span class="s">&#39;magenta&#39;</span><span class="p">,</span> <span class="s">&#39;hello world&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -216,24 +217,31 @@ Ctrl+C.</p>
 </div>
 </div>
 <div class="section" id="module-fabulous.color">
-<span id="modules"></span><h2>Modules<a class="headerlink" href="#module-fabulous.color" title="Permalink to this headline">¶</a></h2>
+<span id="library"></span><h2>Library<a class="headerlink" href="#module-fabulous.color" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="fabulous-color">
 <h3>fabulous.color<a class="headerlink" href="#fabulous-color" title="Permalink to this headline">¶</a></h3>
-<p>The color module provides support for 16-color color terminals.</p>
+<p>The color module provides an object-oriented abstraction for stylized text
+inside the terminal. This includes things like bold text, blinking text,
+4-bit ANSI colors and 8-bit xterm256 colors.</p>
 <dl class="class">
 <dt id="fabulous.color.ColorString">
 <em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">ColorString</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.ColorString" title="Permalink to this definition">¶</a></dt>
-<dd><p>A colorized string-like object that gives correct length</p>
-<p>If anyone knows a way to be able to make this behave like a string
-object without creating a bug minefield let me know:</p>
+<dd><p>Abstract base class for stylized string-like objects.</p>
+<p>Subclasses make it possible to compose stylized text:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
 <span class="go">&#39;\x1b[31mhello\x1b[39m&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">bold</span><span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)))</span>
+<span class="go">&#39;\x1b[1m\x1b[31mhello\x1b[39m\x1b[22m&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">plain</span><span class="p">(</span><span class="s">&quot;hello &quot;</span><span class="p">,</span> <span class="n">bold</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">)))</span>
+<span class="go">&#39;hello \x1b[1mworld\x1b[22m&#39;</span>
+</pre></div>
+</div>
+<p>These objects also provide string length without taking into consideration
+the ANSI escape codes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
 <span class="go">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)))</span>
 <span class="go">15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">bold</span><span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)))</span>
-<span class="go">&#39;\x1b[1m\x1b[31mhello\x1b[39m\x1b[22m&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">bold</span><span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)))</span>
 <span class="go">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">bold</span><span class="p">(</span><span class="s">&quot;hello &quot;</span><span class="p">,</span> <span class="n">red</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">)))</span>
@@ -248,16 +256,465 @@ object without creating a bug minefield let me know:</p>
 
 </dd></dl>
 
+<dl class="class">
+<dt id="fabulous.color.ColorString256">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">ColorString256</tt><big>(</big><em>color</em>, <em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.ColorString256" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for 256-color stylized string-like objects.</p>
+<p>See the <a class="reference internal" href="#fabulous.color.fg256" title="fabulous.color.fg256"><tt class="xref py py-class docutils literal"><span class="pre">fg256</span></tt></a>, <a class="reference internal" href="#fabulous.color.bg256" title="fabulous.color.bg256"><tt class="xref py py-class docutils literal"><span class="pre">bg256</span></tt></a>, <a class="reference internal" href="#fabulous.color.highlight256" title="fabulous.color.highlight256"><tt class="xref py py-class docutils literal"><span class="pre">highlight256</span></tt></a>, and
+<a class="reference internal" href="#fabulous.color.complement256" title="fabulous.color.complement256"><tt class="xref py py-class docutils literal"><span class="pre">complement256</span></tt></a> classes for more information.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.bg256">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">bg256</tt><big>(</big><em>color</em>, <em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.bg256" title="Permalink to this definition">¶</a></dt>
+<dd><p>xterm256 background color wrapper</p>
+<p>This class creates a string-like object that has an xterm256 color. The
+color is specified as a CSS color code, which is automatically quantized to
+the available set of xterm colors.</p>
+<p>These colors are more dependable than the 4-bit colors, because 8-bit
+colors don&#8217;t get changed by the terminal theme. They will consistently be
+the requested color.</p>
+<p>However it is worth noting that in Terminal.app on Mac OS, 8-bit background
+colors are ever so slightly different than their foreground equivalent.
+Therefore Terminal.app has effectively 512 colors.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">bg256</span><span class="p">,</span> <span class="n">plain</span>
+<span class="k">print</span> <span class="n">bg256</span><span class="p">(</span><span class="s">&#39;#F00&#39;</span><span class="p">,</span> <span class="s">&#39;i have a red background!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">bg256</span><span class="p">(</span><span class="s">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="s">&#39;i have a red background!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">bg256</span><span class="p">(</span><span class="s">&#39;magenta&#39;</span><span class="p">,</span> <span class="s">&#39;i have a&#39;</span><span class="p">,</span> <span class="s">&#39; magenta background!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">bg256</span><span class="p">(</span><span class="s">&#39;magenta&#39;</span><span class="p">,</span> <span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes look as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">bg256</span><span class="p">(</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;hello&#39;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[48;5;196mhello\x1b[49m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.black">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">black</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.black" title="Permalink to this definition">¶</a></dt>
+<dd><p>Black foreground text wrapper</p>
+<p>This class creates a string-like object containing text with a black
+foreground.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">black</span>
+<span class="k">print</span> <span class="n">black</span><span class="p">(</span><span class="s">&#39;i am black!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">black</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Text can be made dark grey by using <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">bold</span><span class="p">,</span> <span class="n">black</span>
+<span class="k">print</span> <span class="n">bold</span><span class="p">(</span><span class="n">black</span><span class="p">(</span><span class="s">&#39;i am dark grey!&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">black</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[30mhello\x1b[39m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.black_bg">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">black_bg</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.black_bg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Black background text wrapper</p>
+<p>This class creates a string-like object containing text with a black
+background. On properly configured terminals, this will do nothing.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">black_bg</span>
+<span class="k">print</span> <span class="n">black_bg</span><span class="p">(</span><span class="s">&#39;i have a black background!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">black_bg</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">black_bg</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[40mhello\x1b[49m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.blink">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">blink</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.blink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Blinking text wrapper</p>
+<p>This class creates a string-like object containing blinking text. This is
+supported by SOME terminals, as documented in the terminal support section.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">blink</span>
+<span class="k">print</span> <span class="n">blink</span><span class="p">(</span><span class="s">&#39;i am underlined!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">blink</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">blink</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[5mhello\x1b[25m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.blue">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">blue</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.blue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Blue foreground text wrapper</p>
+<p>This class creates a string-like object containing text with a blue
+foreground.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">blue</span>
+<span class="k">print</span> <span class="n">blue</span><span class="p">(</span><span class="s">&#39;i am dark blue!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">blue</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Text can be made sky blue by using <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">bold</span><span class="p">,</span> <span class="n">blue</span>
+<span class="k">print</span> <span class="n">bold</span><span class="p">(</span><span class="n">blue</span><span class="p">(</span><span class="s">&#39;i am sky blue!&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">blue</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[34mhello\x1b[39m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.blue_bg">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">blue_bg</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.blue_bg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Blue background text wrapper</p>
+<p>This class creates a string-like object containing text with a blue
+background.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">blue_bg</span>
+<span class="k">print</span> <span class="n">blue_bg</span><span class="p">(</span><span class="s">&#39;i have a blue background!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">blue_bg</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">blue_bg</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[44mhello\x1b[49m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.bold">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">bold</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.bold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bold text wrapper</p>
+<p>This class creates a string-like object containing bold or bright text. It
+also brightens the foreground and background colors. This is supported by
+all terminals that support ANSI color codes.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">bold</span>
+<span class="k">print</span> <span class="n">bold</span><span class="p">(</span><span class="s">&#39;i am bold!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">bold</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">bold</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[1mhello\x1b[22m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="function">
 <dt id="fabulous.color.complement">
 <tt class="descclassname">fabulous.color.</tt><tt class="descname">complement</tt><big>(</big><em>color</em><big>)</big><a class="headerlink" href="#fabulous.color.complement" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gives you the polar opposite of your color</p>
-<p>This isn&#8217;t guaranteed to look good &gt;_&gt; (especially with
-brighter, higher intensity colors.)</p>
+<dd><p>Calculates polar opposite of color</p>
+<p>This isn&#8217;t guaranteed to look good &gt;_&gt; (especially with brighter, higher
+intensity colors.) This will be replaced with a formula that produces
+better looking colors in the future.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">complement</span><span class="p">(</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
 <span class="go">(0, 255, 76)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">complement</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">175</span><span class="p">))</span>
 <span class="go">(175, 101, 0)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.complement256">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">complement256</tt><big>(</big><em>color</em>, <em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.complement256" title="Permalink to this definition">¶</a></dt>
+<dd><p>Highlighted 8-bit color text</p>
+<p>This class composes <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>, <a class="reference internal" href="#fabulous.color.flip" title="fabulous.color.flip"><tt class="xref py py-class docutils literal"><span class="pre">flip</span></tt></a>, and
+<a class="reference internal" href="#fabulous.color.bg256" title="fabulous.color.bg256"><tt class="xref py py-class docutils literal"><span class="pre">bg256</span></tt></a>. Then it invokes <a class="reference internal" href="#fabulous.color.complement" title="fabulous.color.complement"><tt class="xref py py-meth docutils literal"><span class="pre">complement()</span></tt></a> to supply the polar
+opposite <a class="reference internal" href="#fabulous.color.fg256" title="fabulous.color.fg256"><tt class="xref py py-class docutils literal"><span class="pre">fg256</span></tt></a> color.</p>
+<p>This looks kind of hideous at the moment. We&#8217;re planning on finding a
+better formula for complementary colors in the future.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.cyan">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">cyan</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.cyan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cyan foreground text wrapper</p>
+<p>This class creates a string-like object containing text with a cyan
+foreground.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">cyan</span>
+<span class="k">print</span> <span class="n">cyan</span><span class="p">(</span><span class="s">&#39;i am cyan!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">cyan</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Text can be made bright cyan by using <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">bold</span><span class="p">,</span> <span class="n">cyan</span>
+<span class="k">print</span> <span class="n">bold</span><span class="p">(</span><span class="n">cyan</span><span class="p">(</span><span class="s">&#39;i am bright cyan!&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">cyan</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[36mhello\x1b[39m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.cyan_bg">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">cyan_bg</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.cyan_bg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cyan background text wrapper</p>
+<p>This class creates a string-like object containing text with a cyan
+background.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">cyan_bg</span>
+<span class="k">print</span> <span class="n">cyan_bg</span><span class="p">(</span><span class="s">&#39;i have a cyan background!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">cyan_bg</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">cyan_bg</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[46mhello\x1b[49m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="fabulous.color.esc">
+<tt class="descclassname">fabulous.color.</tt><tt class="descname">esc</tt><big>(</big><em>*codes</em><big>)</big><a class="headerlink" href="#fabulous.color.esc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produces an ANSI escape code string from a list of integers</p>
+<p>This is a low level function that is abstracted by the other functions and
+classes in this module.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.fg256">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">fg256</tt><big>(</big><em>color</em>, <em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.fg256" title="Permalink to this definition">¶</a></dt>
+<dd><p>xterm256 foreground color wrapper</p>
+<p>This class creates a string-like object that has an xterm256 color. The
+color is specified as a CSS color code, which is automatically quantized to
+the available set of xterm colors.</p>
+<p>These colors are more dependable than the 4-bit colors, because 8-bit
+colors don&#8217;t get changed by the terminal theme. They will consistently be
+the requested color, which is calculated using a simple math formula.</p>
+<p>However it is worth noting that in Terminal.app on Mac OS, 8-bit colors
+appear to be designed rather than formulaic, so they look much nicer.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">fg256</span><span class="p">,</span> <span class="n">plain</span>
+<span class="k">print</span> <span class="n">fg256</span><span class="p">(</span><span class="s">&#39;#F00&#39;</span><span class="p">,</span> <span class="s">&#39;i am red!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">fg256</span><span class="p">(</span><span class="s">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="s">&#39;i am red!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">fg256</span><span class="p">(</span><span class="s">&#39;magenta&#39;</span><span class="p">,</span> <span class="s">&#39;i am&#39;</span><span class="p">,</span> <span class="s">&#39; magenta!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">fg256</span><span class="p">(</span><span class="s">&#39;magenta&#39;</span><span class="p">,</span> <span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes look as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">fg256</span><span class="p">(</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;hello&#39;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[38;5;196mhello\x1b[39m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.flip">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">flip</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.flip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flips background and foreground colors</p>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">flip</span><span class="p">,</span> <span class="n">red</span>
+<span class="k">print</span> <span class="n">flip</span><span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="s">&#39;hello&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Is equivalent to the following on a black terminal:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">black</span><span class="p">,</span> <span class="n">red_bg</span>
+<span class="k">print</span> <span class="n">red_bg</span><span class="p">(</span><span class="n">black</span><span class="p">(</span><span class="s">&#39;hello&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">flip</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[7mhello\x1b[27m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.green">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">green</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.green" title="Permalink to this definition">¶</a></dt>
+<dd><p>Green foreground text wrapper</p>
+<p>This class creates a string-like object containing text with a green
+foreground.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">green</span>
+<span class="k">print</span> <span class="n">green</span><span class="p">(</span><span class="s">&#39;i am green!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">green</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Text can be made bright green by using <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">bold</span><span class="p">,</span> <span class="n">green</span>
+<span class="k">print</span> <span class="n">bold</span><span class="p">(</span><span class="n">green</span><span class="p">(</span><span class="s">&#39;i am bright green!&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">green</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[32mhello\x1b[39m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.green_bg">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">green_bg</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.green_bg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Green background text wrapper</p>
+<p>This class creates a string-like object containing text with a green
+background.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">green_bg</span>
+<span class="k">print</span> <span class="n">green_bg</span><span class="p">(</span><span class="s">&#39;i have a green background!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">green_bg</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">green_bg</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[42mhello\x1b[49m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="fabulous.color.h1">
+<tt class="descclassname">fabulous.color.</tt><tt class="descname">h1</tt><big>(</big><em>title</em>, <em>line=u'\u203e'</em><big>)</big><a class="headerlink" href="#fabulous.color.h1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints bold text with line beneath it spanning width of terminal</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.highlight256">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">highlight256</tt><big>(</big><em>color</em>, <em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.highlight256" title="Permalink to this definition">¶</a></dt>
+<dd><p>Highlighted 8-bit color text</p>
+<p>This is equivalent to composing <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>, <a class="reference internal" href="#fabulous.color.flip" title="fabulous.color.flip"><tt class="xref py py-class docutils literal"><span class="pre">flip</span></tt></a>, and
+<a class="reference internal" href="#fabulous.color.fg256" title="fabulous.color.fg256"><tt class="xref py py-class docutils literal"><span class="pre">fg256</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.highlight_black">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">highlight_black</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.highlight_black" title="Permalink to this definition">¶</a></dt>
+<dd><p>Highlighted black text</p>
+<p>This is equivalent to composing <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>, <a class="reference internal" href="#fabulous.color.flip" title="fabulous.color.flip"><tt class="xref py py-class docutils literal"><span class="pre">flip</span></tt></a>, and
+<a class="reference internal" href="#fabulous.color.black" title="fabulous.color.black"><tt class="xref py py-class docutils literal"><span class="pre">black</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.highlight_blue">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">highlight_blue</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.highlight_blue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Highlighted blue text</p>
+<p>This is equivalent to composing <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>, <a class="reference internal" href="#fabulous.color.flip" title="fabulous.color.flip"><tt class="xref py py-class docutils literal"><span class="pre">flip</span></tt></a>, and
+<a class="reference internal" href="#fabulous.color.blue" title="fabulous.color.blue"><tt class="xref py py-class docutils literal"><span class="pre">blue</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.highlight_cyan">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">highlight_cyan</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.highlight_cyan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Highlighted cyan text</p>
+<p>This is equivalent to composing <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>, <a class="reference internal" href="#fabulous.color.flip" title="fabulous.color.flip"><tt class="xref py py-class docutils literal"><span class="pre">flip</span></tt></a>, and
+<a class="reference internal" href="#fabulous.color.cyan" title="fabulous.color.cyan"><tt class="xref py py-class docutils literal"><span class="pre">cyan</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.highlight_green">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">highlight_green</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.highlight_green" title="Permalink to this definition">¶</a></dt>
+<dd><p>Highlighted green text</p>
+<p>This is equivalent to composing <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>, <a class="reference internal" href="#fabulous.color.flip" title="fabulous.color.flip"><tt class="xref py py-class docutils literal"><span class="pre">flip</span></tt></a>, and
+<a class="reference internal" href="#fabulous.color.green" title="fabulous.color.green"><tt class="xref py py-class docutils literal"><span class="pre">green</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.highlight_magenta">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">highlight_magenta</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.highlight_magenta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Highlighted magenta text</p>
+<p>This is equivalent to composing <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>, <a class="reference internal" href="#fabulous.color.flip" title="fabulous.color.flip"><tt class="xref py py-class docutils literal"><span class="pre">flip</span></tt></a>, and
+<a class="reference internal" href="#fabulous.color.magenta" title="fabulous.color.magenta"><tt class="xref py py-class docutils literal"><span class="pre">magenta</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.highlight_red">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">highlight_red</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.highlight_red" title="Permalink to this definition">¶</a></dt>
+<dd><p>Highlighted red text</p>
+<p>This is equivalent to composing <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>, <a class="reference internal" href="#fabulous.color.flip" title="fabulous.color.flip"><tt class="xref py py-class docutils literal"><span class="pre">flip</span></tt></a>, and
+<a class="reference internal" href="#fabulous.color.red" title="fabulous.color.red"><tt class="xref py py-class docutils literal"><span class="pre">red</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.highlight_white">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">highlight_white</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.highlight_white" title="Permalink to this definition">¶</a></dt>
+<dd><p>Highlighted white text</p>
+<p>This is equivalent to composing <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>, <a class="reference internal" href="#fabulous.color.flip" title="fabulous.color.flip"><tt class="xref py py-class docutils literal"><span class="pre">flip</span></tt></a>, and
+<a class="reference internal" href="#fabulous.color.yellow" title="fabulous.color.yellow"><tt class="xref py py-class docutils literal"><span class="pre">yellow</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.highlight_yellow">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">highlight_yellow</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.highlight_yellow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Highlighted yellow text</p>
+<p>This is equivalent to composing <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>, <a class="reference internal" href="#fabulous.color.flip" title="fabulous.color.flip"><tt class="xref py py-class docutils literal"><span class="pre">flip</span></tt></a>, and
+<a class="reference internal" href="#fabulous.color.yellow" title="fabulous.color.yellow"><tt class="xref py py-class docutils literal"><span class="pre">yellow</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.italic">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">italic</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.italic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Italic text wrapper</p>
+<p>This class creates a string-like object containing italic text, which is
+supported by almost no terminals.</p>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">italic</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[3mhello\x1b[23m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.magenta">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">magenta</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.magenta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Purple/magenta foreground text wrapper</p>
+<p>This class creates a string-like object containing text with a magenta
+foreground. Although in many terminals, it&#8217;s going to look more purple.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">magenta</span>
+<span class="k">print</span> <span class="n">magenta</span><span class="p">(</span><span class="s">&#39;i am magenta purplish!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">magenta</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Text can be made hot pink by using <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">bold</span><span class="p">,</span> <span class="n">magenta</span>
+<span class="k">print</span> <span class="n">bold</span><span class="p">(</span><span class="n">magenta</span><span class="p">(</span><span class="s">&#39;i am hot pink!&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">magenta</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[35mhello\x1b[39m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.magenta_bg">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">magenta_bg</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.magenta_bg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Magenta background text wrapper</p>
+<p>This class creates a string-like object containing text with a magenta
+background.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">magenta_bg</span>
+<span class="k">print</span> <span class="n">magenta_bg</span><span class="p">(</span><span class="s">&#39;i have a magenta background!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">magenta_bg</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">magenta_bg</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[45mhello\x1b[49m&#39;</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -284,17 +741,200 @@ brighter, higher intensity colors.)</p>
 <dl class="class">
 <dt id="fabulous.color.plain">
 <em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">plain</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.plain" title="Permalink to this definition">¶</a></dt>
-<dd><p>A passive wrapper that preserves proper length reporting</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">plain</span><span class="p">(</span><span class="s">&quot;hello &quot;</span><span class="p">,</span> <span class="n">bold</span><span class="p">(</span><span class="s">&quot;kitty&quot;</span><span class="p">)))</span>
-<span class="go">11</span>
+<dd><p>Plain text wrapper</p>
+<p>This class is useful for concatenating plain strings with
+<a class="reference internal" href="#fabulous.color.ColorString" title="fabulous.color.ColorString"><tt class="xref py py-class docutils literal"><span class="pre">ColorString</span></tt></a> objects. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre>from fabulous.color import plain
+&gt;&gt;&gt; len(plain(&quot;hello &quot;, bold(&quot;kitty&quot;)))
+11
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.red">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">red</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.red" title="Permalink to this definition">¶</a></dt>
+<dd><p>Red foreground text wrapper</p>
+<p>This class creates a string-like object containing text with a red
+foreground.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">red</span>
+<span class="k">print</span> <span class="n">red</span><span class="p">(</span><span class="s">&#39;i am red!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">red</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Text can be made bright red by using <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">bold</span><span class="p">,</span> <span class="n">red</span>
+<span class="k">print</span> <span class="n">bold</span><span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="s">&#39;i am bright red!&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[31mhello\x1b[39m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.red_bg">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">red_bg</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.red_bg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Red background text wrapper</p>
+<p>This class creates a string-like object containing text with a red
+background.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">red_bg</span>
+<span class="k">print</span> <span class="n">red_bg</span><span class="p">(</span><span class="s">&#39;i have a red background!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">red_bg</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">red_bg</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[41mhello\x1b[49m&#39;</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="fabulous.color.section">
-<tt class="descclassname">fabulous.color.</tt><tt class="descname">section</tt><big>(</big><em>title</em>, <em>bar=u'\u203e'</em>, <em>strm=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f09e9803150&gt;</em><big>)</big><a class="headerlink" href="#fabulous.color.section" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">fabulous.color.</tt><tt class="descname">section</tt><big>(</big><em>title</em>, <em>bar=u'\u203e'</em>, <em>strm=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f7f2d1d3150&gt;</em><big>)</big><a class="headerlink" href="#fabulous.color.section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper function for testing demo routines</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.strike">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">strike</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.strike" title="Permalink to this definition">¶</a></dt>
+<dd><p>Strike-through text wrapper</p>
+<p>This class creates a string-like object containing strike-through text,
+which is supported by very few terminals.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">strike</span>
+<span class="k">print</span> <span class="n">strike</span><span class="p">(</span><span class="s">&#39;i am stricken!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">strike</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">strike</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[9mhello\x1b[29m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.underline">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">underline</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.underline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Underline text wrapper</p>
+<p>This class creates a string-like object containing underline text. This is
+supported by SOME terminals, as documented in the terminal support section.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">underline</span>
+<span class="k">print</span> <span class="n">underline</span><span class="p">(</span><span class="s">&#39;i am underlined!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">underline</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">underline</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[4mhello\x1b[24m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.underline2">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">underline2</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.underline2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alternative underline text wrapper</p>
+<p>See also: <a class="reference internal" href="#fabulous.color.underline" title="fabulous.color.underline"><tt class="xref py py-class docutils literal"><span class="pre">underline</span></tt></a>.</p>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">underline2</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[21mhello\x1b[24m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.white">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">white</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.white" title="Permalink to this definition">¶</a></dt>
+<dd><p>White foreground text wrapper</p>
+<p>This class creates a string-like object containing text with a light grey
+foreground.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">white</span>
+<span class="k">print</span> <span class="n">white</span><span class="p">(</span><span class="s">&#39;i am light grey!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">white</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Text can be made true white by using <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">bold</span><span class="p">,</span> <span class="n">white</span>
+<span class="k">print</span> <span class="n">bold</span><span class="p">(</span><span class="n">white</span><span class="p">(</span><span class="s">&#39;i am bold white!&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">white</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[37mhello\x1b[39m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.white_bg">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">white_bg</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.white_bg" title="Permalink to this definition">¶</a></dt>
+<dd><p>White background text wrapper</p>
+<p>This class creates a string-like object containing text with a white
+background.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">white_bg</span>
+<span class="k">print</span> <span class="n">white_bg</span><span class="p">(</span><span class="s">&#39;i have a white background!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">white_bg</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">white_bg</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[47mhello\x1b[49m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.yellow">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">yellow</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.yellow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yellow foreground text wrapper</p>
+<p>This class creates a string-like object containing text with a &#8220;yellow&#8221;
+foreground, which in many terminals is actually going to look more
+brownish.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">yellow</span>
+<span class="k">print</span> <span class="n">yellow</span><span class="p">(</span><span class="s">&#39;i am yellow brownish!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">yellow</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Text can be made true bright yellow by using <a class="reference internal" href="#fabulous.color.bold" title="fabulous.color.bold"><tt class="xref py py-class docutils literal"><span class="pre">bold</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">bold</span><span class="p">,</span> <span class="n">yellow</span>
+<span class="k">print</span> <span class="n">bold</span><span class="p">(</span><span class="n">yellow</span><span class="p">(</span><span class="s">&#39;i am bright yellow!&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">yellow</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[33mhello\x1b[39m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="fabulous.color.yellow_bg">
+<em class="property">class </em><tt class="descclassname">fabulous.color.</tt><tt class="descname">yellow_bg</tt><big>(</big><em>*items</em><big>)</big><a class="headerlink" href="#fabulous.color.yellow_bg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yellow background text wrapper</p>
+<p>This class creates a string-like object containing text with a yellow
+background.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">yellow_bg</span>
+<span class="k">print</span> <span class="n">yellow_bg</span><span class="p">(</span><span class="s">&#39;i have a yellow background!&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">plain</span><span class="p">(</span><span class="s">&#39;hello &#39;</span><span class="p">,</span> <span class="n">yellow_bg</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ANSI escape codes are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">yellow_bg</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">&#39;\x1b[43mhello\x1b[49m&#39;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -580,7 +1220,7 @@ messages:</p>
 </div>
 <dl class="class">
 <dt id="fabulous.logs.TransientStreamHandler">
-<em class="property">class </em><tt class="descclassname">fabulous.logs.</tt><tt class="descname">TransientStreamHandler</tt><big>(</big><em>strm=&lt;open file '&lt;stderr&gt;'</em>, <em>mode 'w' at 0x7f09e98031e0&gt;</em>, <em>level=30</em><big>)</big><a class="headerlink" href="#fabulous.logs.TransientStreamHandler" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">fabulous.logs.</tt><tt class="descname">TransientStreamHandler</tt><big>(</big><em>strm=&lt;open file '&lt;stderr&gt;'</em>, <em>mode 'w' at 0x7f7f2d1d31e0&gt;</em>, <em>level=30</em><big>)</big><a class="headerlink" href="#fabulous.logs.TransientStreamHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standard Python logging Handler for Transient Console Logging</p>
 <p>Logging transiently means that verbose logging messages like DEBUG
 will only appear on the last line of your terminal for a short
@@ -1727,7 +2367,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 <li><a class="reference internal" href="#fabulous-rotatingcube">fabulous-rotatingcube</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-fabulous.color">Modules</a><ul>
+<li><a class="reference internal" href="#module-fabulous.color">Library</a><ul>
 <li><a class="reference internal" href="#fabulous-color">fabulous.color</a></li>
 <li><a class="reference internal" href="#fabulous-xterm256">fabulous.xterm256</a></li>
 <li><a class="reference internal" href="#id1">fabulous.text</a></li>
