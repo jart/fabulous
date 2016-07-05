@@ -64,10 +64,11 @@ useful in helping make your program output easier to read::
 
     from fabulous import bold, magenta, highlight_red
 
-    print bold(magenta('hello kitty'))
-    print highlight_red('DANGER DANGER!')
+    print bold(magenta('hello world'))
 
-    print bold('hello') + ' ' + magenta( kitty')
+    print highlight_red('DANGER WILL ROBINSON!')
+
+    print bold('hello') + ' ' + magenta(' world')
 
     assert len(bold('test')) == 4
 
@@ -75,8 +76,8 @@ useful in helping make your program output easier to read::
 Terminal.app::
 
     from fabulous import fg256, bg256
-    print fg256('#F0F', 'hello kitty')
-    print fg256('magenta', 'hello kitty')
+    print fg256('#F0F', 'hello world')
+    print fg256('magenta', 'hello world')
 
 
 Fancy Text
@@ -165,7 +166,7 @@ animates a wireframe rotating cube in the terminal. It runs until you hit
 Ctrl+C.
 
 
-Modules
+Library
 =======
 
 .. automodule:: fabulous.color
