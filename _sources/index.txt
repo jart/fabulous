@@ -10,9 +10,10 @@
 .. toctree::
    :maxdepth: 2
 
-:Version: 0.1.8
-:Copyright: Copyright (c) 2009-2016 Justine Tunney
-:License: MIT
+:Version: 0.2.0
+:Author: Justine Alexandra Roberts Tunney
+:Copyright: Copyright 2009-2016 The Fabulous Authors. All rights reserved.
+:License: Apache 2.0 / OFL
 
 Fabulous is a Python library (and command line tools) designed to make the
 output of terminal applications look *fabulous*. Fabulous allows you to print
@@ -39,9 +40,9 @@ Fabulous can be installed from CheeseShop::
 
 Fabulous can also be installed manually from the source archive::
 
-    wget https://github.com/jart/fabulous/releases/download/0.1.8/fabulous-0.1.8.tar.gz
-    tar -xvzf fabulous-0.1.8.tar.gz
-    cd fabulous-0.1.8
+    wget https://github.com/jart/fabulous/releases/download/0.2.0/fabulous-0.2.0.tar.gz
+    tar -xvzf fabulous-0.2.0.tar.gz
+    cd fabulous-0.2.0
     sudo python setup.py install
 
 Once installed, run the demo::
@@ -251,10 +252,10 @@ Alternatives
 
 Here's how Fabulous compares to other similar libraries:
 
-- fabulous_: Licensed MIT.  Focuses on delivering useful features in
-  the simplest, most user-friendly way possible (without a repulsive
-  name.)  Written in pure-python but will attempt to auto-magically
-  compile/link a speedup library.  ~5,000 lines of code.
+- fabulous_: Licensed mostly MIT. Focuses on delivering useful features in the
+  simplest, most user-friendly way possible (without a repulsive name.)
+  Written in pure-python but will attempt to auto-magically compile/link a
+  speedup library.  ~5,000 lines of code.
 
 - libcaca_: WTFPL.  This is the established and respected standard for
   doing totally insane things with ascii art (ever wanted to watch a
@@ -283,7 +284,13 @@ Here's how Fabulous compares to other similar libraries:
 License
 =======
 
-Code and documentation are available according to the MIT License:
+Fabulous code and documentation are licensed Apache 2.0:
 
-.. include:: ../COPYING
+.. include:: ../LICENSE.txt
+   :literal:
+
+The bundled Google Noto Fonts are licensed under the SIL Open Font License,
+Version 1.1:
+
+.. include:: ../fabulous/fonts/LICENSE.txt
    :literal:

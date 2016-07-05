@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Fabulous &mdash; fabulous 0.1.8 documentation</title>
+    <title>Fabulous &mdash; fabulous 0.2.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.8',
+        VERSION:     '0.2.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="fabulous 0.1.8 documentation" href="#" /> 
+    <link rel="top" title="fabulous 0.2.0 documentation" href="#" /> 
   </head>
   <body>
     <div class="related">
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="#">fabulous 0.1.8 documentation</a> &raquo;</li> 
+        <li><a href="#">fabulous 0.2.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -54,11 +54,13 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">0.1.8</td>
+<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">0.2.0</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Copyright:</th><td class="field-body">Copyright (c) 2009-2016 Justine Tunney</td>
+<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">Justine Alexandra Roberts Tunney</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">License:</th><td class="field-body">MIT</td>
+<tr class="field-odd field"><th class="field-name">Copyright:</th><td class="field-body">Copyright 2009-2016 The Fabulous Authors. All rights reserved.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">License:</th><td class="field-body">Apache 2.0 / OFL</td>
 </tr>
 </tbody>
 </table>
@@ -80,9 +82,9 @@ They help Fabulous run faster and make the full feature set available:</p>
 </pre></div>
 </div>
 <p>Fabulous can also be installed manually from the source archive:</p>
-<div class="highlight-python"><div class="highlight"><pre>wget https://github.com/jart/fabulous/releases/download/0.1.8/fabulous-0.1.8.tar.gz
-tar -xvzf fabulous-0.1.8.tar.gz
-cd fabulous-0.1.8
+<div class="highlight-python"><div class="highlight"><pre>wget https://github.com/jart/fabulous/releases/download/0.2.0/fabulous-0.2.0.tar.gz
+tar -xvzf fabulous-0.2.0.tar.gz
+cd fabulous-0.2.0
 sudo python setup.py install
 </pre></div>
 </div>
@@ -162,6 +164,7 @@ terminal. Also be sure to check out <a class="reference external" href="https://
 
 Options:
   -h, --help            show this help message and exit
+  -l, --list            List available fonts
   -S SKEW, --skew=SKEW  Apply skew effect (measured in pixels) to make it look
                         extra cool.  For example, Fabulous&#39; logo logo is
                         skewed by 5 pixels.  Default: none
@@ -172,12 +175,12 @@ Options:
                         If you terminal background isn&#39;t black, please change
                         this value to the proper background so semi-
                         transparent pixels will blend properly.
-  -F FONT, --font=FONT  Path to font file you wish to use.  This defaults to a
-                        free Helvetica-Bold clone which is included with
-                        Fabulous.  Included fonts: IndUni-H-Bold, cmr10,
-                        DejaVuSansMono. Default: IndUni-H-Bold
+  -F FONT, --font=FONT  Name of font file, or absolute path to one. Use the
+                        --list flag to see what fonts are available. Fabulous
+                        bundles the NotoSans-Bold and NotoEmoji-Regular fonts,
+                        which are guaranteed to work. Default: NotoSans-Bold
   -Z FSIZE, --size=FSIZE
-                        Size of font in points.  Default: 20
+                        Size of font in points.  Default: 23
   -s, --shadow          Size of font in points.  Default: False
 </pre></div>
 </div>
@@ -290,7 +293,7 @@ brighter, higher intensity colors.)</p>
 
 <dl class="function">
 <dt id="fabulous.color.section">
-<tt class="descclassname">fabulous.color.</tt><tt class="descname">section</tt><big>(</big><em>title</em>, <em>bar=u'\u203e'</em>, <em>strm=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7fc83dde2150&gt;</em><big>)</big><a class="headerlink" href="#fabulous.color.section" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">fabulous.color.</tt><tt class="descname">section</tt><big>(</big><em>title</em>, <em>bar=u'\u203e'</em>, <em>strm=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f36901a2150&gt;</em><big>)</big><a class="headerlink" href="#fabulous.color.section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper function for testing demo routines</p>
 </dd></dl>
 
@@ -319,25 +322,6 @@ this should <em>just work</em> for you.</p>
 </ul>
 </dd></dl>
 
-<dl class="function">
-<dt id="fabulous.xterm256.rgb_to_xterm">
-<tt class="descclassname">fabulous.xterm256.</tt><tt class="descname">rgb_to_xterm</tt><big>(</big><em>r</em>, <em>g</em>, <em>b</em><big>)</big><a class="headerlink" href="#fabulous.xterm256.rgb_to_xterm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Quantize RGB values to an xterm 256-color ID</p>
-<p>This works by envisioning the RGB values for all 256 xterm colors
-as 3D euclidean space and brute-force searching for the nearest
-neighbor.</p>
-<p>This is very slow.  If you&#8217;re very lucky, <a class="reference internal" href="#fabulous.xterm256.compile_speedup" title="fabulous.xterm256.compile_speedup"><tt class="xref py py-func docutils literal"><span class="pre">compile_speedup()</span></tt></a>
-will replace this function automatically with routines in
-<cite>_xterm256.c</cite>.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="fabulous.xterm256.xterm_to_rgb">
-<tt class="descclassname">fabulous.xterm256.</tt><tt class="descname">xterm_to_rgb</tt><big>(</big><em>xcolor</em><big>)</big><a class="headerlink" href="#fabulous.xterm256.xterm_to_rgb" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert xterm Color ID to an RGB value</p>
-<p>All 256 values are precalculated and stored in <tt class="xref py py-data docutils literal"><span class="pre">COLOR_TABLE</span></tt></p>
-</dd></dl>
-
 </div>
 <span class="target" id="module-fabulous.text"></span><div class="section" id="id1">
 <h3>fabulous.text<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
@@ -353,32 +337,17 @@ jart@compy:~$ python -m fabulous.text --help
 <span class="k">print</span> <span class="n">text</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Fabulous!&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;#0099ff&#39;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">scew</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>To make things simple, Fabulous bundles three decent serif, sans-serif, and
-monospace fonts:</p>
-<ul>
-<li><p class="first">IndUni-H-Bold: Open Source Helvetica Bold clone (sans-serif)</p>
-<p>This is the real deal and not some cheap ripoff like Verdana.
-IndUni-H-Bold is the default because not only does it look
-great, but also renders <em>perfectly</em>.  and is also used for the
-Fabulous logo.  Commonly found on stret signs.</p>
-<p>This font is licensed under the GPL.  If you&#8217;re developing
-proprietary software you might want to ask its author or a
-lawyer if Fabulous&#8217; use of IndUni-H would be considered a &#8220;GPL
-Barrier.&#8221;</p>
-</li>
-<li><p class="first">cmr10: Computer Modern (serif)</p>
-<p>Donald Knuth wrote 23,000 lines for the sole purpose of
-bestowing this jewel upon the world.  This font is commonly seen
-in scholarly papers.</p>
-</li>
-<li><p class="first">DejaVuSansMono: DejaVu Sans Mono (formerly Bitstream Vera Sans Mono)</p>
-<p>At point size 8, this is my favorite programming/terminal font.</p>
-</li>
+<p>To make things simple, Fabulous bundles the following Google Noto Fonts
+which look good and are guaranteed to work no matter what:</p>
+<ul class="simple">
+<li>NotoSans-Bold</li>
+<li>NotoEmoji-Regular</li>
 </ul>
 <p>For other fonts, Fabulous will do its best to figure out where they are
 stored. If Fabulous has trouble finding your font, try using an absolute
 path <em>with</em> the extension. It&#8217;s also possible to put the font in the
 <tt class="docutils literal"><span class="pre">~/.fonts</span></tt> directory and then running <tt class="docutils literal"><span class="pre">fc-cache</span> <span class="pre">-fv</span> <span class="pre">~/.fonts</span></tt>.</p>
+<p>You can run <tt class="docutils literal"><span class="pre">fabulous-text</span> <span class="pre">--list</span></tt> to see what fonts are available.</p>
 <dl class="exception">
 <dt id="fabulous.text.FontNotFound">
 <em class="property">exception </em><tt class="descclassname">fabulous.text.</tt><tt class="descname">FontNotFound</tt><a class="headerlink" href="#fabulous.text.FontNotFound" title="Permalink to this definition">¶</a></dt>
@@ -389,7 +358,7 @@ don&#8217;t have to import me if you don&#8217;t want to.</p>
 
 <dl class="class">
 <dt id="fabulous.text.Text">
-<em class="property">class </em><tt class="descclassname">fabulous.text.</tt><tt class="descname">Text</tt><big>(</big><em>text</em>, <em>fsize=20</em>, <em>color='#0099ff'</em>, <em>shadow=False</em>, <em>skew=None</em>, <em>font='IndUni-H-Bold'</em><big>)</big><a class="headerlink" href="#fabulous.text.Text" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">fabulous.text.</tt><tt class="descname">Text</tt><big>(</big><em>text</em>, <em>fsize=23</em>, <em>color='#0099ff'</em>, <em>shadow=False</em>, <em>skew=None</em>, <em>font='NotoSans-Bold'</em><big>)</big><a class="headerlink" href="#fabulous.text.Text" title="Permalink to this definition">¶</a></dt>
 <dd><p>Renders TrueType Text to Terminal</p>
 <p>I&#8217;m a sub-class of <a class="reference internal" href="#fabulous.image.Image" title="fabulous.image.Image"><tt class="xref py py-class docutils literal"><span class="pre">fabulous.image.Image</span></tt></a>.  My job is
 limited to simply getting things ready.  I do this by:</p>
@@ -401,13 +370,10 @@ limited to simply getting things ready.  I do this by:</p>
 <p>For example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Fabulous&quot;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">skew</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">txt</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="s">&quot;lorem ipsum&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s">&quot;IndUni-H-Bold&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">txt</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="s">&quot;lorem ipsum&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s">&quot;NotoSans-Bold&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">txt</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span>
 <span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">txt</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="s">&quot;lorem ipsum&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s">&quot;cmr10&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">txt</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">txt</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="s">&quot;lorem ipsum&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s">&quot;DejaVuSansMono&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">txt</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="s">u&quot;😃&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s">&quot;NotoSans-Bold&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">txt</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span>
 <span class="go">True</span>
 </pre></div>
@@ -445,18 +411,15 @@ globbing the specified name in various directories.</li>
 <tt class="descclassname">fabulous.text.</tt><tt class="descname">get_font_files</tt><big>(</big><big>)</big><a class="headerlink" href="#fabulous.text.get_font_files" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of all font files we could find</p>
 <p>Returned as a list of dir/files tuples:</p>
-<div class="highlight-python"><div class="highlight"><pre>get_font_files() -&gt; [(&#39;/some/dir&#39;, [&#39;font1.ttf&#39;, ...]), ...]
+<div class="highlight-python"><div class="highlight"><pre>get_font_files() -&gt; {&#39;FontName&#39;: &#39;/abs/FontName.ttf&#39;, ...]
 </pre></div>
 </div>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fabfonts</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span> <span class="s">&#39;fonts&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">get_font_files</span><span class="p">())[</span><span class="n">fabfonts</span><span class="p">])</span>
-<span class="go">[&#39;DejaVuSansMono.ttf&#39;, &#39;IndUni-H-Bold.otf&#39;, &#39;cmr10.ttf&#39;]</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">get_font_files</span><span class="p">():</span>
-<span class="gp">... </span>    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
-<span class="gp">... </span>        <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
-<span class="gp">...</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fonts</span> <span class="o">=</span> <span class="n">get_font_files</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;NotoSans-Bold&#39;</span> <span class="ow">in</span> <span class="n">fonts</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fonts</span><span class="p">[</span><span class="s">&#39;NotoSans-Bold&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;/NotoSans-Bold.ttf&#39;</span><span class="p">)</span>
+<span class="go">True</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -470,20 +433,20 @@ globbing the specified name in various directories.</li>
 <dl class="function">
 <dt id="fabulous.text.resolve_font">
 <tt class="descclassname">fabulous.text.</tt><tt class="descname">resolve_font</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#fabulous.text.resolve_font" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sloppy way to turn font names into absolute filenames</p>
-<p>This isn&#8217;t intended to be a proper font lookup tool but rather a
-dirty tool to not have to specify the absolute filename every
-time.</p>
+<dd><p>Turns font names into absolute filenames</p>
+<p>This is case sensitive. The extension should be omitted.</p>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">path</span> <span class="o">=</span> <span class="n">resolve_font</span><span class="p">(</span><span class="s">&#39;IndUni-H-Bold&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">path</span> <span class="o">=</span> <span class="n">resolve_font</span><span class="p">(</span><span class="s">&#39;NotoSans-Bold&#39;</span><span class="p">)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fontdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span> <span class="s">&#39;fonts&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">indunih_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fontdir</span><span class="p">,</span> <span class="s">&#39;IndUni-H-Bold.otf&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">path</span> <span class="o">==</span> <span class="n">indunih_path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">noto_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fontdir</span><span class="p">,</span> <span class="s">&#39;NotoSans-Bold.ttf&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">noto_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">noto_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">path</span> <span class="o">==</span> <span class="n">noto_path</span>
 </pre></div>
 </div>
-<p>This isn&#8217;t case-sensitive:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">resolve_font</span><span class="p">(</span><span class="s">&#39;induni-h&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">indunih_path</span>
+<p>Absolute paths are allowed:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">resolve_font</span><span class="p">(</span><span class="n">noto_path</span><span class="p">)</span> <span class="o">==</span> <span class="n">noto_path</span>
+<span class="go">True</span>
 </pre></div>
 </div>
 <p>Raises <a class="reference internal" href="#fabulous.text.FontNotFound" title="fabulous.text.FontNotFound"><tt class="xref py py-exc docutils literal"><span class="pre">FontNotFound</span></tt></a> on failure:</p>
@@ -598,7 +561,7 @@ messages:</p>
 </div>
 <dl class="class">
 <dt id="fabulous.logs.TransientStreamHandler">
-<em class="property">class </em><tt class="descclassname">fabulous.logs.</tt><tt class="descname">TransientStreamHandler</tt><big>(</big><em>strm=&lt;open file '&lt;stderr&gt;'</em>, <em>mode 'w' at 0x7fc83dde21e0&gt;</em>, <em>level=30</em><big>)</big><a class="headerlink" href="#fabulous.logs.TransientStreamHandler" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">fabulous.logs.</tt><tt class="descname">TransientStreamHandler</tt><big>(</big><em>strm=&lt;open file '&lt;stderr&gt;'</em>, <em>mode 'w' at 0x7f36901a21e0&gt;</em>, <em>level=30</em><big>)</big><a class="headerlink" href="#fabulous.logs.TransientStreamHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standard Python logging Handler for Transient Console Logging</p>
 <p>Logging transiently means that verbose logging messages like DEBUG
 will only appear on the last line of your terminal for a short
@@ -1397,10 +1360,10 @@ cygwin is used through SSH or telnet or something. (<tt class="docutils literal"
 <h2>Alternatives<a class="headerlink" href="#alternatives" title="Permalink to this headline">¶</a></h2>
 <p>Here&#8217;s how Fabulous compares to other similar libraries:</p>
 <ul class="simple">
-<li><a class="reference external" href="http://pypi.python.org/pypi/fabulous">fabulous</a>: Licensed MIT.  Focuses on delivering useful features in
-the simplest, most user-friendly way possible (without a repulsive
-name.)  Written in pure-python but will attempt to auto-magically
-compile/link a speedup library.  ~5,000 lines of code.</li>
+<li><a class="reference external" href="http://pypi.python.org/pypi/fabulous">fabulous</a>: Licensed mostly MIT. Focuses on delivering useful features in the
+simplest, most user-friendly way possible (without a repulsive name.)
+Written in pure-python but will attempt to auto-magically compile/link a
+speedup library.  ~5,000 lines of code.</li>
 <li><a class="reference external" href="http://caca.zoy.org/">libcaca</a>: WTFPL.  This is the established and respected standard for
 doing totally insane things with ascii art (ever wanted to watch a
 movie on the command line?)  Weighing in at ~72k lines of C, this
@@ -1418,27 +1381,304 @@ Aprox 17k lines of code.</li>
 </div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
-<p>Code and documentation are available according to the MIT License:</p>
-<div class="highlight-python"><div class="highlight"><pre>Copyright (c) 2016 Justine Alexandra Roberts Tunney
+<p>Fabulous code and documentation are licensed Apache 2.0:</p>
+<div class="highlight-python"><div class="highlight"><pre>                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
 
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      &quot;License&quot; shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      &quot;Licensor&quot; shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      &quot;Legal Entity&quot; shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      &quot;control&quot; means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      &quot;You&quot; (or &quot;Your&quot;) shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      &quot;Source&quot; form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      &quot;Object&quot; form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      &quot;Work&quot; shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      &quot;Derivative Works&quot; shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      &quot;Contribution&quot; shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, &quot;submitted&quot;
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as &quot;Not a Contribution.&quot;
+
+      &quot;Contributor&quot; shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a &quot;NOTICE&quot; text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an &quot;AS IS&quot; BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets &quot;[]&quot;
+      replaced with your own identifying information. (Don&#39;t include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same &quot;printed page&quot; as the copyright notice for easier
+      identification within third-party archives.
+
+   Copyright [yyyy] [name of copyright owner]
+
+   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+</pre></div>
+</div>
+<p>The bundled Google Noto Fonts are licensed under the SIL Open Font License,
+Version 1.1:</p>
+<div class="highlight-python"><div class="highlight"><pre>This Font Software is licensed under the SIL Open Font License,
+Version 1.1.
+
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font
+creation efforts of academic and linguistic communities, and to
+provide a free and open framework in which fonts may be shared and
+improved in partnership with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded,
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply to
+any document created using the fonts or their derivatives.
+
+DEFINITIONS
+&quot;Font Software&quot; refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+&quot;Reserved Font Name&quot; refers to any names specified as such after the
+copyright statement(s).
+
+&quot;Original Version&quot; refers to the collection of Font Software
+components as distributed by the Copyright Holder(s).
+
+&quot;Modified Version&quot; refers to any derivative made by adding to,
+deleting, or substituting -- in part or in whole -- any of the
+components of the Original Version, by changing formats or by porting
+the Font Software to a new environment.
+
+&quot;Author&quot; refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION &amp; CONDITIONS
 Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-&quot;Software&quot;), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+a copy of the Font Software, to use, study, copy, merge, embed,
+modify, redistribute, and sell modified and unmodified copies of the
+Font Software, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+1) Neither the Font Software nor any of its individual components, in
+Original or Modified Versions, may be sold by itself.
 
-THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the
+corresponding Copyright Holder. This restriction only applies to the
+primary font name as presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created using
+the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
 </pre></div>
 </div>
 </div>
@@ -1526,7 +1766,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="#">fabulous 0.1.8 documentation</a> &raquo;</li> 
+        <li><a href="#">fabulous 0.2.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
