@@ -58,7 +58,7 @@
 </tr>
 <tr class="field-even field"><th class="field-name">Founder:</th><td class="field-body">Justine Alexandra Roberts Tunney</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Copyright:</th><td class="field-body">Copyright 2009-2016 The Fabulous Authors. All rights reserved.</td>
+<tr class="field-odd field"><th class="field-name">Copyright:</th><td class="field-body">Copyright 2016 The Fabulous Authors. All rights reserved.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">License:</th><td class="field-body">Apache 2.0 / OFL</td>
 </tr>
@@ -293,7 +293,7 @@ brighter, higher intensity colors.)</p>
 
 <dl class="function">
 <dt id="fabulous.color.section">
-<tt class="descclassname">fabulous.color.</tt><tt class="descname">section</tt><big>(</big><em>title</em>, <em>bar=u'\u203e'</em>, <em>strm=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7fa52cb17150&gt;</em><big>)</big><a class="headerlink" href="#fabulous.color.section" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">fabulous.color.</tt><tt class="descname">section</tt><big>(</big><em>title</em>, <em>bar=u'\u203e'</em>, <em>strm=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f09e9803150&gt;</em><big>)</big><a class="headerlink" href="#fabulous.color.section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper function for testing demo routines</p>
 </dd></dl>
 
@@ -320,6 +320,25 @@ this should <em>just work</em> for you.</p>
 <li>Python &gt;= 2.5 for ctypes library</li>
 <li>gcc (<tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">gcc</span></tt>)</li>
 </ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="fabulous.xterm256.rgb_to_xterm">
+<tt class="descclassname">fabulous.xterm256.</tt><tt class="descname">rgb_to_xterm</tt><big>(</big><em>r</em>, <em>g</em>, <em>b</em><big>)</big><a class="headerlink" href="#fabulous.xterm256.rgb_to_xterm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quantize RGB values to an xterm 256-color ID</p>
+<p>This works by envisioning the RGB values for all 256 xterm colors
+as 3D euclidean space and brute-force searching for the nearest
+neighbor.</p>
+<p>This is very slow.  If you&#8217;re very lucky, <a class="reference internal" href="#fabulous.xterm256.compile_speedup" title="fabulous.xterm256.compile_speedup"><tt class="xref py py-func docutils literal"><span class="pre">compile_speedup()</span></tt></a>
+will replace this function automatically with routines in
+<cite>_xterm256.c</cite>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="fabulous.xterm256.xterm_to_rgb">
+<tt class="descclassname">fabulous.xterm256.</tt><tt class="descname">xterm_to_rgb</tt><big>(</big><em>xcolor</em><big>)</big><a class="headerlink" href="#fabulous.xterm256.xterm_to_rgb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert xterm Color ID to an RGB value</p>
+<p>All 256 values are precalculated and stored in <tt class="xref py py-data docutils literal"><span class="pre">COLOR_TABLE</span></tt></p>
 </dd></dl>
 
 </div>
@@ -561,7 +580,7 @@ messages:</p>
 </div>
 <dl class="class">
 <dt id="fabulous.logs.TransientStreamHandler">
-<em class="property">class </em><tt class="descclassname">fabulous.logs.</tt><tt class="descname">TransientStreamHandler</tt><big>(</big><em>strm=&lt;open file '&lt;stderr&gt;'</em>, <em>mode 'w' at 0x7fa52cb171e0&gt;</em>, <em>level=30</em><big>)</big><a class="headerlink" href="#fabulous.logs.TransientStreamHandler" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">fabulous.logs.</tt><tt class="descname">TransientStreamHandler</tt><big>(</big><em>strm=&lt;open file '&lt;stderr&gt;'</em>, <em>mode 'w' at 0x7f09e98031e0&gt;</em>, <em>level=30</em><big>)</big><a class="headerlink" href="#fabulous.logs.TransientStreamHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standard Python logging Handler for Transient Console Logging</p>
 <p>Logging transiently means that verbose logging messages like DEBUG
 will only appear on the last line of your terminal for a short
