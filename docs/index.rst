@@ -12,7 +12,7 @@
 
 :Version: 0.2.0
 :Founder: Justine Alexandra Roberts Tunney
-:Copyright: Copyright 2009-2016 The Fabulous Authors. All rights reserved.
+:Copyright: Copyright 2016 The Fabulous Authors. All rights reserved.
 :License: Apache 2.0 / OFL
 
 Fabulous is a Python library (and command line tools) designed to make the
