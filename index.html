@@ -100,7 +100,7 @@ sudo python setup.py install
 <h3>Colors<a class="headerlink" href="#colors" title="Permalink to this headline">¶</a></h3>
 <p>4-bit colors and styles are standard and work almost everywhere. They are
 useful in helping make your program output easier to read:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">bold</span><span class="p">,</span> <span class="n">magenta</span><span class="p">,</span> <span class="n">highlight_red</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous.color</span> <span class="kn">import</span> <span class="n">bold</span><span class="p">,</span> <span class="n">magenta</span><span class="p">,</span> <span class="n">highlight_red</span>
 
 <span class="k">print</span> <span class="n">bold</span><span class="p">(</span><span class="n">magenta</span><span class="p">(</span><span class="s">&#39;hello world&#39;</span><span class="p">))</span>
 
@@ -124,7 +124,7 @@ Terminal.app:</p>
 <p>This is something neat you can use when you program starts up to display its
 name with style:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">text</span>
-<span class="k">print</span> <span class="n">text</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Fabulous!&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;#0099ff&#39;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">scew</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">text</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Fabulous!&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;#0099ff&#39;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">skew</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -796,7 +796,7 @@ background.</p>
 
 <dl class="function">
 <dt id="fabulous.color.section">
-<tt class="descclassname">fabulous.color.</tt><tt class="descname">section</tt><big>(</big><em>title</em>, <em>bar=u'\u203e'</em>, <em>strm=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7fec2656c150&gt;</em><big>)</big><a class="headerlink" href="#fabulous.color.section" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">fabulous.color.</tt><tt class="descname">section</tt><big>(</big><em>title</em>, <em>bar=u'\u203e'</em>, <em>strm=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f8ae9d54150&gt;</em><big>)</big><a class="headerlink" href="#fabulous.color.section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper function for testing demo routines</p>
 </dd></dl>
 
@@ -993,7 +993,7 @@ jart@compy:~$ python -m fabulous.text --help
 </div>
 <p>Or as a Python library:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">fabulous</span> <span class="kn">import</span> <span class="n">text</span>
-<span class="k">print</span> <span class="n">text</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Fabulous!&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;#0099ff&#39;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">scew</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">text</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Fabulous!&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;#0099ff&#39;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">skew</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To make things simple, Fabulous bundles the following Google Noto Fonts
@@ -1220,7 +1220,7 @@ messages:</p>
 </div>
 <dl class="class">
 <dt id="fabulous.logs.TransientStreamHandler">
-<em class="property">class </em><tt class="descclassname">fabulous.logs.</tt><tt class="descname">TransientStreamHandler</tt><big>(</big><em>strm=&lt;open file '&lt;stderr&gt;'</em>, <em>mode 'w' at 0x7fec2656c1e0&gt;</em>, <em>level=30</em><big>)</big><a class="headerlink" href="#fabulous.logs.TransientStreamHandler" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">fabulous.logs.</tt><tt class="descname">TransientStreamHandler</tt><big>(</big><em>strm=&lt;open file '&lt;stderr&gt;'</em>, <em>mode 'w' at 0x7f8ae9d541e0&gt;</em>, <em>level=30</em><big>)</big><a class="headerlink" href="#fabulous.logs.TransientStreamHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standard Python logging Handler for Transient Console Logging</p>
 <p>Logging transiently means that verbose logging messages like DEBUG
 will only appear on the last line of your terminal for a short
