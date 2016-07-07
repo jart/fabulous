@@ -4,6 +4,7 @@ include LICENSE.txt
 include MANIFEST.in
 include ez_setup.py
 include fabulous/_xterm256.c
+include fabulous/balls.png
 include fabulous/fonts/LICENSE
 include fabulous/fonts/NotoEmoji-Regular.ttf
 include fabulous/fonts/NotoSans-Bold.ttf
