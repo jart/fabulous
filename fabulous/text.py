@@ -30,7 +30,7 @@
     .. code-block:: python
 
         from fabulous import text
-        print text.Text("Fabulous!", color='#0099ff', shadow=True, scew=5)
+        print text.Text("Fabulous!", color='#0099ff', shadow=True, skew=5)
 
     To make things simple, Fabulous bundles the following Google Noto Fonts
     which look good and are guaranteed to work no matter what:
