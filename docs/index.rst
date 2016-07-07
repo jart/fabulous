@@ -62,7 +62,7 @@ Colors
 4-bit colors and styles are standard and work almost everywhere. They are
 useful in helping make your program output easier to read::
 
-    from fabulous import bold, magenta, highlight_red
+    from fabulous.color import bold, magenta, highlight_red
 
     print bold(magenta('hello world'))
 
@@ -87,7 +87,7 @@ This is something neat you can use when you program starts up to display its
 name with style::
 
     from fabulous import text
-    print text.Text("Fabulous!", color='#0099ff', shadow=True, scew=5)
+    print text.Text("Fabulous!", color='#0099ff', shadow=True, skew=5)
 
 
 Images
