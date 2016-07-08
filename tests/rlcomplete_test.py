@@ -15,7 +15,7 @@
 # limitations under the License.
 
 import unittest
-from terminate import rlcomplete
+from fabulous import rlcomplete
 
 class TestControl(unittest.TestCase):
 

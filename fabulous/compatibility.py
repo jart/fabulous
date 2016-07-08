@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-#
 # Copyright 2016 The Fabulous Authors. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,23 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from fabulous.widget import ProgressBar
-import time
+from __future__ import print_function
 
-p = ProgressBar('bar')
-p.update(0)
-time.sleep(.2)
-p.update(20, 'safe epam and eggs')
-time.sleep(.2)
-p.update(50, None)
-time.sleep(.2)
-p.update(40)
-time.sleep(.2)
-p.set_title('baz')
-p.update(20, 'spam and eggs')
-time.sleep(.2)
-p.update(70)
-time.sleep(.2)
-p.update(80)
-time.sleep(.2)
-p.update(100)
+import sys
+
+
+def printy(s):
+    """Python 2/3 compatible print-like function"""
+    if hasattr(s, 'as_utf8'):
+        if hasattr(sys.stdout, 'buffer'):
+            sys.stdout.buffer.write(s.as_utf8)
+            sys.stdout.buffer.write(b"\n")
+        else:
+            sys.stdout.write(s.as_utf8)
+            sys.stdout.write(b"\n")
+    else:
+        print(s)

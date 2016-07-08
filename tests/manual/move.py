@@ -19,7 +19,7 @@ spaand eggs
 george
 """
 
-from terminate.term import stdout
+from fabulous.term import stdout
 
 stdout.write('spam')
 stdout.move('left')

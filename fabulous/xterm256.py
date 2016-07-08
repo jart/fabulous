@@ -51,8 +51,8 @@ def xterm_to_rgb(xcolor):
     elif 16 <= xcolor <= 231:
         # color cube
         xcolor -= 16
-        return (CUBE_STEPS[(xcolor / 36) % 6],
-                CUBE_STEPS[(xcolor / 6) % 6],
+        return (CUBE_STEPS[xcolor // 36 % 6],
+                CUBE_STEPS[xcolor // 6 % 6],
                 CUBE_STEPS[xcolor % 6])
     elif 232 <= xcolor <= 255:
         # gray tone
@@ -60,7 +60,7 @@ def xterm_to_rgb(xcolor):
         return (c, c, c)
 
 
-COLOR_TABLE = [xterm_to_rgb(i) for i in xrange(256)]
+COLOR_TABLE = [xterm_to_rgb(i) for i in range(256)]
 
 
 def rgb_to_xterm(r, g, b):
@@ -78,7 +78,7 @@ def rgb_to_xterm(r, g, b):
         return 16
     best_match = 0
     smallest_distance = 10000000000
-    for c in xrange(16, 256):
+    for c in range(16, 256):
         d = (COLOR_TABLE[c][0] - r) ** 2 + \
             (COLOR_TABLE[c][1] - g) ** 2 + \
             (COLOR_TABLE[c][2] - b) ** 2

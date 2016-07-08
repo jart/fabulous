@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from terminate.prompt import file_chooser
+from fabulous.prompt import file_chooser
 
 f = file_chooser()
 print f

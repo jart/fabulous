@@ -92,7 +92,7 @@ class PathCompleter(Completer):
         matchuserdir('~') returns all users
         """
         if not prefix.startswith('~'):
-            raise ValueError, "prefix must start with ~"
+            raise ValueError("prefix must start with ~")
         try: import pwd
         except ImportError:
             try: import winpwd as pwd

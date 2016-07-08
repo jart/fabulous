@@ -18,7 +18,7 @@
 time soon. It updates every 0 to 10 seconds. Send it a keyboard 
 interupt (Ctrl-C) to stop."""
 
-from terminate.widget import TimedProgressBar
+from fabulous.widget import TimedProgressBar
 import time
 import random
 

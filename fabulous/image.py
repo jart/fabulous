@@ -29,6 +29,7 @@ import sys
 import itertools
 
 from fabulous import utils, xterm256, grapefruit
+from fabulous.compatibility import printy
 
 
 class Image(object):
@@ -160,8 +161,8 @@ class Image(object):
         (width, height) = self.img.size
         bgcolor = utils.term.bgcolor
         self.img.load()
-        for y in xrange(height):
-            for x in xrange(width):
+        for y in range(height):
+            for x in range(width):
                 rgba = self.img.getpixel((x, y))
                 if len(rgba) == 4 and rgba[3] == 0:
                     yield None
@@ -186,7 +187,7 @@ def main():
     (options, args) = parser.parse_args(args=sys.argv[1:])
     for imgpath in args:
         for line in Image(imgpath, options.width):
-            print line
+            printy(line)
 
 
 if __name__ == '__main__':

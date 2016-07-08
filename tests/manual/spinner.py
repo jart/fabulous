@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from terminate.widget import Spinner
+from fabulous.widget import Spinner
 import time
 
 s = Spinner()

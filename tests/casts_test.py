@@ -16,7 +16,7 @@
 
 
 import unittest
-from terminate import casts
+from fabulous import casts
 
 class TestControl(unittest.TestCase):
 
