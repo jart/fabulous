@@ -14,8 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+[[ "$(basename "$(pwd)")" == "fabulous" ]] || { echo not fabulous dir; exit 1; }
 git diff --shortstat | grep -q . && { echo repo is dirty; exit 1; }
 set -ex
+sudo chown -R $USER .
+chmod -R o+rX .
 sudo python setup.py install
 sudo chown -R jart .
 git clean -fdx

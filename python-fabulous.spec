@@ -1,14 +1,14 @@
 %global modname fabulous
 
 Name:             python-fabulous
-Version:          0.2.1
+Version:          0.3.0
 Release:          2%{?dist}
 Summary:          Makes your terminal output totally fabulous
 
 Group:            Development/Languages
 License:          Apache 2.0 / OFL
 URL:              https://jart.github.io/fabulous
-Source0:          https://github.com/jart/fabulous/releases/download/0.2.1/fabulous-0.2.1.tar.gz
+Source0:          https://github.com/jart/fabulous/releases/download/0.3.0/fabulous-0.3.0.tar.gz
 
 BuildArch:        noarch
 
@@ -42,6 +42,10 @@ Run the demo to see what's available::
 %{python_sitelib}/* 
 
 %changelog
+* Tue Jul 12 2016 Justine Tunney <jtunney@gmail.com> - 0.3.0-1
+- Update for version 0.3.0
+- Add Python 3 support
+
 * Mon Jul 7 2016 Justine Tunney <jtunney@gmail.com> - 0.2.1-1
 - Update for version 0.2.1
 
