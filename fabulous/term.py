@@ -46,6 +46,13 @@ import sys
 import os
 import re
 
+try:
+    unicode = unicode
+except NameError:
+    unicode = str
+    basestring = (str, bytes)
+
+
 # pylint: disable-msg=W0613
 # pylint: disable-msg=W0102
 # pylint: disable-msg=C0103
@@ -338,7 +345,7 @@ class CursesTerm(UnixTerm):
         elif strcaps.has_key(cap):
             c = self.curses.tigetstr(strcaps[cap])
             if c != '': return c
-        raise ValueError, "capability '%s' not supported" % cap
+        raise ValueError("capability '%s' not supported" % cap)
     
 
 class WinTerm(Term):
@@ -587,7 +594,8 @@ class WinTerm(Term):
         elif place == 'beginning of screen':
             x = 0
             y = self._get_console_info()['window']['top']
-        else: raise ValueError, "invalid place to move"
+        else:
+            raise ValueError("invalid place to move")
         self._set_position((x, y))
     
     def clear(self, scope = 'screen'):
@@ -629,7 +637,8 @@ class WinTerm(Term):
         elif scope == 'right':
             self.write(' ')
             self.move('left')
-        else: raise ValueError, "invalid scope to clear"
+        else:
+            raise ValueError("invalid scope to clear")
         
     def getch(self):
         """Don't use this yet
@@ -802,13 +811,13 @@ class Magic(object):
     # pylint: disable-msg=E0602
     DISPLAY = {'default':0, 'bright':1, 'dim':2, 'underline':4, 'blink':5,
              'reverse':7, 'hidden':8 }
-    rDISPLAY = dict( (v, k) for k, v in DISPLAY.iteritems())
+    rDISPLAY = dict( (v, k) for k, v in DISPLAY.items())
     # Yellow is a bit weird, xterm and rxvt display dark yellow, while linux
     # and Windows display a more brown-ish color. Bright yellow is always
     # yellow. Order is important here
     COLORS = { 'black':0, 'red':1, 'green':2, 'yellow':3, 'blue':4, 'magenta':5,
                'cyan':6, 'white':7 }
-    rCOLORS = dict( (v, k) for k, v in COLORS.iteritems())
+    rCOLORS = dict( (v, k) for k, v in COLORS.items())
     # pylint: enable-msg=E0602
     # TODO: setf from curses uses the colors in a different order for 
     
@@ -821,11 +830,11 @@ class Magic(object):
             codes = list(codes)
         for code in codes:
             if code not in Magic.DISPLAY.keys():
-                raise ValueError, ("'%s' not a valid display value" % code)
+                raise ValueError("'%s' not a valid display value" % code)
         for color in (fg, bg):
             if color != None:
                 if color not in Magic.COLORS.keys():
-                    raise ValueError, ("'%s' not a valid color" % color)
+                    raise ValueError("'%s' not a valid color" % color)
         return [codes, fg, bg]
     
     @staticmethod

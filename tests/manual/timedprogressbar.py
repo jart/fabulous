@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from terminate.widget import TimedProgressBar
+from fabulous.widget import TimedProgressBar
 import time
 import random
 

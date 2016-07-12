@@ -14,14 +14,14 @@
 :Founder: Justine Alexandra Roberts Tunney
 :Copyright: Copyright 2016 The Fabulous Authors. All rights reserved.
 :License: Apache 2.0 / OFL
+:Support: Python 2.6, 2.7, 3.3, 3.4, 3.5, and pypy
+:Source: `github.com/jart/fabulous`_
 
 Fabulous is a Python library (and command line tools) designed to make the
 output of terminal applications look *fabulous*. Fabulous allows you to print
 colors, images, and stylized text to the console (without curses.)  Fabulous
 also offers features to improve the usability of Python's standard logging
 system.
-
-The source code is available at `github.com/jart/fabulous`_.
 
 .. _github.com/jart/fabulous: https://github.com/jart/fabulous
 

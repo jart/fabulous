@@ -47,10 +47,19 @@
 
 """
 
+from __future__ import print_function
+
 import os
 import sys
 
 from fabulous import utils, image, grapefruit
+from fabulous.compatibility import printy
+
+try:
+    unicode = unicode
+except NameError:
+    unicode = str
+    basestring = (str, bytes)
 
 
 class Text(image.Image):
@@ -152,10 +161,11 @@ def resolve_font(name):
 
     Raises :exc:`FontNotFound` on failure::
 
-        >>> resolve_font('blahahaha')
-        Traceback (most recent call last):
-        ...
-        FontNotFound: Can't find 'blahahaha' :'(  Try adding it to ~/.fonts
+        >>> try:
+        ...     resolve_font('blahahaha')
+        ...     assert False
+        ... except FontNotFound:
+        ...     pass
 
     """
     if os.path.exists(name):
@@ -233,16 +243,19 @@ def main():
         help=("Size of font in points.  Default: %default"))
     (options, args) = parser.parse_args(args=sys.argv[1:])
     if options.list:
-        print "\n".join(sorted(get_font_files()))
+        print("\n".join(sorted(get_font_files())))
         return
     if options.term_color:
         utils.term.bgcolor = options.term_color
-    for line in " ".join(args).decode('utf-8').split("\n"):
+    text = " ".join(args)
+    if not isinstance(text, unicode):
+        text = text.decode('utf-8')
+    for line in text.split("\n"):
         fab_text = Text(line, skew=options.skew, color=options.color,
                         font=options.font, fsize=options.fsize,
                         shadow=options.shadow)
         for chunk in fab_text:
-            print chunk
+            printy(chunk)
 
 
 if __name__ == '__main__':

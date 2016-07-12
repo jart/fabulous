@@ -74,7 +74,7 @@ def input_object(prompt_text, cast = None, default = None,
         if value == '': return default
         try:
             if cast != None: value = cast(value, *castarg, **castkwarg)
-        except ValueError, details:
+        except ValueError as details:
             if cast in NICE_INPUT_ERRORS: # see comment above this constant
                 stderr.write(ERROR_MESSAGE % (NICE_INPUT_ERRORS[cast] % details))
             else: stderr.write(ERROR_MESSAGE % (DEFAULT_INPUT_ERRORS % str(details)))
@@ -162,7 +162,7 @@ def query_cast(value, answers, ignorecase = False):
                 return item['values'][0]
             elif value == a:
                 return item['values'][0]
-    raise ValueError, "Response '%s' not understood, please try again." % value
+    raise ValueError("Response '%s' not understood, please try again." % value)
 
 def file_chooser(prompt_text = "Enter File: ", default=None, filearg=[], filekwarg={}):
     """A simple tool to get a file from the user. Takes keyworded arguemnts
@@ -189,7 +189,7 @@ def file_chooser(prompt_text = "Enter File: ", default=None, filearg=[], filekwa
             f = os.path.abspath(f)
         try:
             return open(f, *filearg, **filekwarg)
-        except IOError, e:
+        except IOError as e:
             stderr.write(ERROR_MESSAGE % ("unable to open %s : %s" % (f, e)))
 
 if __name__ == '__main__':

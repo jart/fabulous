@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from terminate.term import stdout
+from fabulous.term import stdout
 import time
 
 stdout.set_title("Terminal title has been changed")

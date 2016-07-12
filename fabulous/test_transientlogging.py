@@ -13,10 +13,16 @@
 # limitations under the License.
 
 import logging
+import itertools
 
 from fabulous.logs import *
 from fabulous.gotham import *
 from fabulous.color import *
+
+try:
+  next
+except NameError:
+  next = lambda x: x.next()
 
 
 logger = logging.getLogger('fabulous')
@@ -25,7 +31,7 @@ logger = logging.getLogger('fabulous')
 def luv():
     msg = "hello there how are you?  i love you!  sincerely compy <3 <3"
     while True:
-        for n in range(len(msg)) + list(reversed(range(len(msg)))):
+        for n in itertools.chain(range(len(msg)), reversed(range(len(msg)))):
             yield msg[:n+1]
 
 
@@ -44,9 +50,9 @@ def test_transientlogger():
     try:
         while True:
             if random.randrange(60) == 0:
-                logger.warning(nightmare.next())
+                logger.warning(next(nightmare))
             else:
-                logger.debug(happy.next())
+                logger.debug(next(happy))
             time.sleep(0.02)
     except StopIteration:
         pass
@@ -58,9 +64,9 @@ def test_transientlogger2():
     try:
         while True:
             if random.randrange(20) == 0:
-                logger.warning(red(gothic.next()))
+                logger.warning(red(next(gothic)))
             else:
-                logger.debug(gothic.next())
+                logger.debug(next(gothic))
             time.sleep(0.1)
     except StopIteration:
         pass

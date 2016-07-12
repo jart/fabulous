@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from terminate.term import display, stdout, Magic
+from fabulous.term import display, stdout, Magic
 
 stdout.write(display('default'))
 stdout.write("default text\n")

@@ -17,7 +17,7 @@
 """I am *not* responsible if this causes severe physical or mental injury
 """
 
-from terminate.term import display, stdout, Magic
+from fabulous.term import display, stdout, Magic
         
 
 try:

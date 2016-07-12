@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from terminate.term import display, Magic, Term
+from fabulous.term import display, Magic, Term
 import os
 import unittest
 
@@ -31,14 +31,14 @@ class TestTerm(unittest.TestCase):
         stdout.write("default text")
         
         stdout.write("regular foreground test:")
-        for color in Magic.COLORS.iterkeys():
+        for color in Magic.COLORS.keys():
             self.set_display(fg=color)
             stdout.write("    " + color)
         
         self.set_display('default')
         
         stdout.write("regular background test:")
-        for color in Magic.COLORS.iterkeys():
+        for color in Magic.COLORS.keys():
             self.set_display(bg=color)
             stdout.write("    " + color)
         
@@ -46,7 +46,7 @@ class TestTerm(unittest.TestCase):
         
         stdout.write("bright foreground test:")
         self.set_display('bright')
-        for color in Magic.COLORS.iterkeys():
+        for color in Magic.COLORS.keys():
             self.set_display(fg=color)
             stdout.write("    " + color)
         
@@ -54,7 +54,7 @@ class TestTerm(unittest.TestCase):
         
         stdout.write("dim foreground test:")
         self.set_display('dim')
-        for color in Magic.COLORS.iterkeys():
+        for color in Magic.COLORS.keys():
             self.set_display(fg=color)
             stdout.write("    " + color)
         
