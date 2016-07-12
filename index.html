@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Fabulous &mdash; fabulous 0.2.1 documentation</title>
+    <title>Fabulous &mdash; fabulous 0.3.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.2.1',
+        VERSION:     '0.3.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="fabulous 0.2.1 documentation" href="#" /> 
+    <link rel="top" title="fabulous 0.3.0 documentation" href="#" /> 
   </head>
   <body>
     <div class="related">
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="#">fabulous 0.2.1 documentation</a> &raquo;</li> 
+        <li><a href="#">fabulous 0.3.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -54,13 +54,17 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">0.2.1</td>
+<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">0.3.0</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Founder:</th><td class="field-body">Justine Alexandra Roberts Tunney</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Copyright:</th><td class="field-body">Copyright 2016 The Fabulous Authors. All rights reserved.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">License:</th><td class="field-body">Apache 2.0 / OFL</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Support:</th><td class="field-body">Python 2.6, 2.7, 3.3, 3.4, 3.5, and pypy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Source:</th><td class="field-body"><a class="reference external" href="https://github.com/jart/fabulous">github.com/jart/fabulous</a></td>
 </tr>
 </tbody>
 </table>
@@ -69,7 +73,6 @@ output of terminal applications look <em>fabulous</em>. Fabulous allows you to p
 colors, images, and stylized text to the console (without curses.)  Fabulous
 also offers features to improve the usability of Python&#8217;s standard logging
 system.</p>
-<p>The source code is available at <a class="reference external" href="https://github.com/jart/fabulous">github.com/jart/fabulous</a>.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>The following prerequisites should be installed, but they are not mandatory.
@@ -82,9 +85,9 @@ They help Fabulous run faster and make the full feature set available:</p>
 </pre></div>
 </div>
 <p>Fabulous can also be installed manually from the source archive:</p>
-<div class="highlight-python"><div class="highlight"><pre>wget https://github.com/jart/fabulous/releases/download/0.2.1/fabulous-0.2.1.tar.gz
-tar -xvzf fabulous-0.2.1.tar.gz
-cd fabulous-0.2.1
+<div class="highlight-python"><div class="highlight"><pre>wget https://github.com/jart/fabulous/releases/download/0.3.0/fabulous-0.3.0.tar.gz
+tar -xvzf fabulous-0.3.0.tar.gz
+cd fabulous-0.3.0
 sudo python setup.py install
 </pre></div>
 </div>
@@ -161,39 +164,63 @@ terminal. Also be sure to check out <a class="reference external" href="https://
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="fabulous-text">
 <h3>fabulous-text<a class="headerlink" href="#fabulous-text" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-text"><div class="highlight"><pre>Usage: fabulous-text [options]
-
-Options:
-  -h, --help            show this help message and exit
-  -l, --list            List available fonts
-  -S SKEW, --skew=SKEW  Apply skew effect (measured in pixels) to make it look
-                        extra cool.  For example, Fabulous&#39; logo logo is
-                        skewed by 5 pixels.  Default: none
-  -C COLOR, --color=COLOR
-                        Color of your text.  This can be specified as you
-                        would using HTML/CSS.  Default: #0099ff
-  -B TERM_COLOR, --term-color=TERM_COLOR
-                        If you terminal background isn&#39;t black, please change
-                        this value to the proper background so semi-
-                        transparent pixels will blend properly.
-  -F FONT, --font=FONT  Name of font file, or absolute path to one. Use the
-                        --list flag to see what fonts are available. Fabulous
-                        bundles the NotoSans-Bold and NotoEmoji-Regular fonts,
-                        which are guaranteed to work. Default: NotoSans-Bold
-  -Z FSIZE, --size=FSIZE
-                        Size of font in points.  Default: 23
-  -s, --shadow          Size of font in points.  Default: False
+<div class="highlight-text"><div class="highlight"><pre>Traceback (most recent call last):
+  File &quot;/usr/local/bin/fabulous-text&quot;, line 9, in &lt;module&gt;
+    load_entry_point(&#39;fabulous==0.3.0&#39;, &#39;console_scripts&#39;, &#39;fabulous-text&#39;)()
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 351, in load_entry_point
+    return get_distribution(dist).load_entry_point(group, name)
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 2360, in load_entry_point
+    ep = self.get_entry_info(group,name)
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 2379, in get_entry_info
+    return self.get_entry_map(group).get(name)
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 2371, in get_entry_map
+    self._get_metadata(&#39;entry_points.txt&#39;), self
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 2155, in parse_map
+    for group, lines in data:
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 2715, in split_sections
+    for line in yield_lines(s):
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 1989, in yield_lines
+    for ss in strs:
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 2305, in _get_metadata
+    for line in self.get_metadata_lines(name):
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 1369, in get_metadata_lines
+    return yield_lines(self.get_metadata(name))
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 1361, in get_metadata
+    return self._get(self._fn(self.egg_info,name))
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 1470, in _get
+    stream = open(path, &#39;rb&#39;)
+IOError: [Errno 13] Permission denied: &#39;/usr/local/lib/python2.7/dist-packages/fabulous-0.3.0-py2.7.egg/EGG-INFO/entry_points.txt&#39;
 </pre></div>
 </div>
 </div>
 <div class="section" id="fabulous-image">
 <h3>fabulous-image<a class="headerlink" href="#fabulous-image" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-text"><div class="highlight"><pre>Usage: fabulous-image [options]
-
-Options:
-  -h, --help            show this help message and exit
-  -w WIDTH, --width=WIDTH
-                        Width of printed image in characters.  Default: none
+<div class="highlight-text"><div class="highlight"><pre>Traceback (most recent call last):
+  File &quot;/usr/local/bin/fabulous-image&quot;, line 9, in &lt;module&gt;
+    load_entry_point(&#39;fabulous==0.3.0&#39;, &#39;console_scripts&#39;, &#39;fabulous-image&#39;)()
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 351, in load_entry_point
+    return get_distribution(dist).load_entry_point(group, name)
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 2360, in load_entry_point
+    ep = self.get_entry_info(group,name)
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 2379, in get_entry_info
+    return self.get_entry_map(group).get(name)
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 2371, in get_entry_map
+    self._get_metadata(&#39;entry_points.txt&#39;), self
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 2155, in parse_map
+    for group, lines in data:
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 2715, in split_sections
+    for line in yield_lines(s):
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 1989, in yield_lines
+    for ss in strs:
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 2305, in _get_metadata
+    for line in self.get_metadata_lines(name):
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 1369, in get_metadata_lines
+    return yield_lines(self.get_metadata(name))
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 1361, in get_metadata
+    return self._get(self._fn(self.egg_info,name))
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 1470, in _get
+    stream = open(path, &#39;rb&#39;)
+IOError: [Errno 13] Permission denied: &#39;/usr/local/lib/python2.7/dist-packages/fabulous-0.3.0-py2.7.egg/EGG-INFO/entry_points.txt&#39;
 </pre></div>
 </div>
 </div>
@@ -796,7 +823,7 @@ background.</p>
 
 <dl class="function">
 <dt id="fabulous.color.section">
-<tt class="descclassname">fabulous.color.</tt><tt class="descname">section</tt><big>(</big><em>title</em>, <em>bar=u'\u203e'</em>, <em>strm=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7fab055cb150&gt;</em><big>)</big><a class="headerlink" href="#fabulous.color.section" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">fabulous.color.</tt><tt class="descname">section</tt><big>(</big><em>title</em>, <em>bar=u'\u203e'</em>, <em>strm=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f3ecbf33150&gt;</em><big>)</big><a class="headerlink" href="#fabulous.color.section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper function for testing demo routines</p>
 </dd></dl>
 
@@ -962,6 +989,25 @@ this should <em>just work</em> for you.</p>
 </ul>
 </dd></dl>
 
+<dl class="function">
+<dt id="fabulous.xterm256.rgb_to_xterm">
+<tt class="descclassname">fabulous.xterm256.</tt><tt class="descname">rgb_to_xterm</tt><big>(</big><em>r</em>, <em>g</em>, <em>b</em><big>)</big><a class="headerlink" href="#fabulous.xterm256.rgb_to_xterm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quantize RGB values to an xterm 256-color ID</p>
+<p>This works by envisioning the RGB values for all 256 xterm colors
+as 3D euclidean space and brute-force searching for the nearest
+neighbor.</p>
+<p>This is very slow.  If you&#8217;re very lucky, <a class="reference internal" href="#fabulous.xterm256.compile_speedup" title="fabulous.xterm256.compile_speedup"><tt class="xref py py-func docutils literal"><span class="pre">compile_speedup()</span></tt></a>
+will replace this function automatically with routines in
+<cite>_xterm256.c</cite>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="fabulous.xterm256.xterm_to_rgb">
+<tt class="descclassname">fabulous.xterm256.</tt><tt class="descname">xterm_to_rgb</tt><big>(</big><em>xcolor</em><big>)</big><a class="headerlink" href="#fabulous.xterm256.xterm_to_rgb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert xterm Color ID to an RGB value</p>
+<p>All 256 values are precalculated and stored in <tt class="xref py py-data docutils literal"><span class="pre">COLOR_TABLE</span></tt></p>
+</dd></dl>
+
 </div>
 <span class="target" id="module-fabulous.text"></span><div class="section" id="id1">
 <h3>fabulous.text<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
@@ -1090,10 +1136,11 @@ globbing the specified name in various directories.</li>
 </pre></div>
 </div>
 <p>Raises <a class="reference internal" href="#fabulous.text.FontNotFound" title="fabulous.text.FontNotFound"><tt class="xref py py-exc docutils literal"><span class="pre">FontNotFound</span></tt></a> on failure:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">resolve_font</span><span class="p">(</span><span class="s">&#39;blahahaha&#39;</span><span class="p">)</span>
-<span class="gt">Traceback (most recent call last):</span>
-<span class="c">...</span>
-<span class="gr">FontNotFound</span>: <span class="n">Can&#39;t find &#39;blahahaha&#39; :&#39;(  Try adding it to ~/.fonts</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">resolve_font</span><span class="p">(</span><span class="s">&#39;blahahaha&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">assert</span> <span class="bp">False</span>
+<span class="gp">... </span><span class="k">except</span> <span class="n">FontNotFound</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">pass</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1201,7 +1248,7 @@ messages:</p>
 </div>
 <dl class="class">
 <dt id="fabulous.logs.TransientStreamHandler">
-<em class="property">class </em><tt class="descclassname">fabulous.logs.</tt><tt class="descname">TransientStreamHandler</tt><big>(</big><em>strm=&lt;open file '&lt;stderr&gt;'</em>, <em>mode 'w' at 0x7fab055cb1e0&gt;</em>, <em>level=30</em><big>)</big><a class="headerlink" href="#fabulous.logs.TransientStreamHandler" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">fabulous.logs.</tt><tt class="descname">TransientStreamHandler</tt><big>(</big><em>strm=&lt;open file '&lt;stderr&gt;'</em>, <em>mode 'w' at 0x7f3ecbf331e0&gt;</em>, <em>level=30</em><big>)</big><a class="headerlink" href="#fabulous.logs.TransientStreamHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standard Python logging Handler for Transient Console Logging</p>
 <p>Logging transiently means that verbose logging messages like DEBUG
 will only appear on the last line of your terminal for a short
@@ -2406,7 +2453,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="#">fabulous 0.2.1 documentation</a> &raquo;</li> 
+        <li><a href="#">fabulous 0.3.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
