@@ -21,11 +21,9 @@
 """
 
 import os
-import sys
 import fcntl
 import struct
 import termios
-import textwrap
 import functools
 
 from fabulous import grapefruit
