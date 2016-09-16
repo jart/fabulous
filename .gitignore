@@ -16,3 +16,4 @@ local_settings.py
 .build
 dist
 pip-log.txt
+env*/

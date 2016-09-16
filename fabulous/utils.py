@@ -21,10 +21,8 @@
 """
 
 import os
-import fcntl
-import struct
-import termios
 import functools
+from collections import namedtuple
 
 from fabulous import grapefruit
 
@@ -102,15 +100,26 @@ class TerminalInfo(object):
         the user might resize their terminal.
 
         :return: Returns ``(width, height)``.  If there's no terminal
-                 to be found, we'll just return ``(79, 40)``.
+                 to be found, we'll just return ``(80, 24)``.
         """
         try:
-            call = fcntl.ioctl(self.termfd, termios.TIOCGWINSZ, "\000" * 8)
-        except IOError:
-            return (79, 40)
-        else:
-            height, width = struct.unpack("hhhh", call)[:2]
-            return (width, height)
+            # shutil.get_terminal_size was added to the standard
+            # library in Python 3.3
+            try:
+                from shutil import get_terminal_size as _get_terminal_size  # pylint: disable=no-name-in-module
+            except ImportError:
+                from backports.shutil_get_terminal_size import get_terminal_size as _get_terminal_size  # pylint: disable=import-error
+
+            sz = _get_terminal_size()
+        except ValueError:
+            """
+            This can result from the 'underlying buffer being detached', which
+            occurs during running the unittest on Windows (but not on Linux?)
+            """
+            terminal_size = namedtuple('Terminal_Size', 'columns lines')
+            sz = terminal_size(80, 24)
+
+        return sz
 
     @property
     def width(self):

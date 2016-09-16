@@ -46,6 +46,11 @@ setuptools.setup(
     packages             = ['fabulous', 'fabulous.experimental'],
     zip_safe             = False,
     include_package_data = True,
+    extras_require = {
+        ':python_version=="2.6"': ['backports.shutil_get_terminal_size>=1.0.0'],
+        ':python_version=="2.7"': ['backports.shutil_get_terminal_size>=1.0.0'],
+        ':python_version=="3.2"': ['backports.shutil_get_terminal_size>=1.0.0'],
+        }
     entry_points = {
         'console_scripts': [
             'fabulous-demo = fabulous.demo:main',
