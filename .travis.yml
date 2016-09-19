@@ -24,6 +24,10 @@ addons:
 
 script:
   - pip install Pillow==2.3.0
+  - if [[ $TRAVIS_PYTHON_VERSION == 2.6 ]]; then pip install backports.shutil_get_terminal_size; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == 2.7 ]]; then pip install backports.shutil_get_terminal_size; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == 3.2 ]]; then pip install backports.shutil_get_terminal_size; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == 'pypy' ]]; then pip install backports.shutil_get_terminal_size; fi
   - python -m doctest -v fabulous/*.py
   - python setup.py install
   - yes | fabulous-demo

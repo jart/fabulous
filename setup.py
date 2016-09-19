@@ -50,7 +50,7 @@ setuptools.setup(
         ':python_version=="2.6"': ['backports.shutil_get_terminal_size>=1.0.0'],
         ':python_version=="2.7"': ['backports.shutil_get_terminal_size>=1.0.0'],
         ':python_version=="3.2"': ['backports.shutil_get_terminal_size>=1.0.0'],
-        }
+        },
     entry_points = {
         'console_scripts': [
             'fabulous-demo = fabulous.demo:main',
