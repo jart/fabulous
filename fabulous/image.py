@@ -112,7 +112,7 @@ class Image(object):
         (iw, ih) = self.size
         if width is None:
             width = min(iw, utils.term.width)
-        elif isinstance(width, basestring):
+        elif isinstance(width, str):
             percents = dict([(pct, '%s%%' % (pct)) for pct in range(101)])
             width = percents[width]
         height = int(float(ih) * (float(width) / float(iw)))
