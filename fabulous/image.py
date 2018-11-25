@@ -28,8 +28,15 @@
 import sys
 import itertools
 
+from six import string_types
+
 from fabulous import utils, xterm256, grapefruit
 from fabulous.compatibility import printy
+
+try:
+    basestring = basestring
+except:
+    basestring = (str, bytes)
 
 
 class Image(object):
@@ -112,7 +119,7 @@ class Image(object):
         (iw, ih) = self.size
         if width is None:
             width = min(iw, utils.term.width)
-        elif isinstance(width, basestring):
+        elif isinstance(width, string_types):
             percents = dict([(pct, '%s%%' % (pct)) for pct in range(101)])
             width = percents[width]
         height = int(float(ih) * (float(width) / float(iw)))
