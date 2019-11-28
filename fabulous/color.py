@@ -20,7 +20,7 @@
 
     The color module provides an object-oriented abstraction for stylized text
     inside the terminal. This includes things like bold text, blinking text,
-    4-bit ANSI colors and 8-bit xterm256 colors.
+    4-bit ANSI colors, 8-bit xterm256 colors, and 24-bit "truecolor" colors.
 
 """
 
@@ -125,6 +125,20 @@ class ColorString256(ColorString):
         return self.fmt % (
             self.color, self.sep.join([unicode(s) for s in self.items]))
 
+class ColorStringTrue(ColorString):
+    r"""Base class for 24-bit "truecolor" stylized string-like objects.
+
+    See the :class:`.fgtrue`, :class:`.bgtrue`, :class:`.highlighttrue`, and
+    :class:`.complementtrue` classes for more information.
+
+    """
+    def __init__(self, color, *items):
+        self.color = parse_color(color)
+        self.items = items
+
+    def __str__(self):
+        return self.fmt % (
+            *self.color, self.sep.join([unicode(s) for s in self.items]))
 
 class plain(ColorString):
     r"""Plain text wrapper
@@ -763,6 +777,32 @@ class fg256(ColorString256):
     fmt = esc(38, 5, "%d") + "%s" + esc(39)
 
 
+class fgtrue(ColorStringTrue):
+    r"""24-bit "truecolor" foreground color wrapper
+
+    This class creates a string-like object that has a 24-bit color. The
+    color is specified as a CSS color code.
+
+    These colors are, in theory, the most dependable of all... presuming your
+    terminal supports them, of course.
+
+    Example usage::
+
+        from fabulous import fgtrue, plain
+        print fgtrue('#F00', 'i am red!')
+        print fgtrue('#FF0000', 'i am red!')
+        print fgtrue('magenta', 'i am', ' magenta!')
+        print plain('hello ', fgtrue('magenta', 'world'))
+
+    The ANSI escape codes look as follows::
+
+        >>> str(fgtrue('red', 'hello'))
+        '\x1b[38;2;255;0;0mhello\x1b[39m'
+
+    """
+    fmt = esc(38, 2, "%d", "%d", "%d") + "%s" + esc(39)
+
+
 class bg256(ColorString256):
     r"""xterm256 background color wrapper
 
@@ -795,6 +835,32 @@ class bg256(ColorString256):
     fmt = esc(48, 5, "%d") + "%s" + esc(49)
 
 
+class bgtrue(ColorStringTrue):
+    r"""24-bit "truecolor" background color wrapper
+
+    This class creates a string-like object that has a 24-bit color. The
+    color is specified as a CSS color code.
+
+    These colors are, in theory, the most dependable of all... presuming your
+    terminal supports them, of course.
+
+    Example usage::
+
+        from fabulous import bgtrue, plain
+        print bgtrue('#F00', 'i have a red background!')
+        print bgtrue('#FF0000', 'i have a red background!')
+        print bgtrue('magenta', 'i have a', ' magenta background!')
+        print plain('hello ', bgtrue('magenta', 'world'))
+
+    The ANSI escape codes look as follows::
+
+        >>> str(bgtrue('red', 'hello'))
+        '\x1b[48;2;255;0;0mhello\x1b[49m'
+
+    """
+    fmt = esc(48, 2, "%d", "%d", "%d") + "%s" + esc(49)
+
+
 class highlight256(ColorString256):
     r"""Highlighted 8-bit color text
 
@@ -803,6 +869,16 @@ class highlight256(ColorString256):
 
     """
     fmt = esc(1, 38, 5, "%d", 7) + "%s" + esc(27, 39, 22)
+
+
+class highlighttrue(ColorStringTrue):
+    r"""Highlighted 24-bit "truecolor" color text
+
+    This is equivalent to composing :class:`.bold`, :class:`.flip`, and
+    :class:`.fgtrue`.
+
+    """
+    fmt = esc(1, 38, 2, "%d", "%d", "%d", 7) + "%s" + esc(27, 39, 22)
 
 
 class complement256(ColorString256):
@@ -826,6 +902,30 @@ class complement256(ColorString256):
     def __str__(self):
         return self.fmt % (
             self.fg, self.bg,
+            self.sep.join([unicode(s) for s in self.items]))
+
+
+class complementtrue(ColorStringTrue):
+    r"""Highlighted 24-bit "truecolor" color text
+
+    This class composes :class:`.bold`, :class:`.flip`, and
+    :class:`.bgtrue`. Then it invokes :meth:`complement` to supply the polar
+    opposite :class:`fgtrue` color.
+
+    This looks kind of hideous at the moment. We're planning on finding a
+    better formula for complementary colors in the future.
+
+    """
+    fmt = esc(1, 38, 2, "%d", "%d", "%d", 48, 2, "%d", "%d", "%d") + "%s" + esc(49, 39, 22)
+
+    def __init__(self, color, *items):
+        self.bg = parse_color(color)
+        self.fg = complement(color)
+        self.items = items
+
+    def __str__(self):
+        return self.fmt % (
+            *self.fg, *self.bg,
             self.sep.join([unicode(s) for s in self.items]))
 
 
