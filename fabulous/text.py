@@ -175,6 +175,13 @@ def resolve_font(name):
         return fonts[name]
     raise FontNotFound("Can't find %r :'(  Try adding it to ~/.fonts" % name)
 
+font_roots = [
+    '/usr/share/fonts/truetype',                # where ubuntu puts fonts
+    '/usr/share/fonts',                         # where fedora puts fonts
+    os.path.expanduser('~/.local/share/fonts'), # custom user fonts
+    os.path.expanduser('~/.fonts'),             # custom user fonts
+    os.path.abspath(os.path.join(os.path.dirname(__file__), 'fonts')),
+]
 
 @utils.memoize
 def get_font_files():
@@ -193,14 +200,8 @@ def get_font_files():
         True
 
     """
-    roots = [
-        '/usr/share/fonts/truetype',     # where ubuntu puts fonts
-        '/usr/share/fonts',              # where fedora puts fonts
-        os.path.expanduser('~/.fonts'),  # custom user fonts
-        os.path.abspath(os.path.join(os.path.dirname(__file__), 'fonts')),
-    ]
     result = {}
-    for root in roots:
+    for root in font_roots:
         for path, dirs, names in os.walk(root):
             for name in names:
                 if name.endswith(('.ttf', '.otf')):
