@@ -138,7 +138,7 @@ class ColorStringTrue(ColorString):
 
     def __str__(self):
         return self.fmt % (
-            *self.color, self.sep.join([unicode(s) for s in self.items]))
+            self.color[0], self.color[1], self.color[2], self.sep.join([unicode(s) for s in self.items]))
 
 class plain(ColorString):
     r"""Plain text wrapper
@@ -925,7 +925,8 @@ class complementtrue(ColorStringTrue):
 
     def __str__(self):
         return self.fmt % (
-            *self.fg, *self.bg,
+            self.fg[0], self.fg[1], self.fg[2],
+			self.bg[0], self.bg[1], self.bg[2],
             self.sep.join([unicode(s) for s in self.items]))
 
 
