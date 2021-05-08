@@ -74,6 +74,10 @@ class ColorString(object):
         >>> len(bold("hello ", red("world")))
         11
 
+    If you have the wcwidth module installed, it will be used for computing lengths::
+
+
+
     """
     sep = ""
     fmt = "%s"
@@ -87,8 +91,21 @@ class ColorString(object):
     def __repr__(self):
         return repr(unicode(self))
 
-    def __len__(self):
-        return sum([len(item) for item in self.items])
+
+    if sys.version_info[0] > 2:
+        def __len__(self):
+            try:
+                import wcwidth
+                # We use:
+                # * wcwidth.wcswidth(item) to find the length of strs
+                # * len(str(item)) to find the length of a bytes object
+                # * len(item) for everything else.
+                return sum([ wcwidth.wcswidth(item) if isinstance(item, str) else len(str(item)) if isinstance(item, bytes) else len(item) for item in self.items ])
+            except ModuleNotFoundError:
+                return sum([len(str(item)) if isinstance(item, bytes) else len(item) for item in self.items])
+    else:
+        def __len__(self):
+            return sum([len(item) for item in self.items])
 
     def __add__(self, cs):
         if not isinstance(cs, (basestring, ColorString)):
@@ -926,7 +943,7 @@ class complementtrue(ColorStringTrue):
     def __str__(self):
         return self.fmt % (
             self.fg[0], self.fg[1], self.fg[2],
-			self.bg[0], self.bg[1], self.bg[2],
+            self.bg[0], self.bg[1], self.bg[2],
             self.sep.join([unicode(s) for s in self.items]))
 
 
