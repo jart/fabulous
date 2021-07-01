@@ -124,6 +124,28 @@ class ColorString(object):
         """A more readable way to say ``unicode(color).encode('utf8')``
         """
         return unicode(self).encode('utf8')
+    def join(self, iterable):
+        """
+        This works just like `str.join()`, but for ColorStrings!
+
+        For example:
+
+            >>> from fabulous.color import *
+            >>> l = [
+            ...     fg256("green", "napster good"),
+            ...     fg256("red", "fire bad"),
+            ... ]
+            >>> print(plain(" ").join(l))
+
+        """
+        ret = None
+        for x in iterable:
+            if ret is None:
+                ret = x
+            else:
+                ret += self
+                ret += x
+        return ret
 
 
 class ColorString256(ColorString):
