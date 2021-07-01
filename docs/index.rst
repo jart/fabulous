@@ -10,7 +10,7 @@
 .. toctree::
    :maxdepth: 2
 
-:Version: 0.3.0
+:Version: 0.4.0
 :Founder: Justine Alexandra Roberts Tunney
 :Copyright: Copyright 2016 The Fabulous Authors. All rights reserved.
 :License: Apache 2.0 / OFL
@@ -40,9 +40,9 @@ Fabulous can be installed from CheeseShop::
 
 Fabulous can also be installed manually from the source archive::
 
-    wget https://github.com/jart/fabulous/releases/download/0.3.0/fabulous-0.3.0.tar.gz
-    tar -xvzf fabulous-0.3.0.tar.gz
-    cd fabulous-0.3.0
+    wget https://github.com/jart/fabulous/releases/download/0.4.0/fabulous-0.4.0.tar.gz
+    tar -xvzf fabulous-0.4.0.tar.gz
+    cd fabulous-0.4.0
     sudo python setup.py install
 
 Once installed, run the demo::
