@@ -21,16 +21,16 @@ class TestControl(unittest.TestCase):
 
     def test_ListCompleter(self):
         c = rlcomplete.ListCompleter(['foo','bar','baz'], True)
-        self.failUnlessEqual(c.completelist('a'), [])
-        self.failUnlessEqual(c.completelist('B'), ['bar','baz'])
-        self.failUnlessEqual(c.completelist('f'), ['foo'])
+        self.assertEqual(c.completelist('a'), [])
+        self.assertEqual(c.completelist('B'), ['bar','baz'])
+        self.assertEqual(c.completelist('f'), ['foo'])
         c = rlcomplete.ListCompleter(['foo','bar','baz'], False)
-        self.failUnlessEqual(c.completelist('B'), [])
-        self.failUnlessEqual(c.completelist('b'), ['bar','baz'])
+        self.assertEqual(c.completelist('B'), [])
+        self.assertEqual(c.completelist('b'), ['bar','baz'])
 
     def test_PathCompleter(self):
         #c = rlcomplete.PathCompleter()
-        #self.failUnlessEqual(c.completelist('m'), ['manual/'])
+        #self.assertEqual(c.completelist('m'), ['manual/'])
         pass
         
 if __name__ == '__main__':
