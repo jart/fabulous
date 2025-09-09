@@ -31,6 +31,11 @@ import itertools
 from fabulous import utils, xterm256, grapefruit
 from fabulous.compatibility import printy
 
+try:
+    basestring = basestring
+except:
+    basestring = (str, bytes)
+
 
 class Image(object):
     """Printing image files to a terminal
